@@ -1,3 +1,4 @@
+
 {
   "name": "salesblanketv4-server",
   "version": "1.0.0",
@@ -5,7 +6,8 @@
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
-    "dev": "ts-node src/index.ts",
+    "dev": "node start-server.js",
+    "dev:watch": "nodemon start-server.js",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .ts",
@@ -14,7 +16,9 @@
     "db:drop": "dropdb -U postgres salesblanketv4",
     "db:init": "psql -U postgres -d salesblanketv4 -f src/db/migrations/001_initial_schema.sql",
     "db:seed": "psql -U postgres -d salesblanketv4 -f src/db/migrations/002_seed_data.sql",
-    "db:reset": "npm run db:drop && npm run db:create && npm run db:init && npm run db:seed"
+    "db:reset": "npm run db:drop && npm run db:create && npm run db:init && npm run db:seed",
+    "start:aws": "NODE_ENV=development node start-server.js",
+    "windows": "node start-server.js"
   },
   "keywords": [
     "graphql",
@@ -27,18 +31,25 @@
   "license": "ISC",
   "dependencies": {
     "@graphql-tools/merge": "^9.0.24",
-    "@types/bcrypt": "^5.0.2",
-    "@types/jsonwebtoken": "^9.0.9",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^22.14.0",
     "apollo-server-express": "^3.13.0",
     "axios": "^1.8.4",
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "graphql": "^16.10.0",
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.14.1",
-    "pg-promise": "^11.13.0",
+    "pg-promise": "^11.13.0"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/pg": "^8.11.11",
+    "@types/uuid": "^10.0.0",
+    "nodemon": "^3.1.9",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }

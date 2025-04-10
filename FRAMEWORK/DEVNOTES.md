@@ -1,5 +1,13 @@
 To ensure your journey with the database setup is successful, here are the key steps you should follow, including some that might not be immediately obvious:
 
+Some helpful VS Code extensions for this project:
+  - ESLint
+  - Prettier
+  - GraphQL
+  - PostgreSQL
+  - Thunder Client (for API testing)
+  - WSL extension (for working with WSL)
+
 Database Backup Strategy
 
 Set up automatic backups in the AWS RDS console

@@ -1,9 +1,7 @@
 import { gql } from 'apollo-server-express';
 
 export const user = gql`
-  """
-  User & Permission System Types
-  """
+  # User & Permission System Types
   
   type User {
     id: UUID!

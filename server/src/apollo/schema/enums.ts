@@ -5,7 +5,6 @@ export const enums = gql`
   Enumeration types for the GraphQL schema
   """
   
-  "Entity status values"
   enum EntityStatus {
     ACTIVE
     INACTIVE
@@ -14,7 +13,6 @@ export const enums = gql`
     DELETED
   }
   
-  "Touchpoint status values"
   enum TouchpointStatus {
     SCHEDULED
     COMPLETED

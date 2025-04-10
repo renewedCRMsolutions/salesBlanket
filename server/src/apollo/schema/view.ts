@@ -1,9 +1,7 @@
 import { gql } from 'apollo-server-express';
 
 export const view = gql`
-  """
-  View System Types
-  """
+  # View System Types
   
   type ViewType {
     id: UUID!

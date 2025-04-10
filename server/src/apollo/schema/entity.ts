@@ -1,9 +1,7 @@
 import { gql } from 'apollo-server-express';
 
 export const entity = gql`
-  """
-  Entity Management System Types
-  """
+  # Entity Management System Types
   
   type EntityType {
     id: UUID!

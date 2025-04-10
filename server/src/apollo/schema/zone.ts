@@ -1,9 +1,7 @@
 import { gql } from 'apollo-server-express';
 
 export const zone = gql`
-  """
-  Zone System Types
-  """
+  # Zone System Types
   
   type ZoneType {
     id: UUID!

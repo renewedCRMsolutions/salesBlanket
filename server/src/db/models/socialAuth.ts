@@ -115,7 +115,7 @@ export class SocialAuth {
 
     try {
       const result = await this.pool.query(query, [userId, provider]);
-      return result.rowCount > 0;
+      return result.rowCount ? result.rowCount > 0 : false;
     } catch (error) {
       console.error('Error unlinking social profile:', error);
       throw error;

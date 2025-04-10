@@ -7,14 +7,6 @@ import { entity } from './entity';
 import { zone } from './zone';
 import { view } from './view';
 import { user } from './user';
-import { card } from './card';
-import { touchpoint } from './touchpoint';
-import { goal } from './goal';
-import { team } from './team';
-import { notification } from './notification';
-import { document } from './document';
-import { estimate } from './estimate';
-import { corporate } from './corporate';
 
 // Base schema with empty Query and Mutation types
 const baseTypeDefs = gql`
@@ -29,6 +21,62 @@ const baseTypeDefs = gql`
   type Subscription {
     _empty: String
   }
+
+  # Referenced types that are used but not yet fully implemented
+  type EntityEngagement {
+    id: UUID!
+    # Placeholder for future implementation
+  }
+
+  type EntityEvent {
+    id: UUID!
+    # Placeholder for future implementation
+  }
+
+  type EntityAchievement {
+    id: UUID!
+    # Placeholder for future implementation
+  }
+
+  type EntityManager {
+    id: UUID!
+    # Placeholder for future implementation
+  }
+
+  type EntityPhoto {
+    id: UUID!
+    # Placeholder for future implementation
+  }
+
+  type EntityTouchpoint {
+    id: UUID!
+    # Placeholder for future implementation
+  }
+
+  type DepartmentType {
+    id: UUID!
+    # Placeholder for future implementation
+  }
+
+  type Group {
+    id: UUID!
+    # Placeholder for future implementation
+  }
+
+  type ZoneGoal {
+    id: UUID!
+    # Placeholder for future implementation
+  }
+
+  type NeighborhoodGoal {
+    id: UUID!
+    # Placeholder for future implementation
+  }
+
+  type Estimate {
+    id: UUID!
+    # Placeholder for future implementation
+  }
 `;
 
 // Export combined type definitions
@@ -39,13 +87,5 @@ export const typeDefs = [
   entity,
   zone,
   view,
-  user,
-  card,
-  touchpoint,
-  goal,
-  team,
-  notification,
-  document,
-  estimate,
-  corporate
+  user
 ];

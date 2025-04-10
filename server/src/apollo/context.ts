@@ -32,7 +32,11 @@ export async function createContext({ req, res }: { req: Request, res: Response 
       const decoded = verifyToken(token);
       if (decoded?.userId) {
         // Get user from database
-        user = await db.users.findOne({ id: decoded.userId });
+        const result = await db.query(
+          'SELECT * FROM users WHERE id = $1 LIMIT 1',
+          [decoded.userId]
+        );
+        user = result.rows.length > 0 ? result.rows[0] : null;
       }
     } catch (error) {
       console.error('Authentication error:', error);

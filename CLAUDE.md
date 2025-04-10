@@ -3,19 +3,30 @@
 ## Core Rules
 
 1. **ALWAYS follow the documentation and existing patterns**. If you encounter an issue not covered by existing rules or documentation, STOP and discuss it with me first.
-2. Do not write code without confirmation
-3. Primary Goal is to complete the web app for BETA with lightweight code using modern JS web application techniques
-4. NO FallBackCode for DEV - need to get the database wired in correctly
+2. **ABSOLUTELY NO EXTRA CODE. ONLY IMPLEMENT WHAT IS NEEDED**:
+   - NEVER add code that isn't immediately required
+   - NEVER import modules, components, or files that aren't used
+   - It's ALWAYS easier to add code than to find and remove duplicates
+   - Follow YAGNI (You Aren't Gonna Need It) principle strictly
+   - Each function, import, and variable must have clear, immediate purpose
+3. Do not write code without confirmation
+4. Primary Goal is to complete the web app for BETA with lightweight code using modern JS web application techniques
+5. NO FallBackCode for DEV - need to get the database wired in correctly
 
-## Core Architecture+
+## Core Architecture
 
-C:\Users\Robert Wolfe\Desktop\Projects\salesBlanketv4\FINALSCHEMA.md HAS THE SCHEMA
+**Important Reference Files**:
+- `/FINALSCHEMA.md` - Complete GraphQL schema definition
+- `/FRAMEWORK/architecture.md` - System architecture and deployment strategy
+- `/FRAMEWORK/DataBase/DBqueryfordatabaseschema.csv` - Complete database schema
+- `/debugging-system.md` - Debugging tools and procedures
+- `/view-system.md` - Database-driven view configuration system
 
 SalesBlanket v4 is built on a modern, API-first architecture with these core components:
 
-1. **Database Layer**: PostgreSQL with PostGIS for geographic data
-2. **API Layer**: GraphQL with Apollo Server
-3. **Frontend**: React with Apollo Client and TypeScript
+1. **Frontend**: Vanilla JavaScript with service-based API communication
+2. **Middleware**: GraphQL API with Apollo Server (TypeScript/Node.js)
+3. **Database**: PostgreSQL with PostGIS on AWS RDS
 4. **Integration**: Google Maps Platform and Google Workspace APIs
 
 ## Key Design Principles

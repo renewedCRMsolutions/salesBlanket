@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SalesBlanket - Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7f9fc;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar {
+            background-color: #3f51b5;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #303f9f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .user-name {
+            margin-right: 15px;
+        }
+        
+        .logout-btn {
+            background-color: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .logout-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .welcome-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .welcome-card h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        
+        .welcome-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .dashboard-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dashboard-card h3 {
+            margin-top: 0;
+            color: #3f51b5;
+        }
+        
+        .dashboard-card p {
+            color: #666;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 18px;
+            color: #666;
+        }
+        
+        .unauthorized {
+            text-align: center;
+            padding: 50px;
+        }
+        
+        .unauthorized h2 {
+            color: #f44336;
+        }
+        
+        .unauthorized p {
+            margin-bottom: 30px;
+        }
+        
+        .login-btn {
+            background-color: #3f51b5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="loading">Loading...</div>
+    </div>
+
+    <template id="dashboard-template">
+        <div>
+            <div class="navbar">
+                <div class="logo">
+                    <h1>SalesBlanket</h1>
+                </div>
+                <div class="user-info">
+                    <div class="avatar" id="user-avatar"></div>
+                    <span class="user-name" id="user-name"></span>
+                    <button class="logout-btn" id="logout-btn">Logout</button>
+                </div>
+            </div>
+            
+            <div class="container">
+                <div class="welcome-card">
+                    <h2>Welcome to SalesBlanket</h2>
+                    <p>Your door-to-door sales management solution. Here's your overview for today:</p>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>Addresses</h3>
+                        <p>Manage your sales territory addresses and contacts.</p>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3>Zones</h3>
+                        <p>View and manage your assigned sales zones.</p>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3>Opportunities</h3>
+                        <p>Track and manage your sales opportunities.</p>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3>Touchpoints</h3>
+                        <p>Schedule and track customer interactions.</p>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3>Reports</h3>
+                        <p>View performance analytics and reports.</p>
+                    </div>
+                    
+                    <div class="dashboard-card">
+                        <h3>Settings</h3>
+                        <p>Configure your account and application settings.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    
+    <template id="unauthorized-template">
+        <div class="unauthorized">
+            <h2>Unauthorized Access</h2>
+            <p>You need to log in to access the dashboard.</p>
+            <a href="/login.html" class="login-btn">Go to Login</a>
+        </div>
+    </template>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const app = document.getElementById('app');
+            const token = localStorage.getItem('token');
+            const userString = localStorage.getItem('user');
+            
+            if (!token || !userString) {
+                // User is not logged in
+                const template = document.getElementById('unauthorized-template');
+                app.innerHTML = template.innerHTML;
+                return;
+            }
+            
+            try {
+                // Parse user data
+                const user = JSON.parse(userString);
+                
+                // Load dashboard UI
+                const template = document.getElementById('dashboard-template');
+                app.innerHTML = template.innerHTML;
+                
+                // Set user information
+                const userAvatar = document.getElementById('user-avatar');
+                const userName = document.getElementById('user-name');
+                const logoutBtn = document.getElementById('logout-btn');
+                
+                // Set avatar initial
+                const firstInitial = user.firstName ? user.firstName.charAt(0).toUpperCase() : user.email.charAt(0).toUpperCase();
+                userAvatar.textContent = firstInitial;
+                
+                // Set user name
+                const displayName = user.firstName && user.lastName 
+                    ? `${user.firstName} ${user.lastName}`
+                    : user.email;
+                userName.textContent = displayName;
+                
+                // Handle logout
+                logoutBtn.addEventListener('click', function() {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('user');
+                    window.location.href = '/login.html';
+                });
+                
+                // Validate token with backend
+                validateToken(token);
+                
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                
+                const template = document.getElementById('unauthorized-template');
+                app.innerHTML = template.innerHTML;
+            }
+        });
+        
+        async function validateToken(token) {
+            try {
+                const response = await fetch('/auth/status', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (!data.authenticated) {
+                    // Token is invalid
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('user');
+                    window.location.href = '/login.html';
+                }
+            } catch (error) {
+                console.error('Error validating token:', error);
+            }
+        }
+    </script>
+</body>
+</html>

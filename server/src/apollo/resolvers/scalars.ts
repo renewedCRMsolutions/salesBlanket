@@ -35,7 +35,10 @@ const TimestampScalar = new GraphQLScalarType({
     return value instanceof Date ? value.toISOString() : value;
   },
   parseValue(value) {
-    return new Date(value);
+    if (typeof value === 'string' || typeof value === 'number' || value instanceof Date) {
+      return new Date(value);
+    }
+    throw new Error('Invalid timestamp');
   },
   parseLiteral(ast) {
     if (ast.kind === Kind.STRING || ast.kind === Kind.INT) {
@@ -148,7 +151,7 @@ const JSONScalar = new GraphQLScalarType({
       case Kind.FLOAT:
         return parseFloat(ast.value);
       case Kind.BOOLEAN:
-        return ast.value === 'true';
+        return ast.value === true;
       case Kind.NULL:
         return null;
       case Kind.LIST:
@@ -182,16 +185,16 @@ const JSONBScalar = new GraphQLScalarType({
 });
 
 // Helper function for JSON scalar
-function parseObject(ast) {
+function parseObject(ast: any): any {
   const value = Object.create(null);
-  ast.fields.forEach(field => {
+  ast.fields.forEach((field: any) => {
     value[field.name.value] = parseAst(field.value);
   });
 
   return value;
 }
 
-function parseAst(ast) {
+function parseAst(ast: any): any {
   switch (ast.kind) {
     case Kind.STRING:
       return ast.value;
@@ -200,7 +203,7 @@ function parseAst(ast) {
     case Kind.FLOAT:
       return parseFloat(ast.value);
     case Kind.BOOLEAN:
-      return ast.value === 'true';
+      return ast.value === true;
     case Kind.NULL:
       return null;
     case Kind.LIST:

@@ -1,0 +1,12 @@
+{
+  "name": "salesblanketv4",
+  "version": "1.0.0",
+  "description": "A door-to-door sales application with a modern, API-first architecture featuring GraphQL, PostgreSQL with PostGIS, and Google Zones integration.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

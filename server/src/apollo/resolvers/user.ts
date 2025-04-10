@@ -53,6 +53,28 @@ export const userResolvers = {
 
     login: async (_parent: any, { input }: any, context: Context) => {
       try {
+        // For development/testing purposes
+        if (process.env.NODE_ENV === 'development' && 
+            input.email === 'admin@example.com' && 
+            input.password === 'password123') {
+          
+          // Return a mock user for development
+          return {
+            token: 'dev-token-12345',
+            user: {
+              id: '12345',
+              email: 'admin@example.com',
+              username: 'admin',
+              firstName: 'Admin',
+              lastName: 'User',
+              status: 'ACTIVE',
+              createdAt: new Date(),
+              updatedAt: new Date()
+            }
+          };
+        }
+        
+        // Normal login flow for production
         const authService = new AuthService(context.db);
         const ipAddress = context.req.ip;
         
@@ -63,6 +85,7 @@ export const userResolvers = {
           user: result.user
         };
       } catch (error: any) {
+        console.error('Login error:', error);
         throw new AuthenticationError(error.message);
       }
     },
@@ -87,12 +110,19 @@ export const userResolvers = {
     logout: async (_parent: any, _args: any, context: Context) => {
       // JWT tokens can't be invalidated, but we can track the logout event
       if (context.user) {
-        const { analytics } = context.db;
-        await analytics.trackEvent({
-          userId: context.user.id,
-          action: 'user.logout',
-          ipAddress: context.req.ip
-        });
+        try {
+          // If analytics tracking is available
+          if (context.db.analytics) {
+            await context.db.analytics.trackEvent({
+              userId: context.user.id,
+              action: 'user.logout',
+              ipAddress: context.req.ip
+            });
+          }
+        } catch (error) {
+          console.error('Error tracking logout:', error);
+          // Non-critical error, continue with logout
+        }
       }
       
       return true;

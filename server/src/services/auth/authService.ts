@@ -1,5 +1,5 @@
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import * as jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
 import { Pool } from 'pg';
 import { v4 as uuidv4 } from 'uuid';
 import { SocialAuth, SocialProfile } from '../../db/models/socialAuth';
@@ -61,7 +61,7 @@ export class AuthService {
 
   /**
    * Register a new user
-   * 
+   *
    * @param input Registration data
    * @returns JWT token and user object
    */
@@ -96,7 +96,7 @@ export class AuthService {
       input.firstName || null,
       input.lastName || null,
       'ACTIVE',
-      now
+      now,
     ];
 
     try {
@@ -109,8 +109,8 @@ export class AuthService {
         action: 'user.register',
         ipAddress,
         meta: {
-          method: 'email'
-        }
+          method: 'email',
+        },
       });
 
       // Generate JWT token
@@ -125,16 +125,13 @@ export class AuthService {
 
   /**
    * Login a user with email/username and password
-   * 
+   *
    * @param input Login credentials
    * @returns JWT token and user object
    */
   async login(input: LoginInput, ipAddress?: string): Promise<AuthResult> {
     // Find user by email or username
-    const user = await this.findUserByEmailOrUsername(
-      input.email || '',
-      input.username || ''
-    );
+    const user = await this.findUserByEmailOrUsername(input.email || '', input.username || '');
 
     if (!user || !user.passwordHash) {
       throw new Error('Invalid credentials');
@@ -155,8 +152,8 @@ export class AuthService {
       action: 'user.login',
       ipAddress,
       meta: {
-        method: 'password'
-      }
+        method: 'password',
+      },
     });
 
     // Generate JWT token
@@ -167,7 +164,7 @@ export class AuthService {
 
   /**
    * Login or register a user with a social provider
-   * 
+   *
    * @param input Social login credentials
    * @returns JWT token, user object, and isNewUser flag
    */
@@ -214,8 +211,8 @@ export class AuthService {
       action: isNewUser ? 'user.register' : 'user.login',
       ipAddress,
       meta: {
-        method: profile.provider
-      }
+        method: profile.provider,
+      },
     });
 
     // Generate JWT token
@@ -226,14 +223,14 @@ export class AuthService {
 
   /**
    * Register a new user from social profile
-   * 
+   *
    * @param profile Social profile data
    * @returns New user ID
    */
   private async registerSocialUser(profile: SocialProfile): Promise<string> {
     const id = uuidv4();
     const now = new Date();
-    
+
     // Generate a unique username from email
     let username = profile.email.split('@')[0];
     const existingUser = await this.findUserByEmailOrUsername('', username);
@@ -254,10 +251,10 @@ export class AuthService {
       username,
       profile.email,
       profile.firstName || profile.name?.split(' ')[0] || null,
-      profile.lastName || (profile.name?.split(' ').slice(1).join(' ') || null),
+      profile.lastName || profile.name?.split(' ').slice(1).join(' ') || null,
       profile.photoUrl || null,
       'ACTIVE',
-      now
+      now,
     ];
 
     try {
@@ -271,7 +268,7 @@ export class AuthService {
 
   /**
    * Generate a JWT token for a user
-   * 
+   *
    * @param user User object
    * @returns JWT token string
    */
@@ -279,22 +276,24 @@ export class AuthService {
     const payload = {
       userId: user.id,
       email: user.email,
-      username: user.username
+      username: user.username,
     };
 
+    // @ts-ignore
     return jwt.sign(payload, this.jwtSecret, {
-      expiresIn: this.jwtExpiration
+      expiresIn: this.jwtExpiration,
     });
   }
 
   /**
    * Verify a JWT token
-   * 
+   *
    * @param token JWT token
    * @returns Decoded token payload or null
    */
   verifyToken(token: string): any {
     try {
+      // @ts-ignore
       return jwt.verify(token, this.jwtSecret);
     } catch (error) {
       return null;
@@ -303,7 +302,7 @@ export class AuthService {
 
   /**
    * Update a user's last login timestamp
-   * 
+   *
    * @param userId User ID
    */
   private async updateLastLogin(userId: string): Promise<void> {
@@ -323,7 +322,7 @@ export class AuthService {
 
   /**
    * Find a user by email or username
-   * 
+   *
    * @param email User email
    * @param username User username
    * @returns User object if found, null otherwise
@@ -373,7 +372,7 @@ export class AuthService {
 
   /**
    * Get a user by ID
-   * 
+   *
    * @param id User ID
    * @returns User object if found, null otherwise
    */
@@ -398,7 +397,7 @@ export class AuthService {
 
   /**
    * Map database user record to User interface
-   * 
+   *
    * @param dbUser Database user record
    * @returns User object
    */
@@ -414,7 +413,7 @@ export class AuthService {
       avatarUrl: dbUser.avatar_url,
       lastLogin: dbUser.last_login,
       createdAt: dbUser.created_at,
-      updatedAt: dbUser.updated_at
+      updatedAt: dbUser.updated_at,
     };
   }
 }

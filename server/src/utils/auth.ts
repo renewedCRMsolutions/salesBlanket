@@ -20,6 +20,7 @@ export function generateToken(user: any): string {
     username: user.username
   };
 
+  // @ts-ignore
   return jwt.sign(payload, JWT_SECRET, {
     expiresIn: JWT_EXPIRES_IN
   });
@@ -38,6 +39,7 @@ export function verifyToken(token: string): any {
   }
 
   try {
+    // @ts-ignore
     return jwt.verify(token, JWT_SECRET);
   } catch (error) {
     throw new AuthenticationError('Invalid or expired token');

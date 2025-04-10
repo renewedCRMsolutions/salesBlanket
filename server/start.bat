@@ -1,0 +1,3 @@
+@echo off
+echo Starting SalesBlanket v4 Server...
+npx ts-node src/index.ts

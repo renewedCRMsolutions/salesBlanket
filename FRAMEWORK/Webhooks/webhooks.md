@@ -1,0 +1,6 @@
+entity_card_pulse_meet
+entity_card_pulse_drive
+entity_card_pulse_gmail
+entity_card_pulse_calendar
+entity_card_pulse_tasks
+entity_card_pulse_gemini

@@ -1,6 +1,10 @@
-# Connections
+# Collections
 
 We are building out a territory canvassing component of the salesBlanket family.  We have are building the following components.
+
+The foundation of the application is creatively leveraging the fast pace of relational database in a lightweight format.
+
+Collections organize and maintain our application.
 
 We use "touchPoints" to identify markers on our "salesTrack".  We also have achievements and goals that are built into the environment to create thresholds and track data and drive the production.
 
@@ -8,13 +12,17 @@ The salesBoard renders the data in our "salesCollection".  The salesCollection i
 
 The salesPulse uses our google workspace to assist the employees to be as productive as possible.
 
-## Components
+## Propagation
 
-### salesBoard
+Collections serve as a parental container.  Technically our entities are the parents, the Collection table marries our data to serve the user.
 
-**salesBoard Components:**
+### PULSE
 
-1. pulsePhotos - We will store the photos in Google Drive and leverage the Google Drive Labels API to organize the photos by the collections.id.  
+Our entities have relative data.  We organize the data for the "Collection(s) in our Pulse. 
+
+#### pulsePhotos
+
+We will store the photos in Google Drive and leverage the Google Drive Labels API to organize the photos by the collections.id.  
 
   Managing photos in Google Drive can be structured effectively. Here's a strategy:
 
@@ -23,6 +31,8 @@ The salesPulse uses our google workspace to assist the employees to be as produc
       Create a main "Sales Blanket Photos" folder
       Create sub-folders by entity type (Addresses, Contacts, Opportunities)
       Further organize by ID or territory/region
+
+          ON initial entity creation - we use the collection_id key on the entity 
 
       Metadata and Taxonomies (using Drive Labels API):
 
@@ -46,13 +56,59 @@ The salesPulse uses our google workspace to assist the employees to be as produc
 
 4. pulseGemini - plan to use vertex to assist in the future with file management.  for now we will integrate a model to serve company documentation.
 
-5. pulseNotebook - place to keep a notebook style record of data on all the entites in the collection.  
+- pulseNotebook - place to keep a notebook style record of data on all the entites in the collection.  
 
-6. pulseTasks - task can be assigned to entities, users, contacts, addresses, opportunities, and more.  we should be able to task reminders to customers to remind them of events. 
+- pulseTasks - task can be assigned to entities, users, contacts, addresses, opportunities, and more.  we should be able to task reminders to customers to remind them of events. 
 
-7. pulseMail - mail that syncs with gmail account to recieve and send email with the customers and inner office.  
+#### pulseMail
 
-8. pulseChat - component that uses @ with google account to send messages inner office.  
+Email attachment detection system that identifies image attachments
+Drag-and-drop interface for moving images to entity records
+API endpoint to process and store images:
+
+Extract from email MIME content
+Upload to Google Drive using your existing DriveService
+Create entry in entity_card_pulse_photos table
+Associate with relevant entity
+
+The frontend workflow would:
+
+Display mail with image previews
+Allow user to select destination entity
+Handle upload and association in background
+Provide confirmation when complete
+
+1. Email attachments automatically inherit collection association
+2. Photos from emails become immediately available to all entities in the collection
+3. UI can show "unassigned photos" ready for entity-specific tagging
+    The architecture would flow:
+
+      Email → Attachment detection → Auto-upload to Drive
+      Store in entity_card_pulse_email_attachments with collection_id
+      Expose in collection view for easy drag-and-drop association to entities
+
+      This leverages your parent-child relationship model for automatic organization while maintaining the flexibility to assign/tag photos to specific entities later.
+
+Backend components:
+
+emailService.ts - Process incoming emails, extract attachments
+Database tables: entity_card_pulse_emails and entity_card_pulse_email_attachments
+
+Frontend transfer script:
+
+JavaScript handler that detects when users drag/select email attachments
+API endpoint to process the transfer (email → entity)
+Status indicators for transfer progress
+
+Integration approach:
+
+Emails stored in their own table with references to collections/entities
+When user moves a photo from email, create entry in entity_card_pulse_photos
+Maintain reference to original email ID for traceability
+
+This leverages your existing PhotoService implementation with minor additions for email-specific processing.
+
+#### pulseChat - component that uses @ with google account to send messages inner office.  
 
 **Development:**
 

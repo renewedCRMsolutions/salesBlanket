@@ -1,0 +1,1416 @@
+"dbms","table_catalog","table_schema","table_name","column_name","ordinal_position","data_type","character_maximum_length","constraint_type","table_schema-2","table_name-2","column_name-2"
+"postgresql","salesblanket","public","spatial_ref_sys","srid",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","core_settings","id",1,"integer",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","core_settings","setting_key",2,"character varying",100,"UNIQUE",NULL,NULL,NULL
+"postgresql","salesblanket","public","permissions","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","user_analytics","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","activity_log","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","department_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","view_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","contact_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunity_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","location_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","goal_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoint_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievement_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_role_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","document_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","estimate_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","users","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","users","username",2,"character varying",100,"UNIQUE",NULL,NULL,NULL
+"postgresql","salesblanket","public","users","email",4,"character varying",255,"UNIQUE",NULL,NULL,NULL
+"postgresql","salesblanket","public","role_permissions","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","user_roles","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","user_settings","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","role_goals","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","role_settings","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","geographic_zones","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_hierarchies","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","zones","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","user_zone_scope","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_zones","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","user_analytics","user_id",2,"uuid",NULL,"FOREIGN KEY","public","users","id"
+"postgresql","salesblanket","public","neighborhoods","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_streets","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","locations","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","location_settings","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","location_departments","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","location_drives","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","location_documentation","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","teams","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","team_members","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","team_members","user_id",3,"uuid",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","salesblanket","public","team_members","team_id",2,"uuid",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","salesblanket","public","team_neighborhoods","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","team_settings","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","department_roles","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","department_milestones","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","department_views","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_buckets","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_departments","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_geography_mapping","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_access_levels","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_achievements","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_settings","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_touchpoints","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","view_configurations","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","user_view_preferences","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","role_views","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","group_views","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","contacts","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","address_contacts","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunities","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunity_contacts","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","address_opportunities","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagements","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_roles","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_role_permissions","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_history","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_conflict","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_default_rules","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_cards","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_card_layout","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_card_layout","entity_type_id",2,"uuid",NULL,"FOREIGN KEY","public","entity_types","id"
+"postgresql","salesblanket","public","pulse","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse","entity_type_id",3,"uuid",NULL,"FOREIGN KEY","public","entity_types","id"
+"postgresql","salesblanket","public","pulse_calendar","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_drive","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_mail","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_virtual_sales","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_tasks","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_ai","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_notebook","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoints","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoints","entity_type_id",2,"uuid",NULL,"FOREIGN KEY","public","entity_types","id"
+"postgresql","salesblanket","public","touchpoints","address_id",3,"uuid",NULL,"FOREIGN KEY","public","addresses","id"
+"postgresql","salesblanket","public","touchpoints","contact_id",4,"uuid",NULL,"FOREIGN KEY","public","contacts","id"
+"postgresql","salesblanket","public","touchpoints","opportunity_id",5,"uuid",NULL,"FOREIGN KEY","public","opportunities","id"
+"postgresql","salesblanket","public","touchpoints","user_id",6,"uuid",NULL,"FOREIGN KEY","public","users","id"
+"postgresql","salesblanket","public","touchpoints","zone_id",7,"uuid",NULL,"FOREIGN KEY","public","zones","id"
+"postgresql","salesblanket","public","entity_touchpoints","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_touchpoints","entity_type_id",3,"uuid",NULL,"FOREIGN KEY","public","entity_types","id"
+"postgresql","salesblanket","public","entity_touchpoints","touchpoint_code_id",4,"uuid",NULL,"FOREIGN KEY","public","touchpoint_types","id"
+"postgresql","salesblanket","public","entity_touchpoints","created_by",7,"uuid",NULL,"FOREIGN KEY","public","users","id"
+"postgresql","salesblanket","public","touchpoint_applicable_entities","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoint_applicable_entities","touchpoint_code_id",2,"uuid",NULL,"FOREIGN KEY","public","touchpoint_types","id"
+"postgresql","salesblanket","public","touchpoint_applicable_entities","entity_type_id",3,"uuid",NULL,"FOREIGN KEY","public","entity_types","id"
+"postgresql","salesblanket","public","touchpoint_achievements","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoint_achievements","touchpoint_code_id",2,"uuid",NULL,"FOREIGN KEY","public","touchpoint_types","id"
+"postgresql","salesblanket","public","touchpoint_achievements","achievement_type_id",3,"uuid",NULL,"FOREIGN KEY","public","entity_achievement_types","id"
+"postgresql","salesblanket","public","entity_event_approvals","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievements","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_photos","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entities","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entities","entity_type_id",2,"uuid",NULL,"FOREIGN KEY","public","entity_types","id"
+"postgresql","salesblanket","public","entity_managers","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_managers","entity_id",2,"uuid",NULL,"FOREIGN KEY","public","entities","id"
+"postgresql","salesblanket","public","entity_managers","user_id",3,"uuid",NULL,"FOREIGN KEY","public","users","id"
+"postgresql","salesblanket","public","entity_managers","assigned_by",6,"uuid",NULL,"FOREIGN KEY","public","users","id"
+"postgresql","salesblanket","public","entity_events","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_events","entity_id",2,"uuid",NULL,"FOREIGN KEY","public","entities","id"
+"postgresql","salesblanket","public","entity_events","entity_type_id",3,"uuid",NULL,"FOREIGN KEY","public","entity_types","id"
+"postgresql","salesblanket","public","entity_events","performed_by",7,"uuid",NULL,"FOREIGN KEY","public","users","id"
+"postgresql","salesblanket","public","collections","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","collection_id",19,"uuid",NULL,"FOREIGN KEY","public","collections","id"
+"postgresql","salesblanket","public","contacts","collection_id",19,"uuid",NULL,"FOREIGN KEY","public","collections","id"
+"postgresql","salesblanket","public","opportunities","collection_id",9,"uuid",NULL,"FOREIGN KEY","public","collections","id"
+"postgresql","salesblanket","public","saved_filters","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","saved_filters","entity_type_id",4,"uuid",NULL,"FOREIGN KEY","public","entity_types","id"
+"postgresql","salesblanket","public","saved_filters","created_by",7,"uuid",NULL,"FOREIGN KEY","public","users","id"
+"postgresql","salesblanket","public","user_filters","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","user_filters","user_id",2,"uuid",NULL,"FOREIGN KEY","public","users","id"
+"postgresql","salesblanket","public","user_filters","filter_id",3,"uuid",NULL,"FOREIGN KEY","public","saved_filters","id"
+"postgresql","salesblanket","public","filter_fields","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","filter_fields","entity_type_id",2,"uuid",NULL,"FOREIGN KEY","public","entity_types","id"
+"postgresql","salesblanket","public","collection_pulse","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","collection_pulse","collection_id",2,"uuid",NULL,"FOREIGN KEY","public","collections","id"
+"postgresql","salesblanket","public","user_google_tokens","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","user_google_tokens","user_id",2,"uuid",NULL,"FOREIGN KEY","public","users","id"
+"postgresql","salesblanket","public","entity_files","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_files","created_by",12,"uuid",NULL,"FOREIGN KEY","public","users","id"
+"postgresql","salesblanket","public","pulse_messages","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_message_read_status","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_message_read_status","user_id",3,"uuid",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_message_read_status","collection_id",2,"uuid",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photo_annotations","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_role_levels","role",1,"character varying",50,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_external_users","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_external_users","email",2,"character varying",255,"UNIQUE",NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_lead_referrals","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_referral_status_history","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_email_attachments","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_calendar","pulse_id",2,"uuid",NULL,"FOREIGN KEY","public","pulse","id"
+"postgresql","salesblanket","public","pulse_drive","pulse_id",2,"uuid",NULL,"FOREIGN KEY","public","pulse","id"
+"postgresql","salesblanket","public","pulse_mail","pulse_id",2,"uuid",NULL,"FOREIGN KEY","public","pulse","id"
+"postgresql","salesblanket","public","pulse_virtual_sales","pulse_id",2,"uuid",NULL,"FOREIGN KEY","public","pulse","id"
+"postgresql","salesblanket","public","pulse_tasks","pulse_id",2,"uuid",NULL,"FOREIGN KEY","public","pulse","id"
+"postgresql","salesblanket","public","pulse_ai","pulse_id",2,"uuid",NULL,"FOREIGN KEY","public","pulse","id"
+"postgresql","salesblanket","public","pulse_notebook","pulse_id",2,"uuid",NULL,"FOREIGN KEY","public","pulse","id"
+"postgresql","salesblanket","public","pulse_message_read_status","last_read_message_id",4,"uuid",NULL,"FOREIGN KEY","public","pulse_messages","id"
+"postgresql","salesblanket","public","pulse_photo_annotations","photo_id",2,"uuid",NULL,"FOREIGN KEY","public","pulse_photos","id"
+"postgresql","salesblanket","public","pulse_lead_referrals","external_user_id",2,"uuid",NULL,"FOREIGN KEY","public","pulse_external_users","id"
+"postgresql","salesblanket","public","pulse_referral_status_history","referral_id",2,"uuid",NULL,"FOREIGN KEY","public","pulse_lead_referrals","id"
+"postgresql","salesblanket","public","pulse_email_attachments","email_id",2,"uuid",NULL,"FOREIGN KEY","public","pulse_mail","id"
+"postgresql","salesblanket","public","address_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","address_type_id",20,"uuid",NULL,"FOREIGN KEY","public","address_types","id"
+"postgresql","salesblanket","public","lead_staging","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_processing_history","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_processing_history","lead_id",2,"uuid",NULL,"FOREIGN KEY","public","lead_staging","id"
+"postgresql","salesblanket","public","lead_tags","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_tags","tag",3,"character varying",100,"UNIQUE",NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_tags","lead_id",2,"uuid",NULL,"UNIQUE",NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_tags","lead_id",2,"uuid",NULL,"FOREIGN KEY","public","lead_staging","id"
+"postgresql","salesblanket","public","lead_assignment_rules","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","digital_leads","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","digital_leads","visitor_session_id",2,"uuid",NULL,"FOREIGN KEY","public","visitor_sessions","id"
+"postgresql","salesblanket","public","social_media_interactions","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","social_media_interactions","digital_lead_id",6,"uuid",NULL,"FOREIGN KEY","public","digital_leads","id"
+"postgresql","salesblanket","public","entity_matches","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_matches","digital_lead_id",2,"uuid",NULL,"FOREIGN KEY","public","digital_leads","id"
+"postgresql","salesblanket","public","sales_engine_items","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_item_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_item_zones","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_item_zones","item_id",2,"uuid",NULL,"FOREIGN KEY","public","sales_engine_items","id"
+"postgresql","salesblanket","public","estimates","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","marketers","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","marketer_seo_tracking","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","marketer_seo_tracking","marketer_id",2,"uuid",NULL,"FOREIGN KEY","public","marketers","id"
+"postgresql","salesblanket","public","labor_entries","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","labor_entries","item_id",3,"uuid",NULL,"FOREIGN KEY","public","sales_engine_items","id"
+"postgresql","salesblanket","public","object_types","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","objects","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","objects","object_type_id",2,"uuid",NULL,"FOREIGN KEY","public","object_types","id"
+"postgresql","salesblanket","public","object_components","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","object_components","object_id",2,"uuid",NULL,"FOREIGN KEY","public","objects","id"
+"postgresql","salesblanket","public","object_components","parent_component_id",5,"uuid",NULL,"FOREIGN KEY","public","object_components","id"
+"postgresql","salesblanket","public","object_media","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","object_media","object_id",2,"uuid",NULL,"FOREIGN KEY","public","objects","id"
+"postgresql","salesblanket","public","object_media","component_id",3,"uuid",NULL,"FOREIGN KEY","public","object_components","id"
+"postgresql","salesblanket","public","document_ai_models","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","location_goals","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_goals","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_channels","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","notifications","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","team_goals","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_goals","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_goals","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_goals","corporate_id",2,"uuid",NULL,"FOREIGN KEY","public","corporate","id"
+"postgresql","salesblanket","public","corporate_owners","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_owners","corporate_id",2,"uuid",NULL,"FOREIGN KEY","public","corporate","id"
+"postgresql","salesblanket","public","operations_users","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","location_users","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","location_users","location_id",2,"uuid",NULL,"FOREIGN KEY","public","locations","id"
+"postgresql","salesblanket","public","notification_rules","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_settings","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_settings","channel_id",4,"uuid",NULL,"FOREIGN KEY","public","notification_channels","id"
+"postgresql","salesblanket","public","locations","corporate_id",9,"uuid",NULL,"FOREIGN KEY","public","corporate","id"
+"postgresql","salesblanket","public","locations","parent_location_id",10,"uuid",NULL,"FOREIGN KEY","public","locations","id"
+"postgresql","salesblanket","public","group_members","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","groups","id",1,"uuid",NULL,"PRIMARY KEY",NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","neighborhood_id",13,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_drive","file_type",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","group_members","created_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contacts","metadata",16,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_external_users","created_at",10,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contacts","email",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_role_permissions","can_assign",4,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievements","metadata",9,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_cards","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contact_types","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_settings","created_at",8,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_streets","address_parity",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_view_preferences","view_configuration_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","geographic_zones","level",4,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_role_permissions","updated_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievements","entity_type_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketers","created_at",16,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_staging","updated_at",17,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_types","allowed_child_type_ids",10,"ARRAY",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_channels","updated_at",7,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","filter_fields","field_name",3,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notifications","read_at",10,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_roles","name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_tasks","title",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_matches","updated_at",10,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_email_attachments","file_type",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_cards","display_order",7,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entities","updated_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_departments","updated_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","digital_leads","updated_at",14,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_owners","updated_at",11,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_filters","last_used",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_media","created_at",11,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_staging","entity_type",14,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_managers","updated_at",10,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhoods","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","activity_log","meta",11,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketers","collection_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketer_seo_tracking","last_detected",7,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_processing_history","notes",7,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagements","created_at",10,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","group_views","created_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","document_types","extraction_schema",4,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate","status",9,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_files","drive_file_id",6,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","street",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_tasks","priority",9,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","collections","status",3,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_types","settings",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_referral_status_history","changed_by",5,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_role_types","settings",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","locations","metadata",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_goals","start_date",8,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","postal_code",7,"character varying",20,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_view_preferences","user_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","locations","email",12,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_rules","created_at",9,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievements","visit_timestamp",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_access_levels","name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_calendar","location",9,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimates","created_by",13,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_documentation","is_active",8,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","labor_entries","user_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","teams","status",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_external_users","organization",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","groups","is_active",6,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_staging","confidence_score",9,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_tasks","created_at",10,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievement_types","updated_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_zone_scope","zone_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","activity_log","entity_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","city",5,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_events","change_summary",11,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","geographic_zones","google_place_id",6,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_analytics","action",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_photos","photo_url",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notifications","resource_type",6,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_messages","is_external_visible",10,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_settings","default_timezone",13,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimates","name",6,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","state",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","permissions","entity_type_id",7,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_lead_referrals","closed_date",7,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_files","entity_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","users","last_login",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_zones","relationship_type",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","filter_fields","default_operator",9,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","utm_medium",8,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_settings","metadata",16,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_types","name",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_settings","user_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_types","updated_at",14,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notifications","channel_id",8,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_types","template_title",6,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_messages","sender_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","digital_leads","assigned_to",10,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zones","updated_at",14,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_calendar","created_at",11,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_staging","assigned_to",11,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_permissions","created_at",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","updated_at",22,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_views","metadata",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","filter_fields","created_at",11,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunities","metadata",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","permissions","metadata",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_buckets","bucket_type_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_views","created_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketer_seo_tracking","updated_at",9,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","group_members","role",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","is_primary",13,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_roles","user_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimate_types","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_drives","name",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_goals","description",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_hierarchies","parent_zone_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","goal_types","updated_at",11,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","entity_type",3,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_mail","cc",9,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_settings","primary_board_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_items","metadata",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse","pulse_type",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contacts","facebook",6,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagements","assigned_by",7,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_tags","created_by",4,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_card_layout","created_at",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","notes",9,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_messages","sender_role",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_staging","lead_data",4,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_item_types","updated_at",6,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_settings","metadata",8,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_conflict","updated_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_types","created_at",10,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photo_annotations","annotation_type",3,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contacts","cover_photo",10,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notifications","is_read",9,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","groups","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_photos","entity_id",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_types","name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_item_zones","zone_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_calendar","title",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketers","total_referrals",12,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_types","color",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunity_types","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","objects","metadata",9,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_goals","created_by",12,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_messages","created_at",12,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","users","metadata",11,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","visit_end",13,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","region",18,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zones","color",8,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_milestones","is_active",4,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_staging","entity_id",13,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_default_rules","settings",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_types","is_active",8,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate","created_at",11,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_roles","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","core_settings","created_at",4,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_types","settings",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_goals","current_value",7,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","document_ai_models","model_type",4,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","collections","created_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_message_read_status","created_at",5,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketers","commission_rate",11,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_departments","department_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","view_types","icon",4,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","digital_leads","entity_id",5,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_settings","icon",6,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_card_layout","entity_card_type_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_achievements","achievement_type_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketer_seo_tracking","click_count",5,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_tasks","status",8,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketer_seo_tracking","conversion_count",6,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","teams","created_at",13,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_media","storage_info",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_lead_referrals","referral_status",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_calendar","attendees",8,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_cards","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_settings","notification_type",3,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_settings","main_phone",9,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_role_levels","access_level",2,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_settings","role_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_matches","match_confidence",5,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_access_levels","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_types","updated_at",11,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketers","utm_medium",9,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_roles","created_at",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","drive_file_id",6,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_types","is_active",10,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_external_users","status",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","goal_types","time_period",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_settings","postal_code",7,"character varying",20,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","geographic_zones","metadata",8,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_goals","location_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_drives","start_date",6,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunity_types","is_active",4,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_drives","is_active",8,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_settings","street",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_components","created_at",7,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunity_contacts","created_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_types","is_residential",4,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_settings","team_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_messages","collection_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_goals","goal_definition_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate","logo_url",7,"character varying",500,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievements","notes",6,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_approvals","requested_at",4,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketers","status",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_google_tokens","expiry_date",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_settings","notification_preferences",4,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhoods","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notifications","user_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","document_types","processor_id",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contacts","notes",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_filters","created_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_achievements","created_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_types","template_message",7,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse","created_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_members","metadata",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_views","role_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_lead_referrals","created_at",13,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_geography_mapping","created_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_roles","is_active",6,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","entity_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_permissions","permission_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_zones","metadata",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_types","description",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagements","assigned_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_buckets","updated_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_notebook","last_edited",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_items","primary_photo_id",8,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_types","updated_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","metadata",16,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoint_types","default_follow_up_days",6,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_matches","match_criteria",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","filter_fields","display_name",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_types","created_at",10,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_cards","is_active",6,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","group_views","group_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoint_types","created_at",13,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_item_zones","updated_at",9,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_files","updated_at",15,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimates","description",9,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_settings","state",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_streets","start_address_number",4,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_default_rules","role_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","next_knock_date",11,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_photos","is_primary",6,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_settings","city",5,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_channels","configuration",4,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_item_zones","cost",5,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","labels",16,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_neighborhoods","updated_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","social_media_interactions","platform_user_id",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_item_zones","price_multiplier",7,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_history","user_id",4,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_owners","ownership_type",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunity_types","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_touchpoints","created_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","collection_pulse","last_synced",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","activity_log","entity_type",4,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_streets","created_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_history","unassigned_by",8,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_media","capture_metadata",8,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_zone_scope","updated_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_goals","updated_at",15,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","view_configurations","created_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievement_types","color",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_ai","created_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_photos","updated_at",11,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_types","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zones","zone_type_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contacts","contact_type_id",13,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_types","approval_expiry_days",16,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunities","notes",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_assignment_rules","is_active",6,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_roles","engagement_role_type_id",4,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_achievements","active",4,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_files","entity_type",3,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketer_seo_tracking","page_url",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contact_types","type",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_types","created_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","groups","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_settings","country",8,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_notebook","edited_by",7,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_calendar","status",10,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_settings","website_url",10,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","view_types","component_path",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","teams","opacity",10,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_processing_history","previous_status",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_events","new_state",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","document_ai_models","created_at",11,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_settings","notification_setting_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_settings","settings",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimates","valid_until",10,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_drive","file_id",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","document_types","created_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimates","is_public",11,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","created_at",20,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","group_members","group_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimate_types","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_drives","description",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_messages","message_type",8,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_conflict","policy_name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_settings","created_at",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_matches","confirmed_by",8,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_components","name",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimates","public_token",12,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_goals","goal_type",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","filter_fields","filter_operators",8,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_item_zones","margin",6,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_users","updated_at",10,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_managers","role_id",4,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_google_tokens","updated_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contact_types","active",4,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","users","preferences",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhoods","created_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_tasks","description",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","operations_users","updated_at",8,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","social_media_interactions","content",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","digital_leads","notes",12,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","operations_users","permissions",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","saved_filters","updated_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_types","icon",5,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_types","approval_logic",18,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_rules","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_events","created_at",13,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","group_views","order_index",5,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_settings","created_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_goals","updated_at",15,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_settings","color",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_settings","is_enabled",5,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","geographic_zones","updated_at",10,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_milestones","target_period",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievements","entity_id",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_email_attachments","entity_id",10,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","ip_address",3,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contact_types","created_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_events","entity_event_type",4,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_hierarchies","child_zone_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","teams","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_external_users","access_type",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_role_permissions","role_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_referral_status_history","previous_status",3,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","utm_term",10,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zones","settings",11,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_ai","created_by",6,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","view_configurations","created_by",7,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_virtual_sales","status",10,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_files","drive_view_link",7,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoint_types","is_team_visible",11,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_settings","address_line_2",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_roles","created_at",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketers","utm_source",8,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_types","rep_role_types",7,"ARRAY",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","users","updated_at",13,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_settings","primary_entity_type_id",5,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_events","previous_state",9,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","collections","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_tasks","task_id",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_users","is_primary",5,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_goals","role_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_role_types","updated_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_email_attachments","drive_file_id",7,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_types","updated_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_mail","updated_at",14,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_zones","is_primary",5,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","group_views","view_configuration_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zones","line_width",10,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_virtual_sales","attendees",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","users","password_hash",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","document_ai_models","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_streets","end_address_number",5,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagements","is_active",8,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_photos","entity_type_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_analytics","geo",8,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_history","assigned_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","collections","created_by",4,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","document_ai_models","provider",5,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_approvals","status",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","document_types","name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","visibility_level",18,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievement_types","settings",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_touchpoints","created_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","digital_leads","conversion_page",8,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_rules","actions",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_goals","created_at",13,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","group_members","user_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_streets","name",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","landing_page",6,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_photos","metadata",9,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","view_configurations","name",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_zone_scope","metadata",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_rules","is_active",7,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_ai","prompt_id",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_settings","user_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimate_types","template_id",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_documentation","created_at",12,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","activity_log","device",9,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_drive","modified_by",9,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimates","estimate_type_id",5,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_ai","response_text",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","objects","entity_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_opportunities","active",5,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimates","status",7,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","spatial_ref_sys","srtext",4,"character varying",2048,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_types","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","collection_pulse","pulse_type",3,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_types","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_goals","priority",11,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_google_tokens","access_token",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","labor_entries","collection_id",7,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","groups","created_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_approvals","entity_event_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_events","action",6,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_types","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","goal_types","trigger_details",8,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","updated_at",18,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_buckets","metadata",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_view_preferences","created_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_goals","settings",4,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_departments","created_at",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_types","allowed_parent_type_ids",9,"ARRAY",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoint_types","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_types","bucket_name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_types","metadata_schema",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","labor_entries","created_at",11,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_neighborhoods","metadata",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_goals","title",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notifications","resource_id",7,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_settings","visibility_rules",3,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_files","metadata",13,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_views","description",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_opportunities","created_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievement_types","icon",4,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_calendar","description",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_role_permissions","engagement_role_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_files","file_type",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","view_configurations","is_system",5,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","users","avatar_url",8,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagements","user_id",4,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notifications","notification_type",5,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_zones","updated_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","locations","address_id",4,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoint_types","requires_task",8,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_documentation","title",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_matches","matched_entity_type",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_goals","current_value",7,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_goals","target_value",6,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievements","time_period",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contacts","last_name",3,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_role_permissions","settings",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_email_attachments","entity_type",11,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","spatial_ref_sys","auth_srid",3,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_virtual_sales","created_at",11,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_touchpoints","is_active",5,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_goals","neighborhood_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketers","referral_code",7,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_assignment_rules","created_at",8,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_rules","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","locations","updated_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_email_attachments","file_name",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_geography_mapping","drive_type_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_settings","updated_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_access_levels","created_at",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","digital_leads","lead_source",3,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_achievements","drive_type_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","spatial_ref_sys","proj4text",5,"character varying",2048,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_types","is_active",4,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_media","name",5,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_managers","metadata",8,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_assignment_rules","priority",7,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_role_permissions","can_revoke",5,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","document_ai_models","is_active",10,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_types","color",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_drive","file_name",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_events","entity_event_id",5,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_settings","branding_settings",15,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate","tax_id",4,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_goals","current_value",7,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","labor_entries","rate",5,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","document_ai_models","document_types",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_types","settings",4,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_types","approval_threshold",15,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketers","name",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_tags","created_at",5,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_virtual_sales","title",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_goals","current_value",7,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_roles","created_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entities","metadata",4,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_departments","metadata",4,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_email_attachments","is_imported",9,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_drives","end_date",7,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_drive","updated_at",11,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","drive_view_link",7,"character varying",500,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","address_line_2",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_items","item_type_id",7,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_staging","source",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievements","updated_at",11,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_types","is_active",6,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_history","created_at",11,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_email_attachments","updated_at",14,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_external_users","name",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_matches","matched_entity_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate","legal_name",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contacts","updated_at",18,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_cards","created_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_settings","frequency",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","teams","description",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_neighborhoods","neighborhood_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoint_types","is_active",7,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","locations","timezone",13,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","activity_log","occurred_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_goals","zone_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photo_annotations","updated_at",8,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","labor_entries","status",10,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_types","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","view_types","updated_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_settings","display_preferences",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","filter_fields","is_filterable",6,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_types","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimates","collection_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_documentation","document_type",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_settings","updated_at",10,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_conflict","metadata",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_mail","labels",12,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_goals","updated_at",15,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","user_agent",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_card_layout","display_order",4,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notifications","title",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_history","action",9,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_notebook","title",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","objects","updated_at",12,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_types","created_at",12,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","social_media_interactions","metadata",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contacts","x",7,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_external_users","created_by",8,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunity_types","created_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_touchpoints","description",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","referrer_url",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimate_types","created_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_drives","created_at",10,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_staging","source_reference",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_processing_history","performed_by",6,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_types","settings",9,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse","last_synced",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","visit_start",12,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_permissions","activity_log_id",6,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_staging","duplicate_check_result",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","document_ai_models","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_hierarchies","created_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_mail","has_attachments",11,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_zones","zone_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_items","updated_at",12,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","utm_source",7,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_mail","from_email",7,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketers","created_by",14,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_types","order_index",9,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_goals","target_date",9,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_types","created_at",9,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_settings","industry",12,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_approvals","created_at",12,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievement_types","conditions",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","digital_leads","is_processed",11,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_milestones","created_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_contacts","created_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_virtual_sales","notes_url",9,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_analytics","ip_address",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_goals","status",10,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","group_members","join_date",5,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_touchpoints","status",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","locations","location_type_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_virtual_sales","recording_url",8,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","permissions","updated_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_zones","entity_id",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_role_permissions","applies_to_entity_types",6,"ARRAY",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoint_achievements","created_at",4,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_staging","processing_notes",15,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_google_tokens","id_token",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notifications","created_at",14,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate","primary_contact_id",8,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_approvals","requested_by",5,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zones","metadata",12,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_views","name",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunities","updated_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_notebook","created_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_types","icon",4,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","metadata",20,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_media","created_by",10,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_views","updated_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","collection_pulse","created_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_default_rules","updated_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_settings","is_archived",7,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_types","updated_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoint_types","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","file_type",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoints","created_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimates","created_at",15,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_drive","last_modified",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notifications","expires_at",12,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_mail","snippet",6,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","objects","entity_type",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","saved_filters","is_global",6,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_referral_status_history","notes",6,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_rules","created_by",8,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_views","view_components",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_settings","updated_at",18,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","users","last_name",6,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_history","assigned_by",5,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","street_id",12,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_types","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_goals","updated_at",15,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_settings","quiet_hours",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","teams","updated_at",14,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunity_contacts","contact_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_analytics","perf",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_items","display_type",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_lead_referrals","opportunity_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_documentation","voice_enabled",10,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","collection_pulse","content",4,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","is_external_visible",19,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_geography_mapping","can_cross_boundaries",4,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notifications","content",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_messages","updated_at",13,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_types","icon",4,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_notebook","content",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate","updated_at",12,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_types","needs_approval",8,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_goals","start_date",8,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","digital_leads","form_data",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","core_settings","updated_at",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","collections","updated_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_drives","location_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunity_contacts","is_primary",5,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_message_read_status","updated_at",6,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","photo_type",14,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_google_tokens","scopes",7,"ARRAY",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_types","default_line_width",8,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_approvals","approved_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","browser",15,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_google_tokens","refresh_token",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_settings","default_currency",14,"character varying",10,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","property_condition",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunity_contacts","updated_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_messages","entity_type",7,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_components","updated_at",8,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_contacts","contact_type_id",4,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagements","entity_id",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","digital_leads","status",9,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entities","status",3,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_owners","department",5,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_goals","start_date",8,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhoods","metadata",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","groups","group_type",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_types","settings",11,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_staging","status",8,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_virtual_sales","meeting_id",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunity_types","settings",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_items","is_active",5,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_neighborhoods","end_date",5,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_files","size",11,"bigint",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimate_types","settings",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_drives","settings",9,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_types","available_to_roles",7,"ARRAY",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_types","created_at",10,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_item_types","category",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_types","default_settings",12,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","saved_filters","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_analytics","entity_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_roles","updated_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","activity_log","action",5,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_types","color",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","created_by",14,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zones","boundary",7,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contacts","contact_approval",12,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","saved_filters","filter_definition",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_types","icon",5,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketer_seo_tracking","backlink_url",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_zone_scope","assigned_by",5,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_processing_history","new_status",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_events","metadata",12,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_goals","goal_type",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","geographic_zones","name",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_virtual_sales","start_time",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_types","created_at",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_buckets","created_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_types","updated_at",11,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_goals","description",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_goals","created_by",13,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_departments","metadata",4,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","permissions","resource",4,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_managers","assigned_at",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_goals","target_value",6,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_channels","channel_type",3,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_roles","settings",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_item_zones","created_at",8,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_files","created_at",14,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoint_types","updated_at",14,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_types","display_name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","annotations",17,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate","website",6,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_neighborhoods","created_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_goals","title",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_views","description",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_approvals","approved_by",8,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_filters","updated_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_role_levels","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse","updated_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","permissions","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_achievements","updated_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_opportunities","metadata",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_views","department_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_geography_mapping","updated_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_lead_referrals","updated_at",14,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_staging","utm_parameters",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","locations","phone",11,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_analytics","meta",9,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","view_configurations","config",4,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","users","first_name",5,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_neighborhoods","priority",6,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_documentation","requires_acknowledgment",9,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_lead_referrals","estimated_value",5,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zones","status",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_types","allow_boundary_crossing",11,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_role_types","name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_referral_status_history","created_at",7,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_items","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","teams","geo_json",8,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","document_ai_models","updated_at",12,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_goals","priority",11,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_lead_referrals","referral_reward_amount",9,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_access_levels","settings",4,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_media","file_metadata",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","document_types","updated_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_cards","icon",4,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_mail","received_at",10,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_messages","message_text",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_streets","updated_at",10,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_touchpoints","updated_at",10,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_view_preferences","custom_settings",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_zone_scope","created_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","view_configurations","updated_at",10,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_settings","bucket_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_goals","created_at",14,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketers","utm_campaign",10,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_files","mime_type",10,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunity_contacts","opportunity_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_ai","updated_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_photos","created_at",10,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","objects","description",8,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_lead_referrals","actual_value",6,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_hierarchies","relationship_type",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_goals","description",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_approvals","notes",10,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","view_types","description",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_documentation","metadata",11,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_types","updated_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_messages","entity_id",6,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_history","entity_type_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_items","created_by",9,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_staging","created_at",16,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketers","updated_at",17,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_channels","created_at",6,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_goals","created_at",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_types","default_opacity",7,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_zone_scope","assigned_at",4,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_email_attachments","thumbnail_url",12,"character varying",500,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_roles","role_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_matches","created_at",9,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","spatial_ref_sys","auth_name",2,"character varying",256,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_departments","created_at",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","digital_leads","created_at",13,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entities","created_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","labor_entries","date",6,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_rules","event_type",4,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_owners","created_at",10,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoint_types","color",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_external_users","updated_at",11,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","group_members","updated_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","objects","created_by",10,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","filter_fields","field_type",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_history","metadata",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_drive","thumbnail_url",7,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","utm_campaign",9,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","document_ai_models","accuracy_score",8,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_goals","created_by",13,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_types","color",8,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_settings","updated_at",9,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_documentation","location_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","teams","district_id",4,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photo_annotations","created_by",6,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_role_permissions","created_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_types","level_order",3,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_goals","description",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_goals","created_by",13,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_departments","location_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_settings","value",4,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","document_ai_models","version",9,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_rules","updated_at",10,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_documentation","content",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_photos","photo_type",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","locations","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zones","opacity",9,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photo_annotations","coordinates",4,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_touchpoints","color",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_owners","title",6,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contacts","updated_by",15,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","saved_filters","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_tasks","updated_at",11,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_roles","department_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievement_types","created_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","document_ai_models","configuration",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunities","created_by",5,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_managers","created_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_media","updated_at",12,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_types","is_active",4,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_role_types","is_active",4,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","size",11,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagements","updated_at",11,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","document_types","color",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_staging","collection_id",12,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_events","performed_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_items","unit",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_goals","parent_goal_id",12,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_conflict","priority_order",4,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_components","component_type",3,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","view_types","default_config",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","group_views","updated_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","digital_leads","collection_id",6,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_contacts","metadata",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_touchpoints","code",3,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_types","created_at",13,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","locations","operating_hours",14,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contact_types","settings",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_users","user_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","goal_types","target_value",4,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse","entity_id",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_approvals","metadata",11,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_milestones","metadata",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","permissions","name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notifications","metadata",13,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zones","created_at",13,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_calendar","updated_at",12,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_drives","drive_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","filter_fields","updated_at",12,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","created_at",21,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_views","updated_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_types","notification_template_id",14,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_approvals","approval_role_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_views","name",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketer_seo_tracking","created_at",8,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_opportunities","relationship_type",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimates","metadata",14,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","operations_users","user_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_default_rules","applies_to",4,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_roles","settings",4,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_calendar","event_id",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","collection_pulse","metadata",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_lead_referrals","referral_reward_type",8,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","session_id",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_calendar","end_time",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_touchpoints","notes",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_views","view_components",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_settings","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_goals","target_date",9,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketers","website",5,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_roles","applies_to_entity_types",5,"ARRAY",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","teams","color",9,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contacts","first_name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_goals","status",10,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","view_types","name",2,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_types","updated_at",11,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_conflict","created_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_item_types","created_at",5,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","operations_users","is_active",6,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_types","default_color",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_tasks","assigned_to",7,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contacts","created_by",14,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_view_preferences","is_favorite",4,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_users","start_date",6,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","objects","name",6,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate","address_id",5,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhoods","boundaries",4,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_types","approver_roles",9,"ARRAY",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievements","created_by",7,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","social_media_interactions","created_at",8,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_owners","end_date",8,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_goals","start_date",8,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_tasks","due_date",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","goal_types","created_at",10,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_users","is_active",8,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_streets","geometry",7,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","mime_type",10,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","social_media_interactions","interaction_type",3,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_types","entity_type_id",6,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_types","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_settings","settings",3,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_types","is_filterable",4,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_touchpoints","bucket_type_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_ai","prompt_text",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_items","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_goals","team_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_role_types","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_card_layout","updated_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_hierarchies","metadata",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_settings","display_order",4,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_mail","subject",5,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagements","metadata",9,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_milestones","milestone_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoint_types","icon",4,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","permissions","action",5,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","created_by",12,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunities","opportunity_type_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_assignment_rules","assigned_user_id",4,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_messages","visibility_level",9,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","os",16,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_types","icon",7,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_mail","message_id",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_goals","start_date",8,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","group_views","metadata",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_virtual_sales","end_time",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","users","status",7,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","goal_types","unit",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_types","settings",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_documentation","version",7,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_buckets","drive_type_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_mail","to_email",8,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","activity_log","user_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_zone_scope","is_active",6,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_roles","role_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_members","joined_at",4,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunity_contacts","relationship_type",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contacts","linkedin",9,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_virtual_sales","updated_at",12,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","labor_entries","hours",4,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_assignment_rules","updated_at",9,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagements","entity_type_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","locations","created_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_streets","neighborhood_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","group_views","entity_type_id",4,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contacts","instagram",8,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_types","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_settings","created_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_access_levels","updated_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","document_types","settings",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_opportunities","address_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievement_types","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_email_attachments","mime_type",5,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_goals","goal_type",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","teams","line_width",11,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_zone_scope","user_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_analytics","device",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_mail","thread_id",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_item_zones","price",4,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievements","created_at",10,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","group_members","expiry_date",6,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_external_users","expiry_date",7,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_history","updated_at",12,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_email_attachments","created_at",13,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_goals","target_date",9,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_goals","goal_type",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_goals","status",10,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_cards","updated_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","document_types","icon",5,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_assignment_rules","rule_name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_external_users","metadata",9,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contacts","created_at",17,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_geography_mapping","geographic_level",3,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","utm_content",11,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","operations_users","department",4,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketers","email",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","collections","filter_criteria",8,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_neighborhoods","start_date",4,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_notebook","shared_with",8,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_channels","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketers","metadata",15,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoint_types","settings",12,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_roles","updated_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_touchpoints","icon",7,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_types","conditions",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_drive","created_at",10,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","activity_log","geo",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","device_type",14,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimate_types","updated_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_types","entity_type_id",8,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entities","created_by",5,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_drives","updated_at",11,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","goal_types","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","filter_fields","sort_order",10,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_goals","priority",11,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","location_geo",15,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","city",19,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_goals","title",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_hierarchies","updated_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_goals","parent_goal_id",12,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_items","created_at",11,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_touchpoints","entity_id",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_filters","is_favorite",4,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_contacts","is_primary",5,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","view_types","created_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_settings","ai_features_enabled",6,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photo_annotations","created_at",7,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_item_types","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_settings","logo_url",11,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_contacts","contact_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_lead_referrals","notes",11,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_assignment_rules","criteria",3,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_goals","created_at",14,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_settings","created_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimates","entity_type",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_types","is_active",8,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_goals","description",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_types","updated_at",13,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_photos","description",7,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","objects","created_at",11,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_email_attachments","size",6,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_files","drive_download_link",8,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunity_types","updated_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","status",8,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_staging","ip_address",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_goals","target_value",6,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","collection_pulse","updated_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_departments","department_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_default_rules","created_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimates","updated_at",16,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_goals","target_value",6,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_types","created_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_assignment_rules","assigned_team_id",5,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_default_rules","default_access_level_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","labor_entries","entity_id",8,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_settings","created_at",17,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_lead_referrals","referral_reward_status",10,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photo_annotations","properties",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_matches","is_confirmed",7,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_types","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","objects","collection_id",5,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_goals","created_at",14,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","thumbnail_url",9,"character varying",500,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_types","updated_at",10,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_goals","title",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_milestones","updated_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","groups","parent_group_id",5,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_approvals","updated_at",13,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_contacts","updated_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","teams","boundaries",7,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievements","achievement_type_id",4,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_types","auto_approve_after_days",17,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zones","parent_zone_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","view_configurations","is_default",6,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","visitor_sessions","country",17,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","permissions","created_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_rules","conditions",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","activity_log","user_agent",8,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zones","name",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_views","metadata",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoint_achievements","updated_at",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","name",4,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","geographic_zones","boundary",5,"USER-DEFINED",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notifications","updated_at",15,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_views","created_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_goals","priority",11,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunities","created_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_notebook","updated_at",10,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoint_types","display_config",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_achievement_types","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_conflict","is_active",3,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_types","color",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","operations_users","created_at",7,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_types","name",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_types","is_commercial",5,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_types","parent_category",3,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","saved_filters","created_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_contacts","address_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_roles","metadata",4,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_goals","created_at",14,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_settings","updated_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notifications","sent_at",11,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contacts","status",11,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","geographic_zones","created_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","geographic_zones","place_type",7,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_media","media_type",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_settings","updated_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_types","settings",9,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","social_media_interactions","platform",2,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_goals","parent_goal_id",12,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","goal_types","is_active",9,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_components","metadata",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_users","created_at",9,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunity_contacts","metadata",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_calendar","start_time",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_google_tokens","created_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","activity_log","ip_address",7,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_goals","priority",11,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhoods","updated_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_email_attachments","is_photo",8,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimate_types","fields",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","teams","team_leader_user_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_documentation","google_doc_id",6,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","collections","metadata",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_messages","metadata",11,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","users","created_at",12,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate","metadata",10,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoint_types","no_show",9,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_goals","title",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_types","color",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_milestones","target_count",5,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_event_approvals","rejection_reason",9,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_media","analysis_data",9,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_history","unassigned_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_types","icon",4,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_goals","parent_goal_id",12,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","teams","metadata",12,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_access_history","entity_id",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","contact_types","updated_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_opportunities","opportunity_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_photos","created_by",8,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_permissions","settings",4,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_staging","user_agent",6,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimate_types","requires_signature",5,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","group_views","is_default",6,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","view_configurations","view_type_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_goals","created_by",13,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_goals","target_value",6,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_goals","current_value",7,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_processing_history","created_at",8,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","touchpoint_applicable_entities","created_at",4,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","locations","status",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","capture_date",15,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","view_configurations","metadata",8,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_goals","target_date",9,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_departments","drive_type_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_drive","file_url",6,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","neighborhood_streets","metadata",8,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_touchpoints","metadata",8,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_analytics","occurred_at",5,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","lead_processing_history","action",3,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_goals","status",10,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_goals","goal_type",5,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","goal_types","trigger_type",7,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_documentation","updated_at",13,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","labor_entries","entity_type",9,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_users","role",4,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagements","engagement_role_id",5,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","sales_engine_item_types","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","groups","updated_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","bucket_types","created_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_mail","created_at",13,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","permissions","status",6,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","core_settings","setting_value",3,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_engagement_role_types","created_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_managers","is_active",7,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","filter_fields","is_searchable",7,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","opportunities","status",3,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","goal_types","description",3,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_photos","drive_download_link",8,"character varying",500,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_notebook","notebook_id",3,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_owners","user_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_goals","updated_at",14,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","operations_users","role",3,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_touchpoints","updated_at",9,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_permissions","role_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_achievements","metadata",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_referral_status_history","new_status",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse","metadata",6,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","object_types","domain",2,"character varying",100,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","digital_leads","lead_type",4,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","address_opportunities","updated_at",8,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zones","description",5,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_milestones","department_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_neighborhoods","team_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimates","total_amount",8,"numeric",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","notification_channels","is_active",5,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_users","end_date",7,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_zones","created_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_buckets","display_order",4,"integer",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","drive_geography_mapping","metadata",5,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_files","thumbnail_url",9,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_owners","is_active",9,"boolean",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_types","display_name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","pulse_lead_referrals","metadata",12,"jsonb",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","zone_types","description",4,"text",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","role_settings","primary_department_id",4,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","geographic_zones","parent_id",2,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","department_types","name",2,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","objects","status",7,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","corporate_owners","start_date",7,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","estimates","entity_id",3,"uuid",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","addresses","created_at",17,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","location_departments","updated_at",6,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","user_view_preferences","updated_at",7,"timestamp with time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","labor_entries","updated_at",12,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_files","name",5,"character varying",255,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_goals","target_date",9,"date",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","marketers","last_login",13,"timestamp without time zone",NULL,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","team_goals","status",10,"character varying",50,NULL,NULL,NULL,NULL
+"postgresql","salesblanket","public","entity_cards","color",5,"character varying",50,NULL,NULL,NULL,NULL

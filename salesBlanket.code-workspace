@@ -61,7 +61,144 @@
     
     // PostGIS-specific settings
     "postgres.showGeometryViewer": true,
-    "postgres.geometryColumnTypes": ["geometry", "geography"]
+    "postgres.geometryColumnTypes": ["geometry", "geography"],
+    
+    // Database color customizations
+    "editor.tokenColorCustomizations": {
+      "textMateRules": [
+        // Core Tables - Light Blue
+        {
+          "scope": ["entity.name.tag"],
+          "settings": {
+            "foreground": "#4FB3D9" 
+          }
+        },
+        // Entity-Related Tables - Teal
+        {
+          "scope": ["entity.name.class"],
+          "settings": {
+            "foreground": "#25B0B0"
+          }
+        },
+        // Location/Geographic Tables - Green
+        {
+          "scope": ["entity.name.function"],
+          "settings": {
+            "foreground": "#6AAF6A"
+          }
+        },
+        // Supporting/Reference Tables - Purple
+        {
+          "scope": ["variable.parameter"],
+          "settings": {
+            "foreground": "#B07FD8"
+          }
+        },
+        // Pulse/Activity Tables - Orange
+        {
+          "scope": ["variable.other"],
+          "settings": {
+            "foreground": "#E86C3F"
+          }
+        },
+        // Team/User Tables - Gold
+        {
+          "scope": ["storage.type"],
+          "settings": {
+            "foreground": "#D9A341"
+          }
+        },
+        // Collection Tables - Pink
+        {
+          "scope": ["string.regexp"],
+          "settings": {
+            "foreground": "#E15E97"
+          }
+        },
+        // Primary Key Columns - Bright Yellow
+        {
+          "scope": ["keyword.control"],
+          "settings": {
+            "foreground": "#F7D867",
+            "fontStyle": "bold"
+          }
+        },
+        // Foreign Key Columns - Light Purple
+        {
+          "scope": ["keyword.operator"],
+          "settings": {
+            "foreground": "#C792EA",
+            "fontStyle": "italic"
+          }
+        },
+        // Timestamp Columns - Gray-Blue
+        {
+          "scope": ["constant.numeric"],
+          "settings": {
+            "foreground": "#7C9CBF"
+          }
+        },
+        // Status/Type Columns - Cyan
+        {
+          "scope": ["support.function"],
+          "settings": {
+            "foreground": "#56C8D8"
+          }
+        },
+        // Metadata/JSON Columns - Olive
+        {
+          "scope": ["support.constant"],
+          "settings": {
+            "foreground": "#9CB06F"
+          }
+        }
+      ]
+    },
+    
+    // Custom semantic token colors for database highlighting
+    "editor.semanticHighlighting.enabled": true,
+    "editor.semanticTokenColorCustomizations": {
+      "rules": {
+        // Table Names (snake_case)
+        "*.entity_types": "#25B0B0",
+        "*.users": "#4FB3D9",
+        "*.permissions": "#4FB3D9",
+        "*.contacts": "#25B0B0",
+        "*.addresses": "#6AAF6A",
+        "*.locations": "#6AAF6A",
+        "*.zones": "#6AAF6A",
+        "*.neighborhoods": "#6AAF6A",
+        "*.geographic_zones": "#6AAF6A",
+        "*.teams": "#D9A341",
+        "*.pulse": "#E86C3F",
+        "*.touchpoints": "#E86C3F",
+        "*.collections": "#E15E97",
+        "*.drive_": "#E15E97",
+        "*.bucket_": "#E15E97",
+        
+        // Column Names by Pattern
+        "*._id": "#C792EA",      // Foreign keys
+        "*.id": "#F7D867",       // Primary keys
+        "*.created_at": "#7C9CBF",
+        "*.updated_at": "#7C9CBF",
+        "*.metadata": "#9CB06F",
+        "*.settings": "#9CB06F",
+        "*.status": "#56C8D8",
+        "*.type": "#56C8D8",
+        "*.name": "#D4D4D4"      // Name columns - default color
+      }
+    },
+    
+    // Bracket pair colorization - helps with nested database queries
+    "editor.bracketPairColorization.enabled": true,
+    "workbench.colorCustomizations": {
+      "editorBracketHighlight.foreground1": "#9CDCFE",
+      "editorBracketHighlight.foreground2": "#4EC9B0",
+      "editorBracketHighlight.foreground3": "#CE9178",
+      "editorBracketHighlight.foreground4": "#DCDCAA",
+      "editorBracketHighlight.foreground5": "#B5CEA8",
+      "editorBracketHighlight.foreground6": "#D7BA7D"
+    }
   },
   "extensions": {
     "recommendations": [
@@ -86,7 +223,12 @@
       
       // Utils
       "streetsidesoftware.code-spell-checker",
-      "usernamehw.errorlens"
+      "usernamehw.errorlens",
+      
+      // Added for database color coding
+      "aaron-bond.better-comments",
+      "mechatroner.rainbow-csv",
+      "naumovs.color-highlight"
     ]
   },
   "launch": {

@@ -8,6 +8,8 @@ SalesBlanket v4 uses a modern three-tier architecture:
 2. **Middleware**: GraphQL API server built with TypeScript/Node.js
 3. **Database**: PostgreSQL with PostGIS on AWS RDS
 
+The service registry with dependency injection provides a clean architecture that will scale well as your app grows.
+
 ## Architecture Diagram
 
 ```
@@ -188,3 +190,78 @@ The GraphQL API server can be hosted on:
 - `salesblanket.com`: Frontend website
 - `api.salesblanket.com`: GraphQL API
 - Use Route 53 or your existing DNS provider for configuration
+
+State Management Model:
+
+{
+  "stateManagementSchema": {
+    "stores": [
+      "UserStore", "EntityStore", "CollectionStore", 
+      "WorkflowStore", "UIStore", "GeospatialStore"
+    ]
+  },
+  "entityStoreExample": {
+    "state": {
+      "entities": {
+        "byId": {
+          "entity_uuid_1": {
+            "id": "entity_uuid_1",
+            "type": "ADDRESS",
+            "attributes": {
+              "street": "123 Main St",
+              "city": "Springfield"
+            },
+            "status": "ACTIVE",
+            "relationships": {
+              "collection": "collection_uuid_1",
+              "contacts": ["contact_uuid_1", "contact_uuid_2"]
+            },
+            "metadata": {
+              "lastVisited": "2025-04-08T14:30:00.000Z",
+              "tags": ["high_value"]
+            }
+          }
+        },
+        "allIds": ["entity_uuid_1", "entity_uuid_2"],
+        "byType": {
+          "ADDRESS": ["entity_uuid_1"],
+          "CONTACT": ["entity_uuid_2"]
+        },
+        "byCollection": {
+          "collection_uuid_1": ["entity_uuid_1", "entity_uuid_2"]
+        }
+      },
+      "ui": {
+        "loading": false,
+        "selectedEntityId": "entity_uuid_1",
+        "filters": {
+          "status": "ACTIVE",
+          "types": ["ADDRESS", "CONTACT"]
+        },
+        "pagination": {
+          "page": 1,
+          "pageSize": 25,
+          "totalItems": 126
+        }
+      }
+    },
+    "actions": [
+      "FETCH_ENTITIES_REQUEST",
+      "FETCH_ENTITIES_SUCCESS",
+      "FETCH_ENTITIES_FAILURE",
+      "CREATE_ENTITY",
+      "UPDATE_ENTITY",
+      "DELETE_ENTITY",
+      "SELECT_ENTITY",
+      "FILTER_ENTITIES",
+      "SORT_ENTITIES"
+    ],
+    "selectors": [
+      "getEntityById",
+      "getEntitiesByType",
+      "getEntitiesByCollection",
+      "getFilteredEntities",
+      "getSelectedEntity"
+    ]
+  }
+}

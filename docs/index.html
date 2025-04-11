@@ -61,6 +61,7 @@
             box-sizing: border-box;
             font-family: 'GoogleSansMono', monospace;
             transition: background-color 0.3s ease, color 0.3s ease;
+            scroll-behavior: smooth;
         }
         
         body {
@@ -331,6 +332,27 @@
             margin-right: 10px;
             font-weight: bold;
         }
+        
+        /* Simple thank you page styles */
+        .thank-you {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .thank-you h1 {
+            margin-bottom: 30px;
+        }
+        
+        .thank-you .icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+            color: var(--brewster-green);
+        }
     </style>
 </head>
 <body>
@@ -351,11 +373,11 @@
         <div class="container">
             <h1>Reimagining Sales Territory Management</h1>
             <p>salesBlanket is a revolutionary platform that transforms how sales teams navigate territories, track opportunities, and close deals. Our intelligent system uses geospatial data to optimize routes, predict customer behavior, and maximize productivity.</p>
-            <button class="porsche-button">Learn More</button>
+            <button class="porsche-button" onclick="document.getElementById('features').scrollIntoView();">Learn More</button>
         </div>
     </section>
     
-    <section class="features">
+    <section id="features" class="features">
         <div class="container">
             <h2>Key Features</h2>
             <p>salesBlanket combines cutting-edge technology with intuitive design to create a seamless sales experience.</p>
@@ -424,7 +446,7 @@
                     
                     <input type="hidden" name="_subject" value="New salesBlanket Beta Request">
                     <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" value="https://salesblanket.com/thanks.html">
+                    <input type="hidden" name="_next" value="thanks.html">
                     
                     <button type="submit" class="porsche-button">Request Beta Access</button>
                 </form>
@@ -432,7 +454,7 @@
         </div>
     </section>
     
-    <section class="timeline">
+    <section id="timeline" class="timeline">
         <div class="container">
             <h2>Beta Launch Timeline</h2>
             <p>Our structured beta program ensures you get the most out of salesBlanket before the full launch.</p>

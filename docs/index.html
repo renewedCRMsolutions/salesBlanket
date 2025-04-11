@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>salesBlanket - Reimagining Sales Territory Management</title>
+    <style>
+        :root {
+            /* Porsche Colors */
+            --brewster-green: #2F4F2F;
+            --eberle-green: #1E4A43;
+            --fjord: #3B7B9E;
+            --golf-blau: #1A3A59;
+            --shark-blue: #2D4A71;
+            --carmine-red: #960018;
+            --racing-yellow: #FFC20E;
+            --lime-green: #9CCB19;
+            --chalk: #C9C8C0;
+            --agate-grey: #4B5358;
+            
+            /* Light Mode */
+            --bg-primary: white;
+            --bg-secondary: var(--chalk);
+            --text-primary: var(--golf-blau);
+            --text-secondary: var(--agate-grey);
+            --accent: var(--fjord);
+            --highlight: var(--shark-blue);
+            --button: var(--brewster-green);
+            --button-text: white;
+        }
+        
+        [data-theme="dark"] {
+            --bg-primary: #1C1C1C;
+            --bg-secondary: #2A2A2A;
+            --text-primary: white;
+            --text-secondary: #B0B0B0;
+            --accent: var(--fjord);
+            --highlight: var(--eberle-green);
+            --button: var(--shark-blue);
+            --button-text: white;
+        }
+        
+        [data-theme="colorblind"] {
+            --brewster-green: #0072B2;
+            --eberle-green: #009E73;
+            --fjord: #56B4E9;
+            --accent: #CC79A7;
+            --highlight: #F0E442;
+            --button: #0072B2;
+            --button-text: white;
+        }
+        
+        @font-face {
+            font-family: 'GoogleSansMono';
+            src: url('https://fonts.googleapis.com/css2?family=Google+Sans+Mono&display=swap');
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'GoogleSansMono', monospace;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            padding: 30px 0;
+            position: relative;
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .theme-toggle button {
+            background: var(--bg-secondary);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+        
+        .theme-toggle button.active {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-part {
+            display: inline-block;
+        }
+        
+        .logo .sales {
+            color: var(--text-primary);
+        }
+        
+        .logo .blanket {
+            color: var(--accent);
+            position: relative;
+        }
+        
+        .logo .blanket::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border: 1px solid var(--brewster-green);
+            border-radius: 2px;
+            z-index: -1;
+        }
+        
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--accent);
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--highlight);
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+        
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--text-secondary);
+        }
+        
+        .features {
+            padding: 80px 0;
+            background-color: var(--bg-secondary);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background-color: var(--bg-primary);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+            border-top: 4px solid var(--accent);
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 15px;
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .cta {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--brewster-green) 0%, var(--shark-blue) 100%);
+            color: white;
+        }
+        
+        .cta h2 {
+            color: white;
+        }
+        
+        .cta p {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .signup-form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 8px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 4px;
+            border: none;
+            background-color: rgba(255,255,255,0.8);
+        }
+        
+        .porsche-button {
+            position: relative;
+            padding: 14px 60px 14px 30px;
+            background-color: var(--button);
+            color: var(--button-text);
+            border: none;
+            border-radius: 30px 10px 10px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .porsche-button::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            width: 20px;
+            height: 10px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' fill='%23ffffff'%3E%3Cpath d='M95,20 C90,5 80,0 70,0 L15,0 C5,0 0,10 0,20 C0,30 5,40 15,40 L70,40 C80,40 90,35 95,20 Z M70,30 C80,30 85,25 85,20 C85,15 80,10 70,10 C60,10 25,10 15,10 C10,10 10,15 10,20 C10,25 10,30 15,30 C25,30 60,30 70,30 Z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            transform: translateY(-50%);
+        }
+        
+        .porsche-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .timeline {
+            padding: 80px 0;
+        }
+        
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+        
+        .timeline-item {
+            background-color: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 8px;
+            position: relative;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+        
+        footer {
+            padding: 30px 0;
+            background-color: var(--text-primary);
+            color: var(--bg-primary);
+            text-align: center;
+        }
+        
+        .stop-marker {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <span class="logo-part sales">sales</span><span class="logo-part blanket">Blanket</span>
+            </div>
+            <div class="theme-toggle">
+                <button class="active" onclick="setTheme('light')">Light</button>
+                <button onclick="setTheme('dark')">Dark</button>
+                <button onclick="setTheme('colorblind')">Colorblind</button>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Reimagining Sales Territory Management</h1>
+            <p>salesBlanket is a revolutionary platform that transforms how sales teams navigate territories, track opportunities, and close deals. Our intelligent system uses geospatial data to optimize routes, predict customer behavior, and maximize productivity.</p>
+            <button class="porsche-button">Learn More</button>
+        </div>
+    </section>
+    
+    <section class="features">
+        <div class="container">
+            <h2>Key Features</h2>
+            <p>salesBlanket combines cutting-edge technology with intuitive design to create a seamless sales experience.</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Intelligent Territory Management</h3>
+                    <p>Optimize territories using AI-powered algorithms that balance workload and opportunity value.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📍</div>
+                    <h3>Smart Sales Stops</h3>
+                    <p>Track your sales journey with dynamic stops that automatically present relevant data when you arrive on location.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Pulse System</h3>
+                    <p>Access critical customer information, communication tools, and documents with our innovative Pulse interface.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Real-time Analytics</h3>
+                    <p>Gain actionable insights with comprehensive dashboards showcasing performance metrics and territory health.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Route Optimization</h3>
+                    <p>Let our AI suggest the most efficient routes to maximize your productivity and minimize travel time.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Seamless Integration</h3>
+                    <p>Connect with your existing systems including Google Workspace, CRM tools, and more.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta">
+        <div class="container">
+            <h2>Join Our Beta Program</h2>
+            <p>Be among the first to experience salesBlanket and help shape the future of sales territory management.</p>
+            
+            <div class="signup-form">
+                <form action="https://formsubmit.co/rmwolfe84@gmail.com" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company" placeholder="Acme Inc.">
+                    </div>
+                    
+                    <input type="hidden" name="_subject" value="New salesBlanket Beta Request">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://salesblanket.com/thanks.html">
+                    
+                    <button type="submit" class="porsche-button">Request Beta Access</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <section class="timeline">
+        <div class="container">
+            <h2>Beta Launch Timeline</h2>
+            <p>Our structured beta program ensures you get the most out of salesBlanket before the full launch.</p>
+            
+            <div class="timeline-grid">
+                <div class="timeline-item">
+                    <div class="timeline-date">May 2025</div>
+                    <h3><span class="stop-marker">1</span>Early Access</h3>
+                    <p>First beta participants receive access to core functionality.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">June 2025</div>
+                    <h3><span class="stop-marker">2</span>Territory Mapping</h3>
+                    <p>Geospatial features and territory optimization deployed.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">July 2025</div>
+                    <h3><span class="stop-marker">3</span>AI Integration</h3>
+                    <p>Smart routing and location-based alerts released to beta users.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">August 2025</div>
+                    <h3><span class="stop-marker">4</span>Full Launch</h3>
+                    <p>Complete platform availability with all features enabled.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 salesBlanket. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            const buttons = document.querySelectorAll('.theme-toggle button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+                if (button.innerText.toLowerCase() === theme) {
+                    button.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

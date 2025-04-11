@@ -20,4 +20,3 @@ We have two searches.
     User selects entity → system loads collection → pulse components render
     All pulse components reference collection_id directly
 
-

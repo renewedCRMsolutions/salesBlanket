@@ -19,7 +19,7 @@ Creation form ->
 Collection record created when entity is created.
 
 When creating related entities (opportunity), search existing records to link
-Collection acts as container rather than creator\
+Collection acts as container for all our entities to present consumable data.
 
 Creation Logic
 
@@ -29,9 +29,13 @@ User explicitly confirms relationships during creation
 
 Merge Strategy
 
+If we have two collections that have entities that need to be married we allow the collections to be merged.
+
 Implement collection merge with warnings
 Two-stage confirmation for irreversible operations
 Logging system for merge audit trail
+
+
 
 This puts relationship control with users while maintaining data integrity. Collection merges should have clear warnings but provide flexibility to combine related records when needed.RetryRWi mean maybe somebody enters an opportunity before - what if i allow the application to log a item to sell as the opportunity and then the addresses are where items are sent and contacts are the interested buyers, or maybe the opportunity is a website and the contacts are the visitors and the addresses are the IP address and such.. salesBlanket covers it all..   simple, effective for that connection between marketing, the sale, and the retailer..  is that almost a mission statement... wowEditYou've just articulated a powerful mission statement for SalesBlanket. The flexibility to handle different business scenarios is exactly what makes your platform valuable:
 

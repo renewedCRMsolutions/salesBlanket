@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>salesBlanket - Reimagining Sales Territory Management</title>
+    <title>salesBlanket - The Ultimate B2B Solution</title>
     <style>
         :root {
             /* Porsche Colors */
@@ -180,6 +180,13 @@
             color: var(--text-secondary);
         }
         
+        .tagline {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--accent);
+            margin-bottom: 30px;
+        }
+        
         .features {
             padding: 80px 0;
             background-color: var(--bg-secondary);
@@ -209,6 +216,35 @@
             font-size: 40px;
             margin-bottom: 20px;
             color: var(--accent);
+        }
+        
+        .value-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--shark-blue) 10%, var(--bg-primary) 100%);
+            color: white;
+        }
+        
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .value-card {
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .value-card h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .value-card p {
+            color: rgba(255,255,255,0.8);
         }
         
         .cta {
@@ -353,6 +389,52 @@
             margin-bottom: 30px;
             color: var(--brewster-green);
         }
+        
+        .workflow-diagram {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .workflow-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+        
+        .workflow-step {
+            flex: 1;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .workflow-step-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 24px;
+        }
+        
+        .workflow-steps::before {
+            content: "";
+            position: absolute;
+            top: 30px;
+            left: 80px;
+            right: 80px;
+            height: 4px;
+            background-color: rgba(255,255,255,0.3);
+            z-index: 1;
+        }
     </style>
 </head>
 <body>
@@ -372,6 +454,7 @@
     <section class="hero">
         <div class="container">
             <h1>Reimagining Sales Territory Management</h1>
+            <div class="tagline">The Ultimate B2B Solution</div>
             <p>salesBlanket is a revolutionary platform that transforms how sales teams navigate territories, track opportunities, and close deals. Our intelligent system uses geospatial data to optimize routes, predict customer behavior, and maximize productivity.</p>
             <button class="porsche-button" onclick="document.getElementById('features').scrollIntoView();">Learn More</button>
         </div>
@@ -417,6 +500,59 @@
                     <div class="feature-icon">🔄</div>
                     <h3>Seamless Integration</h3>
                     <p>Connect with your existing systems including Google Workspace, CRM tools, and more.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Cross-Department Connectivity</h3>
+                    <p>Bridge the gap between marketing, sales, and fulfillment with unified data flow and automated handoffs.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Relationship Intelligence</h3>
+                    <p>Manage complex B2B relationships with comprehensive contact mapping and interaction tracking.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="value-proposition" class="value-section">
+        <div class="container">
+            <h2>Why salesBlanket?</h2>
+            <p>We've reimagined what a B2B sales platform should be.</p>
+            
+            <div class="workflow-diagram">
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="workflow-step-icon">📣</div>
+                        <h3>Marketing</h3>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-step-icon">💼</div>
+                        <h3>Sales</h3>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-step-icon">📦</div>
+                        <h3>Fulfillment</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="value-grid">
+                <div class="value-card">
+                    <h3>One Unified Platform</h3>
+                    <p>salesBlanket eliminates the need for multiple disconnected systems, bringing marketing, sales, and fulfillment into one cohesive ecosystem.</p>
+                </div>
+                
+                <div class="value-card">
+                    <h3>Relationship-Focused</h3>
+                    <p>Our platform is flexible enough to handle the most diverse business relationships while maintaining detailed connection mapping.</p>
+                </div>
+                
+                <div class="value-card">
+                    <h3>No-Hassle Implementation</h3>
+                    <p>Get up and running quickly with intuitive onboarding and seamless integration with your existing tools and workflows.</p>
                 </div>
             </div>
         </div>

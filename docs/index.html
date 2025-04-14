@@ -6,49 +6,54 @@
     <title>salesBlanket - The Ultimate B2B Solution</title>
     <style>
         :root {
-            /* Porsche Colors */
-            --brewster-green: #2F4F2F;
-            --eberle-green: #1E4A43;
-            --fjord: #3B7B9E;
-            --golf-blau: #1A3A59;
-            --shark-blue: #2D4A71;
-            --carmine-red: #960018;
-            --racing-yellow: #FFC20E;
-            --lime-green: #9CCB19;
-            --chalk: #C9C8C0;
-            --agate-grey: #4B5358;
-            
-            /* Light Mode */
-            --bg-primary: white;
-            --bg-secondary: var(--chalk);
-            --text-primary: var(--golf-blau);
-            --text-secondary: var(--agate-grey);
-            --accent: var(--fjord);
-            --highlight: var(--shark-blue);
-            --button: var(--brewster-green);
-            --button-text: white;
-        }
-        
-        [data-theme="dark"] {
-            --bg-primary: #1C1C1C;
-            --bg-secondary: #2A2A2A;
-            --text-primary: white;
-            --text-secondary: #B0B0B0;
-            --accent: var(--fjord);
-            --highlight: var(--eberle-green);
-            --button: var(--shark-blue);
-            --button-text: white;
-        }
-        
-        [data-theme="colorblind"] {
-            --brewster-green: #0072B2;
-            --eberle-green: #009E73;
-            --fjord: #56B4E9;
-            --accent: #CC79A7;
-            --highlight: #F0E442;
-            --button: #0072B2;
-            --button-text: white;
-        }
+    /* Authentic Porsche Colors */
+    --guards-red: #A00000;
+    --gt-silver: #7B7B7B;
+    --racing-yellow: #FFB800;
+    --miami-blue: #32C5F4;
+    --python-green: #1E4A43;
+    --shark-blue: #2D4671;
+    --gentian-blue: #1A3A59;
+    --crayon: #D3D4C5;
+    --agate-grey: #4B5358;
+    --brewster-green: #2F4F2F;
+    --carmine-red: #960018;
+    --chalk: #C9C8C0;
+    --black: #000000;
+    
+    /* Light Mode */
+    --bg-primary: white;
+    --bg-secondary: var(--chalk);
+    --text-primary: var(--gentian-blue);
+    --text-secondary: var(--agate-grey);
+    --accent: var(--miami-blue);
+    --highlight: var(--shark-blue);
+    --button: var(--python-green);
+    --button-text: white;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #1A1A1A;
+    --bg-secondary: #2D2D2D;
+    --text-primary: white;
+    --text-secondary: var(--crayon);
+    --accent: var(--miami-blue);
+    --highlight: var(--python-green);
+    --button: var(--shark-blue);
+    --button-text: white;
+}
+
+[data-theme="colorblind"] {
+    /* Colorblind-friendly Porsche-inspired palette */
+    --bg-primary: white;
+    --bg-secondary: #E8E8E8;
+    --text-primary: #000000;
+    --text-secondary: #555555;
+    --accent: #0072B2;       /* Blue that works for most color vision deficiencies */
+    --highlight: #F0E442;    /* Yellow that's distinguishable */
+    --button: #009E73;       /* Green that's visible to most colorblind users */
+    --button-text: white;
+}
         
         @font-face {
             font-family: 'GoogleSansMono';

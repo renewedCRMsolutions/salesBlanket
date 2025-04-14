@@ -137,6 +137,9 @@ The database uses PostgreSQL with PostGIS for geographical data. Key tables incl
 - `view_configurations`, `view_types` - UI configuration
 - `entity_card_pulse_*` - Google Workspace integration
 
+- Assignment tables written parent_child_assignments
+- Junction tables - table_table
+
 ## Authentication Flow
 
 1. User logs in via the frontend using username/password or social login

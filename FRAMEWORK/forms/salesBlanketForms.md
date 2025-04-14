@@ -1,6 +1,6 @@
 # salesBlanket Forms
 
-"ultimate B2B solution" statement? salesBlanket's value - a platform flexible enough to handle diverse business relationships while maintaining connections between marketing, sales, and fulfillment in one system, without the hassle.
+"ultimate B2B solution" - salesBlanket's value - a platform flexible enough to handle diverse business relationships while maintaining connections between marketing, sales, and fulfillment in one system, without the hassle.
 
 Entity-First Approach
 
@@ -21,6 +21,7 @@ neighborhoods = n
 collections = c
 property condition form = pcf
 contacts = con
+opportunity = o
 
 addresses, contacts, opportunities
 
@@ -142,7 +143,193 @@ the footer contains two buttons
 add opportunity
 all done
 
-#### UI
+user clicks add opportunity and they are taken to the opportunity form
+user clicks all done and they are 
+
+## Form Part D - Opportunity Form
+
+Form Header
+
+H1 - "Opportunity Entry"
+Show the date on the top right - day of the work
+Show selected collection ID (hidden, for reference)
+
+Common Fields
+All opportunity forms have these base fields:
+
+1, o.id = auto fill uuid
+2, o.opportunity_type_id = dropdown "select opportunity type" options based on cached data. opportunity_types.name contains human readable text. Required
+2, o.status = dropdown with options "ACTIVE" (default), "PENDING", "CLOSED", "LOST"
+2, o.notes = text area, nullable, max 500 char
+1, o.created_by = auto fill user.id with timestampz
+1, o.created_at = auto timestampz
+1, o.updated_at = auto timestampz
+1, o.collection_id = auto fill from the passed collection_id value
+1, o.form_version = auto fill from the current form version
+1, o.metadata = auto fill with the dynamic form field values (JSON structure)
+
+Footer Controls
+
+"Submit" button to create the opportunity
+"Cancel" button to exit without saving
+
+Dynamic Form Fields
+Based on the selected opportunity type, the form will dynamically display different field sets:
+Roofing Opportunity Form
+2, o.metadata.roof_type = dropdown "Roof Type"
+
+Options: "Asphalt Shingle", "Metal", "Tile", "Flat/TPO", "Other"
+Required: Yes
+Order: 1
+
+2, o.metadata.square_footage = number field "Approximate Square Footage"
+
+Min: 0
+Required: Yes
+Order: 2
+
+2, o.metadata.damage_type = multi-select "Type of Damage"
+
+Options: "Storm", "Age", "Leaks", "Missing Shingles", "Other"
+Required: Yes
+Order: 3
+
+2, o.metadata.insurance_claim = yes/no toggle "Insurance Claim"
+
+Default: No
+Required: No
+Order: 4
+
+2, o.metadata.estimated_value = currency field "Estimated Value"
+
+Min: 0
+Required: No
+Order: 5
+
+Siding Opportunity Form
+2, o.metadata.current_siding = dropdown "Current Siding Type"
+
+Options: "Vinyl", "Wood", "Fiber Cement", "Aluminum", "Stucco", "Other"
+Required: Yes
+Order: 1
+
+2, o.metadata.desired_siding = dropdown "Desired Siding Type"
+
+Options: "Vinyl", "Wood", "Fiber Cement", "Aluminum", "Stucco", "Other"
+Required: No
+Order: 2
+
+2, o.metadata.damage_description = text area "Damage Description"
+
+Max: 200 chars
+Required: No
+Order: 3
+
+2, o.metadata.house_size = number field "House Size (sq ft)"
+
+Min: 0
+Required: Yes
+Order: 4
+
+2, o.metadata.estimated_value = currency field "Estimated Value"
+
+Min: 0
+Required: No
+Order: 5
+
+Solar Opportunity Form
+2, o.metadata.roof_condition = dropdown "Roof Condition"
+
+Options: "New", "Good", "Fair", "Poor", "Unknown"
+Required: Yes
+Order: 1
+
+2, o.metadata.energy_bill = currency field "Average Monthly Energy Bill"
+
+Min: 0
+Required: Yes
+Order: 2
+
+2, o.metadata.roof_direction = multi-select "Roof Direction"
+
+Options: "North", "South", "East", "West"
+Required: Yes
+Order: 3
+
+2, o.metadata.shade_factor = dropdown "Shade Factor"
+
+Options: "None", "Light", "Moderate", "Heavy"
+Required: Yes
+Order: 4
+
+2, o.metadata.financing_interested = yes/no toggle "Interested in Financing"
+
+Default: Yes
+Required: No
+Order: 5
+
+2, o.metadata.estimated_value = currency field "Estimated Value"
+
+Min: 0
+Required: No
+Order: 6
+
+Form Propagation
+On Submit
+
+Validate all required fields
+Format JSON data structure for metadata
+Create opportunity record
+Update collection record if needed
+Return user to collection view
+Display success message
+
+Creation Logic
+The creation of an opportunity follows these steps:
+
+Prepare standard fields (opportunity_type_id, status, notes, etc.)
+Prepare metadata JSON with all dynamic form fields
+Set collection_id from the current context
+Insert record into opportunities table
+Update collection record to include new opportunity (if needed)
+
+Implementation Scenarios
+Scenario 1: From Address Workflow
+When user creates an address and then selects "Add New Opportunity":
+
+Address record is created
+Collection record is created or updated
+User is navigated to Opportunity form
+Form is pre-populated with collection_id
+On submit, the opportunity is associated with the same collection as the address
+
+Scenario 2: From Contact Workflow
+When user creates a contact and selects "Add Opportunity":
+
+Contact record is created
+Collection record is created or updated
+User is navigated to Opportunity form
+Form is pre-populated with collection_id
+On submit, the opportunity is associated with the same collection as the contact
+
+Scenario 3: Direct Addition
+When user selects "Add New Opportunity" from an existing collection:
+
+Opportunity form is displayed
+Form is pre-populated with existing collection_id
+On submit, opportunity is associated with the existing collection
+
+UI Behavior
+
+Opportunity type dropdown is at top of form
+When opportunity type is selected, the form dynamically updates to show the relevant fields
+Form fields are displayed in the specified order
+Required fields are indicated with an asterisk (*)
+Validation errors are displayed inline
+Success/failure messages display after submission
+
+Opportunity Form:
+
 
 1. User logged in as a user in web app.
     Use collections search up an address, opportunity, or marketer to add the new entity to the existing collection

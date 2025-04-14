@@ -2,6 +2,19 @@
 
 This document outlines how data propagates through the SalesBlanket v4 database when entities are created, related, and deleted. It ensures data integrity by preventing orphaned records and maintaining proper relationship chains.
 
+1. Expand with Concrete Examples:
+    - Add specific propagation examples for the form system
+    - Show document creation flow with all related tables
+    - Demonstrate sales workflow entity progression
+  2. Include Component Interaction Diagrams:
+    - Show how UI components interact with data flow
+    - Document which components trigger which data changes
+    - Illustrate cascading updates across the system
+  3. Add Error Handling Flows:
+    - Document recovery paths for failed operations
+    - Show validation error propagation
+    - Illustrate conflict resolution strategies
+
 ## Entity Creation and Relationship Propagation
 
 ```mermaid

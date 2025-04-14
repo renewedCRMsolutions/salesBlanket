@@ -32,9 +32,9 @@ NODE_ENV=development
 # Database Configuration
 DB_HOST=localhost
 DB_PORT=5432
-DB_NAME=salesblanketv4
+DB_NAME=salesblanket
 DB_USER=postgres
-DB_PASSWORD=your_password
+DB_PASSWORD=PorscheGoFast911
 
 # JWT Configuration
 JWT_SECRET=your-secret-key-change-in-production

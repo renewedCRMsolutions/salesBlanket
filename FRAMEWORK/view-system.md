@@ -15,6 +15,14 @@ The view system implements a **hierarchical MVC (Model-View-Controller)** patter
 
 ## Core Components
 
+### FORM SYSTEM
+
+Dynamic FORM global system.  Modern Form System: Implementation & Flow Guide. 
+
+Documentation: 
+C:\Users\Robert Wolfe\Desktop\Projects\salesBlanketv4\FRAMEWORK\forms\modernFormSystem.md
+
+
 ### ViewHandler (Singleton)
 
 `ViewHandler` is the primary controller for the view system, implemented as a singleton:

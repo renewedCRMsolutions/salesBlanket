@@ -6,7 +6,7 @@ A door-to-door sales application with a modern, API-first architecture featuring
 
 - **Database Layer**: PostgreSQL with PostGIS for geographic data
 - **API Layer**: GraphQL with Apollo Server
-- **Frontend**: React with Apollo Client and TypeScript
+- **Frontend**: Vanilla JavaScript with Web Components and Apollo Client
 - **Integration**: Google Maps Platform and Google Workspace APIs
 
 ## Getting Started
@@ -75,6 +75,25 @@ npm run dev
 ```
 
 3. Access GraphQL Playground at http://localhost:4000/graphql
+4. Access SalesBlanket application at http://localhost:4000/
+
+### Client Setup
+
+1. Install dependencies:
+
+```bash
+# In the client directory
+npm install
+```
+
+2. The client is served by the server, but for standalone development:
+
+```bash
+# In the client directory
+npm run dev
+```
+
+3. Access standalone client at http://localhost:3000/
 
 ## Key Features
 
@@ -155,6 +174,21 @@ npm run typecheck
 # Lint code
 npm run lint
 ```
+
+## Color Palette
+
+The application uses a Porsche-inspired color palette:
+
+- Brewster Green (#2F4F2F)
+- Eberle Green (#1E4A43)
+- Fjord (#3B7B9E)
+- Golf Blau (#1A3A59)
+- Shark Blue (#2D4A71)
+- Carmine Red (#960018)
+- Racing Yellow (#FFC20E)
+- Lime Green (#9CCB19)
+- Chalk (#C9C8C0)
+- Agate Grey (#4B5358)
 
 ## License
 

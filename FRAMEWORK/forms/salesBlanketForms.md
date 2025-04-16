@@ -14,6 +14,12 @@ Frontend validation to check for existing entities
 Suggest matches during creation (not database-level)
 User explicitly confirms relationships during creation
 
+A user can start entry with a Contact or and Address.  
+
+Select an entity (I want to work with an address)
+Select a type (It's a residential address)
+Select subtypes (It has these specific features: windows, garage, etc.)
+
 ## Acronyms
 
 address = a
@@ -30,7 +36,25 @@ hidden = 1
 shown = 2
 expandable = 3
 
-### Form Part A - Address
+### Selection or Entity Entry
+
+Please select a address or contact type
+
+user selects a address_type.id or contact_type.id -> UI shows the display name - use the uuid for queries
+
+"id" "display_name"
+"49619359-fbb8-43f5-ba67-2adf280182ff"	"Commercial"
+"6c98c361-5270-47f2-b814-57a36f9bf128"	"Residential"
+"94f9c909-2ccb-404e-9052-13679da62e08"	"Investment Property"
+"ba2e903f-26ca-4899-a087-689c0b7c3edd"	"Storage"
+"c9157a6b-f239-4d1e-a09a-fe28a96588d0"	"Rental Property"
+"ffb6db1a-5a77-4e88-ba37-ae6dfb113955"	"Vacation Home"
+
+
+
+
+
+### Form Part B - Address
 
 form a will gather data to create the Addresses record
 H1 - "Address Entry"
@@ -41,6 +65,8 @@ t.s default = ON
 form
 
 table name addresses
+
+addresses form_definitions.id: "832375ab-cc24-41dc-b1ed-29e471c66257"
 
 2, a address_type_id = drop down "select address type" options are available based on cached data. address_types.name contains the human readable text
 1, a.id = auto fill uuid
@@ -64,9 +90,15 @@ table name addresses
 
 Drop Down Form Expander
 H1 "Property Condition Form"
-toggle on header
+toggle on header.
 footer has "property condition report" button that will expand to reveal the property condition form.
 footer has a submit button as well.
+
+Property Condition form_definition.id 753635b5-12df-4220-a887-8dd6bdaece9a
+
+form_type - addresses
+category - property_condition_form
+
 
 drop downs
 default to option "select condition"
@@ -88,8 +120,7 @@ on cancel - form workflow killed - no records created
 
 on submit
 
-Form Propagation
-
+Form Propagation:
 create streets record
 create collections record
 

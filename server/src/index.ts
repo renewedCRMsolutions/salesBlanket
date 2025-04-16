@@ -30,8 +30,11 @@ async function startServer() {
   app.use(json());
   app.use(authMiddleware);
   
-  // Serve static files for login page
+  // Serve static files from public directory for login page
   app.use(express.static('public'));
+  
+  // Serve client application files (from client directory)
+  app.use(express.static('../client'));
   
   // Create Apollo Server
   const apolloServer = new ApolloServer({
@@ -76,6 +79,7 @@ async function startServer() {
       🚀 Server ready at http://localhost:${PORT}${apolloServer.graphqlPath}
       📚 GraphQL Studio available at http://localhost:${PORT}${apolloServer.graphqlPath}
       🔑 Login page available at http://localhost:${PORT}/login.html
+      🖥️ SalesBlanket v4 app available at http://localhost:${PORT}/
     `);
   });
 }

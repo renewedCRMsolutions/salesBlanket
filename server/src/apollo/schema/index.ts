@@ -7,6 +7,7 @@ import { entity } from './entity';
 import { zone } from './zone';
 import { view } from './view';
 import { user } from './user';
+import { salesTrack } from './salesTrack';
 
 // Base schema with empty Query and Mutation types
 const baseTypeDefs = gql`
@@ -87,5 +88,6 @@ export const typeDefs = [
   entity,
   zone,
   view,
-  user
+  user,
+  salesTrack
 ];

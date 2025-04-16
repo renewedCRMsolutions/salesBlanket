@@ -134,6 +134,43 @@ export const entity = gql`
     endDate: Timestamp
   }
 
+  # Entity Form Types
+  type EntitySubtype {
+    id: UUID!
+    entityTypeId: UUID!
+    name: String!
+    description: String
+    isActive: Boolean!
+    createdAt: Timestamp
+    updatedAt: Timestamp
+  }
+
+  type EntityFormField {
+    id: UUID!
+    formId: UUID!
+    fieldName: String!
+    displayName: String!
+    fieldType: String!
+    isRequired: Boolean!
+    validationRules: JSONB
+    defaultValue: String
+    options: JSONB
+    displayOrder: Int!
+    createdAt: Timestamp
+    updatedAt: Timestamp
+  }
+
+  type EntityForm {
+    id: UUID!
+    title: String!
+    description: String
+    entitySubtypeId: UUID!
+    isActive: Boolean!
+    fields: [EntityFormField!]!
+    createdAt: Timestamp
+    updatedAt: Timestamp
+  }
+
   # Entity Management Queries
   extend type Query {
     entityTypes: [EntityType!]!
@@ -150,6 +187,12 @@ export const entity = gql`
     
     opportunities(filter: EntityFilter, limit: Int, offset: Int): [Opportunity!]!
     opportunity(id: UUID!): Opportunity
+
+    # Entity Form Queries
+    creatableParentEntities: [EntityType!]!
+    entityTypesByParent(parentId: UUID!): [EntityType!]!
+    entitySubtypesByType(typeId: UUID!): [EntitySubtype!]!
+    formBySubtype(subtypeId: UUID!): EntityForm
   }
 
   # Entity Management Mutations

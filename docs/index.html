@@ -5,436 +5,442 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>salesBlanket - The Ultimate B2B Solution</title>
     <style>
-        :root {
-            /* Porsche Colors */
-            --brewster-green: #2F4F2F;
-            --eberle-green: #1E4A43;
-            --fjord: #3B7B9E;
-            --golf-blau: #1A3A59;
-            --shark-blue: #2D4A71;
-            --carmine-red: #960018;
-            --racing-yellow: #FFC20E;
-            --lime-green: #9CCB19;
-            --chalk: #C9C8C0;
-            --agate-grey: #4B5358;
-            
-            /* Light Mode */
-            --bg-primary: white;
-            --bg-secondary: var(--chalk);
-            --text-primary: var(--golf-blau);
-            --text-secondary: var(--agate-grey);
-            --accent: var(--fjord);
-            --highlight: var(--shark-blue);
-            --button: var(--brewster-green);
-            --button-text: white;
-        }
-        
-        [data-theme="dark"] {
-            --bg-primary: #1C1C1C;
-            --bg-secondary: #2A2A2A;
-            --text-primary: white;
-            --text-secondary: #B0B0B0;
-            --accent: var(--fjord);
-            --highlight: var(--eberle-green);
-            --button: var(--shark-blue);
-            --button-text: white;
-        }
-        
-        [data-theme="colorblind"] {
-            --brewster-green: #0072B2;
-            --eberle-green: #009E73;
-            --fjord: #56B4E9;
-            --accent: #CC79A7;
-            --highlight: #F0E442;
-            --button: #0072B2;
-            --button-text: white;
-        }
-        
-        @font-face {
-            font-family: 'GoogleSansMono';
-            src: url('https://fonts.googleapis.com/css2?family=Google+Sans+Mono&display=swap');
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'GoogleSansMono', monospace;
-            transition: background-color 0.3s ease, color 0.3s ease;
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        header {
-            padding: 30px 0;
-            position: relative;
-            border-bottom: 3px solid var(--accent);
-        }
-        
-        .theme-toggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-        }
-        
-        .theme-toggle button {
-            background: var(--bg-secondary);
-            border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            color: var(--text-primary);
-        }
-        
-        .theme-toggle button.active {
-            background: var(--accent);
-            color: white;
-        }
-        
-        .logo {
-            font-size: 32px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo-part {
-            display: inline-block;
-        }
-        
-        .logo .sales {
-            color: var(--text-primary);
-        }
-        
-        .logo .blanket {
-            color: var(--accent);
-            position: relative;
-        }
-        
-        .logo .blanket::before {
-            content: "";
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            border: 1px solid var(--brewster-green);
-            border-radius: 2px;
-            z-index: -1;
-        }
-        
-        .hero {
-            padding: 100px 0;
-            text-align: center;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-        }
-        
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        h1::after {
-            content: "";
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--accent);
-        }
-        
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: var(--highlight);
-        }
-        
-        h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--text-primary);
-        }
-        
-        p {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            color: var(--text-secondary);
-        }
-        
-        .tagline {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: var(--accent);
-            margin-bottom: 30px;
-        }
-        
-        .features {
-            padding: 80px 0;
-            background-color: var(--bg-secondary);
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .feature-card {
-            background-color: var(--bg-primary);
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            text-align: center;
-            border-top: 4px solid var(--accent);
-        }
-        
-        .feature-card h3 {
-            margin-bottom: 15px;
-        }
-        
-        .feature-icon {
-            font-size: 40px;
-            margin-bottom: 20px;
-            color: var(--accent);
-        }
-        
-        .value-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--shark-blue) 10%, var(--bg-primary) 100%);
-            color: white;
-        }
-        
-        .value-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .value-card {
-            background-color: rgba(255,255,255,0.1);
-            border-radius: 8px;
-            padding: 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        .value-card h3 {
-            color: white;
-            margin-bottom: 15px;
-        }
-        
-        .value-card p {
-            color: rgba(255,255,255,0.8);
-        }
-        
-        .cta {
-            padding: 100px 0;
-            text-align: center;
-            background: linear-gradient(135deg, var(--brewster-green) 0%, var(--shark-blue) 100%);
-            color: white;
-        }
-        
-        .cta h2 {
-            color: white;
-        }
-        
-        .cta p {
-            color: rgba(255,255,255,0.8);
-        }
-        
-        .signup-form {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 30px;
-            background-color: rgba(255,255,255,0.1);
-            border-radius: 8px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 4px;
-            border: none;
-            background-color: rgba(255,255,255,0.8);
-        }
-        
-        .porsche-button {
-            position: relative;
-            padding: 14px 60px 14px 30px;
-            background-color: var(--button);
-            color: var(--button-text);
-            border: none;
-            border-radius: 30px 10px 10px 30px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-        
-        .porsche-button::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            right: 15px;
-            width: 20px;
-            height: 10px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' fill='%23ffffff'%3E%3Cpath d='M95,20 C90,5 80,0 70,0 L15,0 C5,0 0,10 0,20 C0,30 5,40 15,40 L70,40 C80,40 90,35 95,20 Z M70,30 C80,30 85,25 85,20 C85,15 80,10 70,10 C60,10 25,10 15,10 C10,10 10,15 10,20 C10,25 10,30 15,30 C25,30 60,30 70,30 Z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            transform: translateY(-50%);
-        }
-        
-        .porsche-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-        
-        .timeline {
-            padding: 80px 0;
-        }
-        
-        .timeline-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 50px;
-        }
-        
-        .timeline-item {
-            background-color: var(--bg-secondary);
-            padding: 20px;
-            border-radius: 8px;
-            position: relative;
-            border-left: 4px solid var(--accent);
-        }
-        
-        .timeline-date {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: var(--accent);
-        }
-        
-        footer {
-            padding: 30px 0;
-            background-color: var(--text-primary);
-            color: var(--bg-primary);
-            text-align: center;
-        }
-        
-        .stop-marker {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: var(--accent);
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            margin-right: 10px;
-            font-weight: bold;
-        }
-        
-        /* Simple thank you page styles */
-        .thank-you {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .thank-you h1 {
-            margin-bottom: 30px;
-        }
-        
-        .thank-you .icon {
-            font-size: 80px;
-            margin-bottom: 30px;
-            color: var(--brewster-green);
-        }
-        
-        .workflow-diagram {
-            max-width: 800px;
-            margin: 40px auto;
-            background-color: rgba(255,255,255,0.2);
-            border-radius: 8px;
-            padding: 20px;
-        }
-        
-        .workflow-steps {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-        }
-        
-        .workflow-step {
-            flex: 1;
-            text-align: center;
-            color: white;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .workflow-step-icon {
-            width: 60px;
-            height: 60px;
-            background-color: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            font-size: 24px;
-        }
-        
-        .workflow-steps::before {
-            content: "";
-            position: absolute;
-            top: 30px;
-            left: 80px;
-            right: 80px;
-            height: 4px;
-            background-color: rgba(255,255,255,0.3);
-            z-index: 1;
-        }
+       
+:root {
+    /* Authentic Porsche Colors */
+    --guards-red: #A00000;
+    --gt-silver: #7B7B7B;
+    --racing-yellow: #FFB800;
+    --miami-blue: #32C5F4;
+    --python-green: #1E4A43;
+    --shark-blue: #2D4671;
+    --gentian-blue: #1A3A59;
+    --crayon: #D3D4C5;
+    --agate-grey: #4B5358;
+    --brewster-green: #2F4F2F;
+    --carmine-red: #960018;
+    --chalk: #C9C8C0;
+    --black: #000000;
+    
+    /* Light Mode */
+    --bg-primary: white;
+    --bg-secondary: var(--chalk);
+    --text-primary: var(--gentian-blue);
+    --text-secondary: var(--agate-grey);
+    --accent: var(--miami-blue);
+    --highlight: var(--shark-blue);
+    --button: var(--python-green);
+    --button-text: white;
+}
+
+[data-theme="dark"] {
+    --bg-primary: #1A1A1A;
+    --bg-secondary: #2D2D2D;
+    --text-primary: white;
+    --text-secondary: var(--crayon);
+    --accent: var(--miami-blue);
+    --highlight: var(--python-green);
+    --button: var(--shark-blue);
+    --button-text: white;
+}
+
+[data-theme="colorblind"] {
+    /* Colorblind-friendly Porsche-inspired palette */
+    --bg-primary: white;
+    --bg-secondary: #E8E8E8;
+    --text-primary: #000000;
+    --text-secondary: #555555;
+    --accent: #0072B2;       /* Blue that works for most color vision deficiencies */
+    --highlight: #F0E442;    /* Yellow that's distinguishable */
+    --button: #009E73;       /* Green that's visible to most colorblind users */
+    --button-text: white;
+}
+
+@font-face {
+    font-family: 'GoogleSansMono';
+    src: url('https://fonts.googleapis.com/css2?family=Google+Sans+Mono&display=swap');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'GoogleSansMono', monospace;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    padding: 30px 0;
+    position: relative;
+    border-bottom: 3px solid var(--accent);
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.theme-toggle button {
+    background: var(--bg-secondary);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--text-primary);
+}
+
+.theme-toggle button.active {
+    background: var(--accent);
+    color: white;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.logo-part {
+    display: inline-block;
+}
+
+.logo .sales {
+    color: var(--text-primary);
+}
+
+.logo .blanket {
+    color: var(--accent);
+    position: relative;
+}
+
+.logo .blanket::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 1px solid var(--brewster-green);
+    border-radius: 2px;
+    z-index: -1;
+}
+
+.hero {
+    padding: 100px 0;
+    text-align: center;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+h1::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent);
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: var(--highlight);
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-secondary);
+}
+
+.tagline {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--accent);
+    margin-bottom: 30px;
+}
+
+.features {
+    padding: 80px 0;
+    background-color: var(--bg-secondary);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.feature-card {
+    background-color: var(--bg-primary);
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    border-top: 4px solid var(--accent);
+}
+
+.feature-card h3 {
+    margin-bottom: 15px;
+}
+
+.feature-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: var(--accent);
+}
+
+.value-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--shark-blue) 10%, var(--bg-primary) 100%);
+    color: white;
+}
+
+.value-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.value-card {
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.value-card h3 {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.value-card p {
+    color: rgba(255,255,255,0.8);
+}
+
+.cta {
+    padding: 100px 0;
+    text-align: center;
+    background: linear-gradient(135deg, var(--brewster-green) 0%, var(--shark-blue) 100%);
+    color: white;
+}
+
+.cta h2 {
+    color: white;
+}
+
+.cta p {
+    color: rgba(255,255,255,0.8);
+}
+
+.signup-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    border: none;
+    background-color: rgba(255,255,255,0.8);
+}
+
+.porsche-button {
+    position: relative;
+    padding: 14px 60px 14px 30px;
+    background-color: var(--button);
+    color: var(--button-text);
+    border: none;
+    border-radius: 30px 10px 10px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.porsche-button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    width: 20px;
+    height: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' fill='%23ffffff'%3E%3Cpath d='M95,20 C90,5 80,0 70,0 L15,0 C5,0 0,10 0,20 C0,30 5,40 15,40 L70,40 C80,40 90,35 95,20 Z M70,30 C80,30 85,25 85,20 C85,15 80,10 70,10 C60,10 25,10 15,10 C10,10 10,15 10,20 C10,25 10,30 15,30 C25,30 60,30 70,30 Z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    transform: translateY(-50%);
+}
+
+.porsche-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.timeline {
+    padding: 80px 0;
+}
+
+.timeline-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 50px;
+}
+
+.timeline-item {
+    background-color: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    border-left: 4px solid var(--accent);
+}
+
+.timeline-date {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: var(--accent);
+}
+
+footer {
+    padding: 30px 0;
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+    text-align: center;
+}
+
+.stop-marker {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: var(--accent);
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+/* Simple thank you page styles */
+.thank-you {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 20px;
+}
+
+.thank-you h1 {
+    margin-bottom: 30px;
+}
+
+.thank-you .icon {
+    font-size: 80px;
+    margin-bottom: 30px;
+    color: var(--brewster-green);
+}
+
+.workflow-diagram {
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.workflow-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.workflow-step {
+    flex: 1;
+    text-align: center;
+    color: white;
+    position: relative;
+    z-index: 2;
+}
+
+.workflow-step-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 24px;
+}
+
+.workflow-steps::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    left: 80px;
+    right: 80px;
+    height: 4px;
+    background-color: rgba(255,255,255,0.3);
+    z-index: 1;
+}
     </style>
 </head>
 <body>

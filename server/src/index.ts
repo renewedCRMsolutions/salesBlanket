@@ -8,6 +8,7 @@ import resolvers from './apollo/resolvers';
 import { createContext } from './apollo/context';
 import { authMiddleware } from './utils/auth';
 import { json } from 'body-parser';
+import 'module-alias/register';
 
 // Load environment variables
 dotenv.config();
@@ -24,18 +25,18 @@ declare global {
 async function startServer() {
   // Create Express app
   const app = express();
-  
+
   // Configure middleware
   app.use(cors());
   app.use(json());
   app.use(authMiddleware);
-  
+
   // Serve static files from public directory for login page
   app.use(express.static('public'));
-  
+
   // Serve client application files (from client directory)
   app.use(express.static('../client'));
-  
+
   // Create Apollo Server
   const apolloServer = new ApolloServer({
     typeDefs,
@@ -56,12 +57,12 @@ async function startServer() {
   app.get('/health', (req, res) => {
     res.status(200).send('OK');
   });
-  
+
   // Login status endpoint
   app.get('/auth/status', (req: Request, res) => {
     res.json({
       authenticated: !!req.user,
-      user: req.user || null
+      user: req.user || null,
     });
   });
 
@@ -79,7 +80,7 @@ async function startServer() {
       🚀 Server ready at http://localhost:${PORT}${apolloServer.graphqlPath}
       📚 GraphQL Studio available at http://localhost:${PORT}${apolloServer.graphqlPath}
       🔑 Login page available at http://localhost:${PORT}/login.html
-      🖥️ SalesBlanket v4 app available at http://localhost:${PORT}/
+      🖥️ salesBlanket v4 app available at http://localhost:${PORT}/
     `);
   });
 }

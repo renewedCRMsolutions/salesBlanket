@@ -1,12 +1,23 @@
 {
-  "name": "salesblanketv4",
+  "name": "salesBlanketv4",
   "version": "1.0.0",
   "description": "A door-to-door sales application with a modern, API-first architecture featuring GraphQL, PostgreSQL with PostGIS, and Google Zones integration.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:converter": "npx ts-node server/src/utils/db-converter.test.ts"
+  },
+  "_moduleAliases": {
+    "@utils": "server/src/utils",
+    "@resolvers": "server/src/apollo/resolvers"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "module-alias": "^2.2.3"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
 }

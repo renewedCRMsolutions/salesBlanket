@@ -1,7 +1,7 @@
 {
-  "name": "salesblanketv4-server",
+  "name": "salesBlanketv4-server",
   "version": "1.0.0",
-  "description": "SalesBlanket v4 GraphQL API Server",
+  "description": "salesBlanket v4 GraphQL API Server",
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
@@ -11,10 +11,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint . --ext .ts",
     "typecheck": "tsc --noEmit",
-    "db:create": "createdb -U postgres salesblanketv4",
-    "db:drop": "dropdb -U postgres salesblanketv4",
-    "db:init": "psql -U postgres -d salesblanketv4 -f src/db/migrations/001_initial_schema.sql",
-    "db:seed": "psql -U postgres -d salesblanketv4 -f src/db/migrations/002_seed_data.sql",
+    "db:create": "createdb -U postgres salesBlanketv4",
+    "db:drop": "dropdb -U postgres salesBlanketv4",
+    "db:init": "psql -U postgres -d salesBlanketv4 -f src/db/migrations/001_initial_schema.sql",
+    "db:seed": "psql -U postgres -d salesBlanketv4 -f src/db/migrations/002_seed_data.sql",
     "db:reset": "npm run db:drop && npm run db:create && npm run db:init && npm run db:seed",
     "start:aws": "NODE_ENV=development node start-server.js",
     "windows": "node start-server.js"
@@ -42,6 +42,7 @@
     "graphql": "^16.10.0",
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
+    "module-alias": "^2.2.3",
     "pg": "^8.14.1",
     "pg-promise": "^11.13.0"
   },

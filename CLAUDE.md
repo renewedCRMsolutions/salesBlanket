@@ -1,4 +1,4 @@
-# SalesBlanket v4 Development Guide
+# salesBlanket v4 Development Guide
 
 ## Core Rules
 
@@ -24,6 +24,14 @@
    - Include examples for complex inputs and operations
    - Document all API endpoints with example requests and responses
    - Refuse to write code that doesn't meet documentation standards
+8. **USE DB-CONVERTER UTILITY FOR ALL DATABASE INTERACTIONS**:
+   - ALWAYS use the db-converter utility for database access as specified in DB-ConverterUtility.md
+   - Use snakeToCamel and camelToSnake for converting between database and code naming conventions
+   - Use dbRowToCamelCase to convert entire database row objects to JavaScript objects
+   - Use createCaseConvertingDb and its methods for all database queries
+   - Create entity-specific mappers for complex transformations
+   - Never directly access snake_case properties from database results
+   - Be consistent with JSON field usage (preferences vs metadata)
 
 ## Core Architecture
 
@@ -37,7 +45,7 @@
 
 you MUST follow C:\Users\Robert Wolfe\Desktop\Projects\salesBlanketv4\documentation-standards.md
 
-SalesBlanket v4 is built on a modern, API-first architecture with these core components:
+salesBlanket v4 is built on a modern, API-first architecture with these core components:
 
 1. **Frontend**: Vanilla JavaScript with service-based API communication
 2. **Middleware**: GraphQL API with Apollo Server (TypeScript/Node.js)
@@ -138,7 +146,7 @@ salesBlanketv4/
 
 ## Key Entity Relationships
 
-The SalesBlanket system revolves around these core entities and their relationships:
+The salesBlanket system revolves around these core entities and their relationships:
 
 1. **Entities & Types**:
 

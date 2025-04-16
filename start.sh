@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# SalesBlanket v4 Quick Start Script
+# salesBlanket v4 Quick Start Script
 
-echo "SalesBlanket v4 Quick Start"
+echo "salesBlanket v4 Quick Start"
 echo "--------------------------"
 
 # Function to check if a command exists
@@ -35,5 +35,5 @@ if [ ! -d "client/node_modules" ]; then
 fi
 
 # Start the server
-echo "Starting SalesBlanket v4 server..."
+echo "Starting salesBlanket v4 server..."
 cd server && npm run dev

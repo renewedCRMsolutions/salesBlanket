@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "CommonJS",
+    "outDir": "./server/dist",
+    "rootDir": "./server/src",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["server/src/*"],
+      "@utils/*": ["server/src/utils/*"],
+      "@resolvers/*": ["server/src/apollo/resolvers/*"]
+    },
+    "esModuleInterop": true,
+    "strict": true
+  },
+  "include": ["server/src/**/*"]
+}

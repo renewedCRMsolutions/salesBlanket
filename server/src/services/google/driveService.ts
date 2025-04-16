@@ -51,7 +51,7 @@ export class GoogleDriveService {
   }
 
   /**
-   * Create folder structure for SalesBlanket organization
+   * Create folder structure for salesBlanket organization
    * @param userId - User ID to create folders under
    * @returns Object with folder IDs
    */
@@ -65,7 +65,7 @@ export class GoogleDriveService {
 
     // Create main folder if not already set
     if (!this.mainFolderId) {
-      this.mainFolderId = await this.createFolder(tokens.access_token, 'SalesBlanket');
+      this.mainFolderId = await this.createFolder(tokens.access_token, 'salesBlanket');
 
       // Save to environment for future use
       // In production, this would be saved to a configuration database

@@ -298,6 +298,6 @@ Would you like me to incorporate these tables into the complete schema creation 
 
 we are using googletasks for tasks in the app - we have a pulse_tasks table..  we need to identify what entity records we can task - when we are in the pulse app - we have the collection id - with the collection id we have all the possible entity ids, estimates, addresses, contacts, opportunities
 
-i do not really have a sales_appointments ...  we should really have a nice appointment component in the salesblanket house... any ideas??  we would attach the appointment to the collection probably..  create the address, contact then collection is cretaed..  now we can create the appointment?  then thatb should sync up with the id in the pulse system as well having the collection id..  then the title of the appointment will default to the collection name
+i do not really have a sales_appointments ...  we should really have a nice appointment component in the salesBlanket house... any ideas??  we would attach the appointment to the collection probably..  create the address, contact then collection is cretaed..  now we can create the appointment?  then thatb should sync up with the id in the pulse system as well having the collection id..  then the title of the appointment will default to the collection name
 
 

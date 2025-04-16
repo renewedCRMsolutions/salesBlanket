@@ -16,7 +16,7 @@
     // PostgreSQL settings
     "postgres.connections": [
       {
-        "name": "SalesBlanket DB",
+        "name": "salesBlanket DB",
         "host": "your-rds-endpoint.amazonaws.com",
         "port": 5432,
         "database": "postgres",
@@ -26,7 +26,7 @@
         "connectTimeout": 15000
       }
     ],
-    "postgres.defaultConnection": "SalesBlanket DB",
+    "postgres.defaultConnection": "salesBlanket DB",
     "postgres.prettyPrintJSONfields": true,
     "postgres.defaultLimit": 100,
     "postgres.formatSql": true,

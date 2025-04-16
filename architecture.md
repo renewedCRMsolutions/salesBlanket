@@ -1,14 +1,36 @@
-# SalesBlanket Architecture
+# salesBlanket Architecture
 
 ## Overview
 
-SalesBlanket v4 uses a modern three-tier architecture:
+salesBlanket v4 uses a modern three-tier architecture:
 
-1. **Frontend**: Vanilla JavaScript running on salesblanket.com
+1. **Frontend**: Vanilla JavaScript running on salesBlanket.com
 2. **Middleware**: GraphQL API server built with TypeScript/Node.js
 3. **Database**: PostgreSQL with PostGIS on AWS RDS
 
 The service registry with dependency injection provides a clean architecture that will scale well as your app grows.
+
+## View - Services
+
+Dependency Injection - Foundation for Services
+
+Use Case: Primarily for managing your services and making them available to components. Services are things like data fetching, API clients, utility libraries, authentication services, etc.
+Role: DI sets the stage for creating modular and testable services. You would likely use DI to make your services available to components that need them.
+Example: You might have a ProductService for fetching product data. You would use DI to inject this ProductService into components like ProductListComponent or ProductDetailsComponent.
+
+Pub/Sub (For Decoupled Component Communication):
+
+Use Case: For communication between components, especially when you want components to be loosely coupled and not directly aware of each other. Good for events, notifications, and actions that need to trigger responses in different parts of the UI.
+Role: Pub/Sub handles inter-component communication effectively. Components can publish events when something significant happens (e.g., "product added to cart," "user logged in"), and other components that are interested can subscribe to these events and react accordingly.
+Example: A AddToCartButton component might publish a "productAddedToCart" event when clicked. A ShoppingCartBadge component (in a completely different part of the UI) could subscribe to this event and update the cart badge count.
+
+Web Components with Context (For Component Hierarchies and Shared State/Services within a Component Tree):
+
+Use Case: Most relevant if you are building your UI using Web Components and have nested component structures. Context is excellent for sharing data or services down a component tree without prop drilling. It's about providing a shared environment for a group of related components.
+Role: Context manages shared state or services within a component hierarchy. It's a way to make certain things accessible to all components within a subtree without passing them explicitly as props through every level.
+Example: Imagine a complex form built with Web Components. You might use Context to provide a shared form validation service or form state management to all the form input components nested within the form. Or, a theme provider context to share theme settings across UI components.
+
+
 
 ## Architecture Diagram
 
@@ -20,7 +42,7 @@ The service registry with dependency injection provides a clean architecture tha
 │  HTML/CSS       │      │  Apollo Server    │      │  PostGIS        │
 │  Service Files  │      │  TypeScript/Node  │      │  AWS RDS        │
 └─────────────────┘      └───────────────────┘      └─────────────────┘
-     salesblanket.com          api.salesblanket.com     AWS RDS instance
+     salesBlanket.com          api.salesBlanket.com     AWS RDS instance
 ```
 
 ## Frontend Structure
@@ -56,7 +78,7 @@ The frontend uses a service pattern to handle API communication:
 
 ```javascript
 // Example: services/api.js
-export const API_URL = 'https://api.salesblanket.com/graphql';
+export const API_URL = 'https://api.salesBlanket.com/graphql';
 
 export async function fetchGraphQL(query, variables = {}, token = null) {
   const headers = { 'Content-Type': 'application/json' };
@@ -190,8 +212,8 @@ The GraphQL API server can be hosted on:
 
 ## Domain and DNS
 
-- `salesblanket.com`: Frontend website
-- `api.salesblanket.com`: GraphQL API
+- `salesBlanket.com`: Frontend website
+- `api.salesBlanket.com`: GraphQL API
 - Use Route 53 or your existing DNS provider for configuration
 
 State Management Model:

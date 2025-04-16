@@ -100,7 +100,7 @@ export class GoogleContactsService {
   private pool: Pool;
   private authService: GoogleAuthService;
   private peopleApiUrl: string = 'https://people.googleapis.com/v1';
-  private saleblankSourceType: string = 'SALESBLANKET_CONTACT';
+  private saleblankSourceType: string = 'salesBlanket_CONTACT';
 
   constructor(pool: Pool) {
     this.pool = pool;
@@ -193,7 +193,7 @@ export class GoogleContactsService {
         name?: string;
         title?: string;
       };
-      salesblanketId: string;
+      salesBlanketId: string;
     }
   ): Promise<GoogleContact> {
     // Get valid tokens
@@ -214,7 +214,7 @@ export class GoogleContactsService {
       sources: [
         {
           type: this.saleblankSourceType,
-          id: contactData.salesblanketId,
+          id: contactData.salesBlanketId,
         },
       ],
     };
@@ -428,7 +428,7 @@ export class GoogleContactsService {
   }
 
   /**
-   * Sync contacts between SalesBlanket and Google
+   * Sync contacts between salesBlanket and Google
    * @param userId - User ID
    * @param direction - Sync direction ('to_google', 'from_google', 'bidirectional')
    * @returns Sync statistics
@@ -449,7 +449,7 @@ export class GoogleContactsService {
       // 1. Get all Google contacts
       const googleContacts = await this.listGoogleContacts(userId);
 
-      // 2. Get all SalesBlanket contacts
+      // 2. Get all salesBlanket contacts
       const contactsQuery = `
       SELECT c.id, c.first_name, c.last_name, c.email, 
              c.phone, c.facebook, c.linkedin, c.x,
@@ -461,7 +461,7 @@ export class GoogleContactsService {
     `;
 
       const contactsResult = await this.pool.query(contactsQuery, [userId]);
-      const salesblanketContacts = contactsResult.rows;
+      const salesBlanketContacts = contactsResult.rows;
 
       // 3. Create mappings for easier lookups
       const googleContactsMap = new Map<string, GoogleContact>();
@@ -470,23 +470,23 @@ export class GoogleContactsService {
         googleContactsMap.set(contact.resourceName, contact);
       });
 
-      const salesblanketContactsMap = new Map<string, any>();
-      const salesblanketByGoogleResourceMap = new Map<string, any>();
+      const salesBlanketContactsMap = new Map<string, any>();
+      const salesBlanketByGoogleResourceMap = new Map<string, any>();
 
-      salesblanketContacts.forEach((contact) => {
+      salesBlanketContacts.forEach((contact) => {
         // Use internal ID as key
-        salesblanketContactsMap.set(contact.id, contact);
+        salesBlanketContactsMap.set(contact.id, contact);
 
         // Also map by Google resource name if available
         if (contact.google_resource_name) {
-          salesblanketByGoogleResourceMap.set(contact.google_resource_name, contact);
+          salesBlanketByGoogleResourceMap.set(contact.google_resource_name, contact);
         }
       });
 
       // 4. Sync based on direction
       if (direction === 'to_google' || direction === 'bidirectional') {
-        // Sync SalesBlanket contacts to Google
-        for (const contact of salesblanketContacts) {
+        // Sync salesBlanket contacts to Google
+        for (const contact of salesBlanketContacts) {
           try {
             if (!contact.google_resource_name) {
               // Contact doesn't exist in Google, create it
@@ -495,12 +495,12 @@ export class GoogleContactsService {
                 lastName: contact.last_name,
                 email: contact.email,
                 phone: contact.phone,
-                salesblanketId: contact.id,
+                salesBlanketId: contact.id,
               };
 
               const createdContact = await this.createGoogleContact(userId, googleContactData);
 
-              // Update SalesBlanket contact with Google resource name and etag
+              // Update salesBlanket contact with Google resource name and etag
               await this.pool.query(
                 `UPDATE contacts SET 
                 google_resource_name = $1, 
@@ -521,7 +521,7 @@ export class GoogleContactsService {
               const updatedAt = new Date(contact.updated_at);
 
               if (updatedAt > lastSyncedAt) {
-                // SalesBlanket contact was updated after last sync, update Google
+                // salesBlanket contact was updated after last sync, update Google
                 const contactData: any = {
                   firstName: contact.first_name,
                   lastName: contact.last_name,
@@ -573,23 +573,23 @@ export class GoogleContactsService {
       }
 
       if (direction === 'from_google' || direction === 'bidirectional') {
-        // Sync Google contacts to SalesBlanket
+        // Sync Google contacts to salesBlanket
         for (const contact of googleContacts) {
           try {
             // Only sync contacts that have our source type
-            const hasSalesBlanketSource = contact.metadata.sources.some(
+            const hassalesBlanketSource = contact.metadata.sources.some(
               (source) => source.type === this.saleblankSourceType
             );
 
-            if (!hasSalesBlanketSource) {
+            if (!hassalesBlanketSource) {
               // Skip contacts not from our system
               stats.skipped++;
               continue;
             }
 
-            if (salesblanketByGoogleResourceMap.has(contact.resourceName)) {
-              // Contact exists in SalesBlanket, update if needed
-              const sbContact = salesblanketByGoogleResourceMap.get(contact.resourceName);
+            if (salesBlanketByGoogleResourceMap.has(contact.resourceName)) {
+              // Contact exists in salesBlanket, update if needed
+              const sbContact = salesBlanketByGoogleResourceMap.get(contact.resourceName);
 
               // Get primary name, email, phone from Google contact
               const name = contact.names?.find((n) => n.metadata.primary)?.displayName || '';
@@ -608,7 +608,7 @@ export class GoogleContactsService {
                 sbContact.email !== email ||
                 sbContact.phone !== phone
               ) {
-                // Update SalesBlanket contact
+                // Update salesBlanket contact
                 await this.pool.query(
                   `UPDATE contacts SET 
                   first_name = $1, 
@@ -627,16 +627,16 @@ export class GoogleContactsService {
                 stats.skipped++;
               }
             } else {
-              // Contact doesn't exist in SalesBlanket, create it
+              // Contact doesn't exist in salesBlanket, create it
               // Extract source ID (our internal ID) if available
-              const salesblanketSource = contact.metadata.sources.find(
+              const salesBlanketSource = contact.metadata.sources.find(
                 (source) => source.type === this.saleblankSourceType
               );
 
-              const salesblanketId = salesblanketSource?.id;
+              const salesBlanketId = salesBlanketSource?.id;
 
               // Only create if we have a valid source ID and it's not in our local DB
-              if (salesblanketId && !salesblanketContactsMap.has(salesblanketId)) {
+              if (salesBlanketId && !salesBlanketContactsMap.has(salesBlanketId)) {
                 // Get primary name, email, phone from Google contact
                 const name = contact.names?.find((n) => n.metadata.primary)?.displayName || '';
                 const email = contact.emailAddresses?.find((e) => e.metadata.primary)?.value || '';
@@ -648,7 +648,7 @@ export class GoogleContactsService {
                 const lastName = nameParts.slice(1).join(' ') || '';
 
                 // Create new contact
-                const id = salesblanketId || uuidv4();
+                const id = salesBlanketId || uuidv4();
                 const now = new Date();
 
                 await this.pool.query(
@@ -681,7 +681,7 @@ export class GoogleContactsService {
             }
           } catch (error) {
             console.error(
-              `Error syncing Google contact ${contact.resourceName} to SalesBlanket:`,
+              `Error syncing Google contact ${contact.resourceName} to salesBlanket:`,
               error
             );
             stats.errors++;

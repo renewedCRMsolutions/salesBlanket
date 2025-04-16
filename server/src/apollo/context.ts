@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { getDb } from '../db/db';
 import { verifyToken } from '../utils/auth';
+import { createCaseConvertingDb } from '../utils/db-converter';
 
 // User interface
 export interface User {
@@ -15,11 +16,12 @@ export interface User {
 // Database interface
 export interface QueryResult {
   rows: any[];
-  rowCount: number;
+  rowCount: number | null; // Changed from just 'number' to allow null
 }
 
 export interface Database {
   query: (text: string, params?: any[]) => Promise<QueryResult>;
+  pool?: any; // Add this if your db object has a pool property
 }
 
 // Define Context interface
@@ -32,18 +34,27 @@ export interface Context {
 
 /**
  * Creates the context for each GraphQL request
- * 
+ *
  * @param {Object} context - The context object from Apollo Server
  * @returns {Context} The enhanced context object
  */
-export async function createContext({ req, res }: { req: Request, res: Response }): Promise<Context> {
+export async function createContext({
+  req,
+  res,
+}: {
+  req: Request;
+  res: Response;
+}): Promise<Context> {
   // Get the database instance
-  const db = getDb();
-  
+  const rawDb = getDb();
+
+  // Create enhanced database with case conversion
+  const db = createCaseConvertingDb(rawDb);
+
   // Get auth token from request headers
   const authHeader = req.headers.authorization || '';
   const token = authHeader.replace('Bearer ', '');
-  
+
   // Verify token and get user (if token exists)
   let user = null;
   if (token) {
@@ -51,19 +62,20 @@ export async function createContext({ req, res }: { req: Request, res: Response 
       // Verify JWT and get user ID
       const decoded = verifyToken(token);
       if (decoded?.userId) {
-        // Get user from database
-        const result = await db.query(
-          'SELECT * FROM users WHERE id = $1 LIMIT 1',
-          [decoded.userId]
-        );
-        user = result.rows.length > 0 ? result.rows[0] : null;
+        // Get user from database and auto-convert to camelCase
+        const result = await db.query('SELECT * FROM users WHERE id = $1 LIMIT 1', [
+          decoded.userId,
+        ]);
+
+        // Use the camelRows property from our enhanced db
+        user = result.camelRows[0] || null;
       }
     } catch (error) {
       console.error('Authentication error:', error);
       // Continue as unauthenticated user
     }
   }
-  
+
   return {
     req,
     res,

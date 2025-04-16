@@ -1,16 +1,18 @@
+// /src/js/components/entity/EntityTypeSelector.js
+
 /**
  * EntityTypeSelector.js
- * 
+ *
  * Component for selecting entity types.
  * Displays entity types in a grid or list.
  */
 
-import { BaseView } from '../BaseView.js';
+import { BaseView } from '../base/BaseView.js';
 
 export class EntityTypeSelector extends BaseView {
   constructor() {
     super();
-    
+
     // Bind methods
     this.handleSelection = this.handleSelection.bind(this);
   }
@@ -20,9 +22,10 @@ export class EntityTypeSelector extends BaseView {
    */
   initialize() {
     this._state = {
-      entityTypes: this.getAttribute('entity-types') ? 
-        JSON.parse(this.getAttribute('entity-types')) : [],
-      selectedTypeId: null
+      entityTypes: this.getAttribute('entity-types')
+        ? JSON.parse(this.getAttribute('entity-types'))
+        : [],
+      selectedTypeId: null,
     };
   }
 
@@ -58,16 +61,18 @@ export class EntityTypeSelector extends BaseView {
   handleSelection(event) {
     const typeItem = event.target.closest('[data-type-id]');
     if (!typeItem) return;
-    
+
     const typeId = typeItem.dataset.typeId;
-    
+
     this.setState({ selectedTypeId: typeId });
-    
-    this.dispatchEvent(new CustomEvent('type-selected', {
-      bubbles: true,
-      composed: true,
-      detail: { typeId }
-    }));
+
+    this.dispatchEvent(
+      new CustomEvent('type-selected', {
+        bubbles: true,
+        composed: true,
+        detail: { typeId },
+      })
+    );
   }
 
   /**
@@ -148,34 +153,35 @@ export class EntityTypeSelector extends BaseView {
    */
   render() {
     const { entityTypes, selectedTypeId } = this.getState();
-    
+
     this.shadowRoot.innerHTML = '';
     this.shadowRoot.appendChild(this.createStyles());
-    
+
     const container = this.createElement('div', { class: 'entity-type-selector' }, [
-      entityTypes.length === 0 ?
-        this.createElement('div', { class: 'empty-state' }, 'No entity types available') :
-        this.createElement('div', { class: 'entity-types' }, 
-          entityTypes.map(type => 
-            this.createElement('div', { 
-              class: `entity-type ${selectedTypeId === type.id ? 'selected' : ''}`,
-              'data-type-id': type.id
-            }, [
-              this.createElement('div', { class: 'entity-icon' }, 
-                type.displayName.charAt(0)
-              ),
-              this.createElement('div', { class: 'entity-name' }, 
-                type.displayName
-              ),
-              type.description ? 
-                this.createElement('div', { class: 'entity-description' }, 
+      entityTypes.length === 0
+        ? this.createElement('div', { class: 'empty-state' }, 'No entity types available')
+        : this.createElement(
+            'div',
+            { class: 'entity-types' },
+            entityTypes.map((type) =>
+              this.createElement(
+                'div',
+                {
+                  class: `entity-type ${selectedTypeId === type.id ? 'selected' : ''}`,
+                  'data-type-id': type.id,
+                },
+                [
+                  this.createElement('div', { class: 'entity-icon' }, type.displayName.charAt(0)),
+                  this.createElement('div', { class: 'entity-name' }, type.displayName),
                   type.description
-                ) : null
-            ])
-          )
-        )
+                    ? this.createElement('div', { class: 'entity-description' }, type.description)
+                    : null,
+                ]
+              )
+            )
+          ),
     ]);
-    
+
     this.shadowRoot.appendChild(container);
   }
 }

@@ -1,16 +1,18 @@
+// /src/js/components/entity/EntityForm.js
+
 /**
  * EntityForm.js
- * 
+ *
  * Component for rendering and handling entity forms.
  * Generates form fields based on form schema.
  */
 
-import { BaseView } from '../BaseView.js';
+import { BaseView } from '../base/BaseView.js';
 
 export class EntityForm extends BaseView {
   constructor() {
     super();
-    
+
     // Bind methods
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -22,7 +24,7 @@ export class EntityForm extends BaseView {
     this._state = {
       form: this.getAttribute('form') ? JSON.parse(this.getAttribute('form')) : null,
       loading: false,
-      error: null
+      error: null,
     };
   }
 
@@ -57,19 +59,21 @@ export class EntityForm extends BaseView {
    */
   handleSubmit(event) {
     event.preventDefault();
-    
+
     const formData = new FormData(event.target);
     const data = {};
-    
+
     for (const [key, value] of formData.entries()) {
       data[key] = value;
     }
-    
-    this.dispatchEvent(new CustomEvent('form-submit', {
-      bubbles: true,
-      composed: true,
-      detail: { data }
-    }));
+
+    this.dispatchEvent(
+      new CustomEvent('form-submit', {
+        bubbles: true,
+        composed: true,
+        detail: { data },
+      })
+    );
   }
 
   /**
@@ -192,84 +196,92 @@ export class EntityForm extends BaseView {
    */
   render() {
     const { form, error } = this.getState();
-    
+
     this.shadowRoot.innerHTML = '';
     this.shadowRoot.appendChild(this.createStyles());
-    
+
     if (!form) {
       return;
     }
-    
+
     const container = this.createElement('div', { class: 'entity-form-container' }, [
       // Error message
       error ? this.createElement('div', { class: 'error-message' }, error) : null,
-      
+
       // Form
       this.createElement('form', { class: 'form' }, [
         // Form fields
-        ...(form.fields || []).map(field => {
+        ...(form.fields || []).map((field) => {
           return this.createElement('div', { class: 'form-group' }, [
-            this.createElement('label', { 
-              class: 'form-label',
-              for: field.fieldName
-            }, [
-              field.displayName,
-              field.isRequired ? 
-                this.createElement('span', { class: 'required' }, ' *') : null
-            ]),
-            
-            field.fieldType === 'textarea' ?
-              this.createElement('textarea', { 
-                class: 'form-input form-textarea',
-                id: field.fieldName,
-                name: field.fieldName,
-                required: field.isRequired
-              }) :
-            
-            field.fieldType === 'select' ?
-              this.createElement('select', { 
-                class: 'form-input form-select',
-                id: field.fieldName,
-                name: field.fieldName,
-                required: field.isRequired
-              }, [
-                this.createElement('option', { value: '' }, 'Select...'),
-                ...(field.options?.options || []).map(option => 
-                  this.createElement('option', { value: option }, option)
+            this.createElement(
+              'label',
+              {
+                class: 'form-label',
+                for: field.fieldName,
+              },
+              [
+                field.displayName,
+                field.isRequired ? this.createElement('span', { class: 'required' }, ' *') : null,
+              ]
+            ),
+
+            field.fieldType === 'textarea'
+              ? this.createElement('textarea', {
+                  class: 'form-input form-textarea',
+                  id: field.fieldName,
+                  name: field.fieldName,
+                  required: field.isRequired,
+                })
+              : field.fieldType === 'select'
+              ? this.createElement(
+                  'select',
+                  {
+                    class: 'form-input form-select',
+                    id: field.fieldName,
+                    name: field.fieldName,
+                    required: field.isRequired,
+                  },
+                  [
+                    this.createElement('option', { value: '' }, 'Select...'),
+                    ...(field.options?.options || []).map((option) =>
+                      this.createElement('option', { value: option }, option)
+                    ),
+                  ]
                 )
-              ]) :
-            
-            field.fieldType === 'checkbox' ?
-              this.createElement('input', { 
-                class: 'form-checkbox',
-                type: 'checkbox',
-                id: field.fieldName,
-                name: field.fieldName,
-                value: 'true'
-              }) :
-            
-            // Default to text input
-            this.createElement('input', { 
-              class: 'form-input',
-              type: field.fieldType || 'text',
-              id: field.fieldName,
-              name: field.fieldName,
-              required: field.isRequired,
-              placeholder: field.placeholder || ''
-            })
+              : field.fieldType === 'checkbox'
+              ? this.createElement('input', {
+                  class: 'form-checkbox',
+                  type: 'checkbox',
+                  id: field.fieldName,
+                  name: field.fieldName,
+                  value: 'true',
+                })
+              : // Default to text input
+                this.createElement('input', {
+                  class: 'form-input',
+                  type: field.fieldType || 'text',
+                  id: field.fieldName,
+                  name: field.fieldName,
+                  required: field.isRequired,
+                  placeholder: field.placeholder || '',
+                }),
           ]);
         }),
-        
+
         // Form actions
         this.createElement('div', { class: 'form-actions' }, [
-          this.createElement('button', { 
-            class: 'form-button button-primary',
-            type: 'submit'
-          }, 'Submit')
-        ])
-      ])
+          this.createElement(
+            'button',
+            {
+              class: 'form-button button-primary',
+              type: 'submit',
+            },
+            'Submit'
+          ),
+        ]),
+      ]),
     ]);
-    
+
     this.shadowRoot.appendChild(container);
   }
 }

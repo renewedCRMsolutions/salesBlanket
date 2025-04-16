@@ -1,16 +1,16 @@
 /**
  * ViewState.js
- * 
- * Singleton service for maintaining application view state.
- * Provides centralized state management for views.
+ *
+ * State management service with transaction support and Redis persistence
  */
+
+import { EventBus } from '../events/EventBus.js';
+import RedisClient from '../cache/RedisClient.js';
 
 // Initial application state
 export const initialState = {
-  currentGroup: null,
-  currentTier: null,
   currentView: null,
-  previousState: null,
+  previousView: null,
   viewConfig: {},
   isAuthenticated: false,
   user: null,
@@ -19,26 +19,36 @@ export const initialState = {
   activeEntity: null,
   filters: {},
   loading: false,
-  error: null
+  error: null,
 };
 
 export class ViewState {
-  static instance = null;
+  constructor(initialData = initialState, redisClient = null) {
+    this.state = { ...initialData };
+    this.listeners = new Map();
+    this.transaction = null;
+    this.redisClient = redisClient || RedisClient;
+    this.eventBus = EventBus;
 
-  constructor() {
-    if (ViewState.instance) {
-      return ViewState.instance;
+    // Initialize state from Redis if available
+    this._initFromCache();
+  }
+
+  async _initFromCache() {
+    try {
+      const cachedState = await this.redisClient.get('viewState:current');
+      if (cachedState) {
+        const parsedState = JSON.parse(cachedState);
+        this.state = { ...this.state, ...parsedState };
+        this.eventBus.emit('state:restored', { source: 'redis' });
+      }
+    } catch (error) {
+      console.error('Failed to restore state from cache:', error);
     }
-    
-    ViewState.instance = this;
-    this.state = { ...initialState };
-    this.listeners = [];
   }
 
   /**
-   * Get the current state
-   * @param {string} key - Optional key to get specific state value
-   * @returns {any} State value or entire state object
+   * Get current state or a specific key
    */
   getState(key) {
     if (key) {
@@ -48,86 +58,174 @@ export class ViewState {
   }
 
   /**
-   * Update application state
-   * @param {Object} updates - State properties to update
-   * @param {Boolean} silent - Whether to notify listeners
+   * Start a transaction for batched updates
    */
-  updateState(updates, silent = false) {
-    // Save previous state
-    const previousState = { ...this.state };
-    
-    // Apply updates
-    this.state = {
-      ...this.state,
+  beginTransaction() {
+    this.transaction = { ...this.state };
+    return this;
+  }
+
+  /**
+   * Add updates to current transaction
+   */
+  addToTransaction(updates) {
+    if (!this.transaction) {
+      throw new Error('No active transaction. Call beginTransaction first.');
+    }
+
+    this.transaction = {
+      ...this.transaction,
       ...updates,
-      previousState: previousState
     };
-    
-    // Notify listeners unless silent
+
+    return this;
+  }
+
+  /**
+   * Commit current transaction
+   */
+  commitTransaction(silent = false) {
+    if (!this.transaction) {
+      throw new Error('No active transaction to commit');
+    }
+
+    const previousState = { ...this.state };
+    this.state = {
+      ...this.transaction,
+      previousState,
+    };
+
+    // Store in Redis
+    this._persistStateToCache();
+
+    // Clear transaction
+    const committedState = this.transaction;
+    this.transaction = null;
+
+    // Notify listeners
     if (!silent) {
       this.notifyListeners({ previousState, currentState: this.state });
     }
-    
+
+    return committedState;
+  }
+
+  /**
+   * Rollback current transaction
+   */
+  rollbackTransaction() {
+    if (!this.transaction) {
+      throw new Error('No active transaction to rollback');
+    }
+
+    const discarded = this.transaction;
+    this.transaction = null;
+    this.eventBus.emit('transaction:rollback', { discarded });
+
+    return this;
+  }
+
+  /**
+   * Standard update without transaction
+   */
+  updateState(updates, silent = false) {
+    const previousState = { ...this.state };
+
+    this.state = {
+      ...this.state,
+      ...updates,
+      previousState,
+    };
+
+    // Persist to Redis
+    this._persistStateToCache();
+
+    if (!silent) {
+      this.notifyListeners({ previousState, currentState: this.state });
+    }
+
     return this.state;
   }
 
   /**
-   * Reset state to initial values
-   * @param {Array} exclude - Keys to exclude from reset
+   * Persist state to Redis
    */
-  resetState(exclude = []) {
-    const preservedValues = {};
-    
-    if (exclude && exclude.length) {
-      exclude.forEach(key => {
-        if (this.state[key] !== undefined) {
-          preservedValues[key] = this.state[key];
-        }
-      });
+  async _persistStateToCache() {
+    try {
+      // Don't store previous state in cache to avoid recursive growth
+      const { previousState, ...stateToPersist } = this.state;
+      await this.redisClient.set('viewState:current', JSON.stringify(stateToPersist), 3600);
+      this.eventBus.emit('state:persisted', { destination: 'redis' });
+    } catch (error) {
+      console.error('Failed to persist state to cache:', error);
     }
-    
-    this.updateState({
-      ...initialState,
-      ...preservedValues
-    });
   }
 
   /**
-   * Add state change listener
-   * @param {Function} listener - Callback function
-   * @returns {Function} Function to remove listener
+   * Reset state to initial values with exclusions
    */
-  subscribe(listener) {
-    this.listeners.push(listener);
-    
+  resetState(exclude = []) {
+    const preservedValues = exclude.reduce((acc, key) => {
+      if (this.state[key] !== undefined) {
+        acc[key] = this.state[key];
+      }
+      return acc;
+    }, {});
+
+    this.updateState({
+      ...initialState,
+      ...preservedValues,
+    });
+
+    return this.state;
+  }
+
+  /**
+   * Subscribe to state changes with namespaced listeners
+   */
+  subscribe(namespace, listener) {
+    if (!namespace) {
+      throw new Error('Namespace is required for subscriptions');
+    }
+
+    this.listeners.set(namespace, listener);
+
     // Return unsubscribe function
     return () => {
-      this.listeners = this.listeners.filter(l => l !== listener);
+      this.listeners.delete(namespace);
     };
   }
 
   /**
    * Notify all listeners of state change
-   * @param {Object} detail - Event detail
    */
   notifyListeners(detail) {
-    this.listeners.forEach(listener => {
+    for (const listener of this.listeners.values()) {
       try {
         listener(detail);
       } catch (error) {
         console.error('Error in state listener:', error);
       }
-    });
-    
-    // Also dispatch a global event for components to listen to
+    }
+
+    // Dispatch global event
+    this.eventBus.emit('state:changed', detail);
     window.dispatchEvent(
       new CustomEvent('viewstate-changed', {
-        detail,
-        bubbles: true
+        detail: {
+          previousState: detail.previousState,
+          currentState: this.state,
+          view: this.state.currentView,
+        },
+        bubbles: true,
       })
     );
   }
 }
 
-// Export a singleton instance
-export default new ViewState();
+// Create and export service
+const viewState = new ViewState();
+export default viewState;
+
+// Also export class for testing or custom instances
+export { ViewState };

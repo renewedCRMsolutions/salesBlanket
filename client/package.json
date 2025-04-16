@@ -1,7 +1,7 @@
 {
-  "name": "salesblanket-client",
+  "name": "salesBlanket-client",
   "version": "4.0.0",
-  "description": "SalesBlanket Web Client",
+  "description": "salesBlanket Web Client",
   "main": "src/js/app.js",
   "type": "module",
   "scripts": {

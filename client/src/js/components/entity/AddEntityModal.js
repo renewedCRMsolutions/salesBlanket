@@ -1,11 +1,11 @@
 /**
  * AddEntityModal.js
- * 
+ *
  * Modal component for adding new entities.
  * Guides user through the entity creation process.
  */
 
-import { BaseView } from '../BaseView.js';
+import { BaseView } from '../base/BaseView.js';
 import ViewState from '../../services/ViewState.js';
 import GraphQLClient from '../../services/GraphQLClient.js';
 import EntityService from '../../services/EntityService.js';
@@ -17,7 +17,7 @@ export class AddEntityModal extends BaseView {
     super();
     this.viewState = ViewState;
     this.entityService = new EntityService(new GraphQLClient());
-    
+
     // Bind methods
     this.handleClose = this.handleClose.bind(this);
     this.handleStepChange = this.handleStepChange.bind(this);
@@ -43,14 +43,11 @@ export class AddEntityModal extends BaseView {
       selection: {
         parentEntityId: null,
         entityTypeId: null,
-        subtypeIds: []
+        subtypeIds: [],
       },
       completedForms: [],
-      currentSubtypeIndex: 0
+      currentSubtypeIndex: 0,
     };
-    
-    // Load parent entities when component initializes
-    this.loadParentEntities();
   }
 
   /**
@@ -59,7 +56,7 @@ export class AddEntityModal extends BaseView {
   async loadParentEntities() {
     try {
       this.setState({ loading: true, error: null });
-      
+
       // In development, use mock data if needed
       let parentEntities;
       if (process.env.NODE_ENV === 'development' && !window.useRealApi) {
@@ -67,16 +64,16 @@ export class AddEntityModal extends BaseView {
       } else {
         parentEntities = await this.entityService.getCreatableParentEntities();
       }
-      
-      this.setState({ 
+
+      this.setState({
         parentEntities,
-        loading: false 
+        loading: false,
       });
     } catch (error) {
       console.error('Failed to load parent entities:', error);
-      this.setState({ 
+      this.setState({
         error: 'Failed to load entity types. Please try again.',
-        loading: false
+        loading: false,
       });
     }
   }
@@ -88,7 +85,7 @@ export class AddEntityModal extends BaseView {
   async loadEntityTypes(parentId) {
     try {
       this.setState({ loading: true, error: null });
-      
+
       // In development, use mock data if needed
       let entityTypes;
       if (process.env.NODE_ENV === 'development' && !window.useRealApi) {
@@ -96,16 +93,16 @@ export class AddEntityModal extends BaseView {
       } else {
         entityTypes = await this.entityService.getEntityTypesByParent(parentId);
       }
-      
-      this.setState({ 
+
+      this.setState({
         entityTypes,
-        loading: false 
+        loading: false,
       });
     } catch (error) {
       console.error('Failed to load entity types:', error);
-      this.setState({ 
+      this.setState({
         error: 'Failed to load entity types. Please try again.',
-        loading: false
+        loading: false,
       });
     }
   }
@@ -117,7 +114,7 @@ export class AddEntityModal extends BaseView {
   async loadEntitySubtypes(typeId) {
     try {
       this.setState({ loading: true, error: null });
-      
+
       // In development, use mock data if needed
       let entitySubtypes;
       if (process.env.NODE_ENV === 'development' && !window.useRealApi) {
@@ -125,16 +122,16 @@ export class AddEntityModal extends BaseView {
       } else {
         entitySubtypes = await this.entityService.getEntitySubtypesByType(typeId);
       }
-      
-      this.setState({ 
+
+      this.setState({
         entitySubtypes,
-        loading: false 
+        loading: false,
       });
     } catch (error) {
       console.error('Failed to load entity subtypes:', error);
-      this.setState({ 
+      this.setState({
         error: 'Failed to load entity subtypes. Please try again.',
-        loading: false
+        loading: false,
       });
     }
   }
@@ -146,7 +143,7 @@ export class AddEntityModal extends BaseView {
   async loadForm(subtypeId) {
     try {
       this.setState({ loading: true, error: null });
-      
+
       // In development, use mock data if needed
       let form;
       if (process.env.NODE_ENV === 'development' && !window.useRealApi) {
@@ -154,16 +151,16 @@ export class AddEntityModal extends BaseView {
       } else {
         form = await this.entityService.getFormBySubtype(subtypeId);
       }
-      
-      this.setState({ 
+
+      this.setState({
         selectedForm: form,
-        loading: false 
+        loading: false,
       });
     } catch (error) {
       console.error('Failed to load form:', error);
-      this.setState({ 
+      this.setState({
         error: 'Failed to load form. Please try again.',
-        loading: false
+        loading: false,
       });
     }
   }
@@ -172,25 +169,30 @@ export class AddEntityModal extends BaseView {
    * Open the modal
    */
   open() {
+    console.log('AddEntityModal.open() called');
     this.setState({ isOpen: true });
+    console.log('Modal state set to open, isOpen:', this.getState().isOpen);
+    // Load parent entities when modal opens
+    this.loadParentEntities();
+    console.log('loadParentEntities() called');
   }
 
   /**
    * Close the modal
    */
   close() {
-    this.setState({ 
-      isOpen: false, 
+    this.setState({
+      isOpen: false,
       currentStep: 1,
       error: null,
       selection: {
         parentEntityId: null,
         entityTypeId: null,
-        subtypeIds: []
+        subtypeIds: [],
       },
       completedForms: [],
       currentSubtypeIndex: 0,
-      selectedForm: null
+      selectedForm: null,
     });
   }
 
@@ -216,14 +218,14 @@ export class AddEntityModal extends BaseView {
   handleParentEntitySelect(event) {
     const parentId = event.target.closest('[data-parent-id]')?.dataset.parentId;
     if (!parentId) return;
-    
+
     this.setState({
       selection: {
         ...this.getState().selection,
-        parentEntityId: parentId
-      }
+        parentEntityId: parentId,
+      },
     });
-    
+
     this.loadEntityTypes(parentId);
     this.handleStepChange(2);
   }
@@ -235,14 +237,14 @@ export class AddEntityModal extends BaseView {
   handleEntityTypeSelect(event) {
     const typeId = event.target.closest('[data-type-id]')?.dataset.typeId;
     if (!typeId) return;
-    
+
     this.setState({
       selection: {
         ...this.getState().selection,
-        entityTypeId: typeId
-      }
+        entityTypeId: typeId,
+      },
     });
-    
+
     this.loadEntitySubtypes(typeId);
     this.handleStepChange(3);
   }
@@ -253,25 +255,25 @@ export class AddEntityModal extends BaseView {
    */
   handleSubtypeSelect(event) {
     event.preventDefault();
-    
+
     const form = event.target;
     const subtypeElements = form.querySelectorAll('input[name="subtype"]:checked');
-    const subtypeIds = Array.from(subtypeElements).map(el => el.value);
-    
+    const subtypeIds = Array.from(subtypeElements).map((el) => el.value);
+
     if (subtypeIds.length === 0) {
       this.setState({ error: 'Please select at least one subtype' });
       return;
     }
-    
+
     this.setState({
       selection: {
         ...this.getState().selection,
-        subtypeIds
+        subtypeIds,
       },
       currentSubtypeIndex: 0,
-      error: null
+      error: null,
     });
-    
+
     // Load the first form
     this.loadForm(subtypeIds[0]);
     this.handleStepChange(4);
@@ -283,69 +285,132 @@ export class AddEntityModal extends BaseView {
    */
   async handleFormSubmit(event) {
     event.preventDefault();
-    
+
     const formData = new FormData(event.target);
     const data = {};
-    
+
     // Convert FormData to object
     for (const [key, value] of formData.entries()) {
       data[key] = value;
     }
-    
+
     const { selection, currentSubtypeIndex, completedForms } = this.getState();
     const currentSubtypeId = selection.subtypeIds[currentSubtypeIndex];
-    
+
     // Store the completed form
     const updatedCompletedForms = [
       ...completedForms,
       {
         subtypeId: currentSubtypeId,
-        data
-      }
+        data,
+      },
     ];
-    
+
     // Check if there are more subtypes
     const nextIndex = currentSubtypeIndex + 1;
     if (nextIndex < selection.subtypeIds.length) {
       // Load the next form
       this.setState({
         completedForms: updatedCompletedForms,
-        currentSubtypeIndex: nextIndex
+        currentSubtypeIndex: nextIndex,
       });
-      
+
       this.loadForm(selection.subtypeIds[nextIndex]);
       return;
     }
-    
+
     // All forms completed, submit the entity data
     try {
       this.setState({ loading: true, error: null });
-      
-      // TODO: Implement the actual submission logic
-      // For now, just simulate success
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+
+      // Prepare form data for submission
+      const entityData = {
+        entityTypeId: selection.entityTypeId,
+        subtypeForms: updatedCompletedForms,
+      };
+
+      // Determine entity type and call appropriate creation method
+      const entityTypeName = this.getEntityTypeName(selection.entityTypeId);
+      let result;
+
+      // Determine which creation method to call based on entity type
+      if (entityTypeName.toLowerCase().includes('address')) {
+        // Format address data from forms
+        const addressData = {
+          street: entityData.subtypeForms[0].data.street || '',
+          city: entityData.subtypeForms[0].data.city || '',
+          state: entityData.subtypeForms[0].data.state || '',
+          postalCode:
+            entityData.subtypeForms[0].data.postal_code ||
+            entityData.subtypeForms[0].data.postalCode ||
+            '',
+          addressTypeId: selection.subtypeIds[0],
+          notes: entityData.subtypeForms[0].data.notes || '',
+          metadata: entityData.subtypeForms,
+        };
+
+        // Call createAddress API
+        result = await this.entityService.createAddress(addressData);
+      } else if (entityTypeName.toLowerCase().includes('contact')) {
+        // Format contact data from forms
+        const contactData = {
+          firstName:
+            entityData.subtypeForms[0].data.first_name ||
+            entityData.subtypeForms[0].data.firstName ||
+            '',
+          lastName:
+            entityData.subtypeForms[0].data.last_name ||
+            entityData.subtypeForms[0].data.lastName ||
+            '',
+          email: entityData.subtypeForms[0].data.email || '',
+          contactTypeId: selection.subtypeIds[0],
+          notes: entityData.subtypeForms[0].data.notes || '',
+          metadata: entityData.subtypeForms,
+        };
+
+        // Call createContact API
+        result = await this.entityService.createContact(contactData);
+      } else if (entityTypeName.toLowerCase().includes('opportunity')) {
+        // Format opportunity data from forms
+        const opportunityData = {
+          opportunityTypeId: selection.subtypeIds[0],
+          notes: entityData.subtypeForms[0].data.notes || '',
+          collectionId: entityData.subtypeForms[0].data.collection_id || null,
+          metadata: entityData.subtypeForms,
+        };
+
+        // Call createOpportunity API
+        result = await this.entityService.createOpportunity(opportunityData);
+      } else {
+        throw new Error(`Unknown entity type: ${entityTypeName}`);
+      }
+
+      console.log('Created entity:', result);
+
       // Close the modal on success
-      this.setState({ 
+      this.setState({
         loading: false,
-        completedForms: []
+        completedForms: [],
       });
-      
+
       this.close();
-      
+
       // Show success message
-      this.dispatchEvent(new CustomEvent('entity-created', {
-        bubbles: true,
-        composed: true,
-        detail: {
-          type: this.getEntityTypeName(selection.entityTypeId),
-        }
-      }));
+      this.dispatchEvent(
+        new CustomEvent('entity-created', {
+          bubbles: true,
+          composed: true,
+          detail: {
+            type: entityTypeName,
+            id: result?.id,
+          },
+        })
+      );
     } catch (error) {
       console.error('Failed to create entity:', error);
-      this.setState({ 
+      this.setState({
         error: 'Failed to create entity. Please try again.',
-        loading: false
+        loading: false,
       });
     }
   }
@@ -357,7 +422,7 @@ export class AddEntityModal extends BaseView {
    */
   getEntityTypeName(typeId) {
     const { entityTypes } = this.getState();
-    return entityTypes.find(type => type.id === typeId)?.displayName || 'Entity';
+    return entityTypes.find((type) => type.id === typeId)?.displayName || 'Entity';
   }
 
   /**
@@ -369,25 +434,25 @@ export class AddEntityModal extends BaseView {
     if (closeButton) {
       this.addTrackedEventListener('click', this.handleClose, {}, closeButton);
     }
-    
+
     // Parent entity selection
     const parentSelector = this.shadowRoot.querySelector('.parent-selector');
     if (parentSelector) {
       this.addTrackedEventListener('click', this.handleParentEntitySelect, {}, parentSelector);
     }
-    
+
     // Entity type selection
     const typeSelector = this.shadowRoot.querySelector('.type-selector');
     if (typeSelector) {
       this.addTrackedEventListener('click', this.handleEntityTypeSelect, {}, typeSelector);
     }
-    
+
     // Subtype selection form
     const subtypeForm = this.shadowRoot.querySelector('.subtype-form');
     if (subtypeForm) {
       this.addTrackedEventListener('submit', this.handleSubtypeSelect, {}, subtypeForm);
     }
-    
+
     // Entity form
     const entityForm = this.shadowRoot.querySelector('.entity-form');
     if (entityForm) {
@@ -672,223 +737,288 @@ export class AddEntityModal extends BaseView {
    * Render component
    */
   render() {
-    const { 
-      isOpen, 
-      loading, 
-      error, 
+    const {
+      isOpen,
+      loading,
+      error,
       currentStep,
       parentEntities,
       entityTypes,
       entitySubtypes,
       selectedForm,
       selection,
-      currentSubtypeIndex
+      currentSubtypeIndex,
     } = this.getState();
-    
+
     this.shadowRoot.innerHTML = '';
     this.shadowRoot.appendChild(this.createStyles());
-    
+
     if (isOpen) {
       this.setAttribute('open', '');
     } else {
       this.removeAttribute('open');
       return;
     }
-    
+
     const container = this.createElement('div', { class: 'modal' }, [
       // Modal header
       this.createElement('div', { class: 'modal-header' }, [
         'Add New Record',
-        this.createElement('button', { class: 'close-button' }, '×')
+        this.createElement('button', { class: 'close-button' }, '×'),
       ]),
-      
+
       // Modal content
       this.createElement('div', { class: 'modal-content' }, [
         // Steps
         this.createElement('div', { class: 'steps' }, [
-          this.createElement('div', { 
-            class: `step ${currentStep === 1 ? 'active' : ''}${currentStep > 1 ? 'completed' : ''}` 
-          }, [
-            this.createElement('div', { class: 'step-number' }, '1'),
-            this.createElement('div', { class: 'step-label' }, 'Entity Type')
-          ]),
-          this.createElement('div', { 
-            class: `step ${currentStep === 2 ? 'active' : ''}${currentStep > 2 ? 'completed' : ''}` 
-          }, [
-            this.createElement('div', { class: 'step-number' }, '2'),
-            this.createElement('div', { class: 'step-label' }, 'Category')
-          ]),
-          this.createElement('div', { 
-            class: `step ${currentStep === 3 ? 'active' : ''}${currentStep > 3 ? 'completed' : ''}` 
-          }, [
-            this.createElement('div', { class: 'step-number' }, '3'),
-            this.createElement('div', { class: 'step-label' }, 'Subtypes')
-          ]),
-          this.createElement('div', { 
-            class: `step ${currentStep === 4 ? 'active' : ''}${currentStep > 4 ? 'completed' : ''}` 
-          }, [
-            this.createElement('div', { class: 'step-number' }, '4'),
-            this.createElement('div', { class: 'step-label' }, 'Details')
-          ])
+          this.createElement(
+            'div',
+            {
+              class: `step ${currentStep === 1 ? 'active' : ''}${
+                currentStep > 1 ? 'completed' : ''
+              }`,
+            },
+            [
+              this.createElement('div', { class: 'step-number' }, '1'),
+              this.createElement('div', { class: 'step-label' }, 'Entity Type'),
+            ]
+          ),
+          this.createElement(
+            'div',
+            {
+              class: `step ${currentStep === 2 ? 'active' : ''}${
+                currentStep > 2 ? 'completed' : ''
+              }`,
+            },
+            [
+              this.createElement('div', { class: 'step-number' }, '2'),
+              this.createElement('div', { class: 'step-label' }, 'Category'),
+            ]
+          ),
+          this.createElement(
+            'div',
+            {
+              class: `step ${currentStep === 3 ? 'active' : ''}${
+                currentStep > 3 ? 'completed' : ''
+              }`,
+            },
+            [
+              this.createElement('div', { class: 'step-number' }, '3'),
+              this.createElement('div', { class: 'step-label' }, 'Subtypes'),
+            ]
+          ),
+          this.createElement(
+            'div',
+            {
+              class: `step ${currentStep === 4 ? 'active' : ''}${
+                currentStep > 4 ? 'completed' : ''
+              }`,
+            },
+            [
+              this.createElement('div', { class: 'step-number' }, '4'),
+              this.createElement('div', { class: 'step-label' }, 'Details'),
+            ]
+          ),
         ]),
-        
+
         // Error message
         error ? this.createElement('div', { class: 'error-message' }, error) : null,
-        
+
         // Step 1: Select parent entity
-        currentStep === 1 ? this.createElement('div', { class: 'step-content' }, [
-          this.createElement('div', { class: 'step-title' }, 'Select Entity Type'),
-          
-          loading ? this.createElement('div', { class: 'loading-spinner' }) : null,
-          
-          this.createElement('div', { class: 'entity-list parent-selector' }, 
-            parentEntities.map(entity => 
-              this.createElement('div', { 
-                class: 'entity-item',
-                'data-parent-id': entity.id
-              }, [
-                this.createElement('div', { class: 'entity-icon' }, 
-                  entity.displayName.charAt(0)
-                ),
-                this.createElement('div', { class: 'entity-name' }, 
-                  entity.displayName
-                ),
-                this.createElement('div', { class: 'entity-description' }, 
-                  entity.parentCategory
+        currentStep === 1
+          ? this.createElement('div', { class: 'step-content' }, [
+              this.createElement('div', { class: 'step-title' }, 'Select Entity Type'),
+
+              loading ? this.createElement('div', { class: 'loading-spinner' }) : null,
+
+              this.createElement(
+                'div',
+                { class: 'entity-list parent-selector' },
+                parentEntities.map((entity) =>
+                  this.createElement(
+                    'div',
+                    {
+                      class: 'entity-item',
+                      'data-parent-id': entity.id,
+                    },
+                    [
+                      this.createElement(
+                        'div',
+                        { class: 'entity-icon' },
+                        entity.displayName.charAt(0)
+                      ),
+                      this.createElement('div', { class: 'entity-name' }, entity.displayName),
+                      this.createElement(
+                        'div',
+                        { class: 'entity-description' },
+                        entity.parentCategory
+                      ),
+                    ]
+                  )
                 )
-              ])
-            )
-          )
-        ]) : null,
-        
+              ),
+            ])
+          : null,
+
         // Step 2: Select entity type
-        currentStep === 2 ? this.createElement('div', { class: 'step-content' }, [
-          this.createElement('div', { class: 'step-title' }, 'Select Category'),
-          
-          loading ? this.createElement('div', { class: 'loading-spinner' }) : null,
-          
-          this.createElement('div', { class: 'entity-list type-selector' }, 
-            entityTypes.map(type => 
-              this.createElement('div', { 
-                class: 'entity-item',
-                'data-type-id': type.id
-              }, [
-                this.createElement('div', { class: 'entity-name' }, 
-                  type.displayName
+        currentStep === 2
+          ? this.createElement('div', { class: 'step-content' }, [
+              this.createElement('div', { class: 'step-title' }, 'Select Category'),
+
+              loading ? this.createElement('div', { class: 'loading-spinner' }) : null,
+
+              this.createElement(
+                'div',
+                { class: 'entity-list type-selector' },
+                entityTypes.map((type) =>
+                  this.createElement(
+                    'div',
+                    {
+                      class: 'entity-item',
+                      'data-type-id': type.id,
+                    },
+                    [this.createElement('div', { class: 'entity-name' }, type.displayName)]
+                  )
                 )
-              ])
-            )
-          )
-        ]) : null,
-        
+              ),
+            ])
+          : null,
+
         // Step 3: Select subtypes
-        currentStep === 3 ? this.createElement('div', { class: 'step-content' }, [
-          this.createElement('div', { class: 'step-title' }, 'Select Subtypes'),
-          
-          loading ? this.createElement('div', { class: 'loading-spinner' }) : null,
-          
-          this.createElement('form', { class: 'subtype-form' }, [
-            this.createElement('div', { class: 'subtype-list' }, 
-              entitySubtypes.map(subtype => 
-                this.createElement('div', { class: 'subtype-item' }, [
-                  this.createElement('input', { 
-                    class: 'subtype-checkbox',
-                    type: 'checkbox',
-                    id: `subtype-${subtype.id}`,
-                    name: 'subtype',
-                    value: subtype.id
-                  }),
-                  this.createElement('div', { class: 'subtype-info' }, [
-                    this.createElement('label', { 
-                      class: 'subtype-name',
-                      for: `subtype-${subtype.id}`
-                    }, subtype.name),
-                    this.createElement('div', { class: 'subtype-description' }, 
-                      subtype.description
-                    )
-                  ])
-                ])
-              )
-            ),
-            
-            this.createElement('div', { class: 'modal-footer' }, [
-              this.createElement('button', { 
-                class: 'button button-primary',
-                type: 'submit'
-              }, 'Continue')
-            ])
-          ])
-        ]) : null,
-        
-        // Step 4: Fill form
-        currentStep === 4 && selectedForm ? this.createElement('div', { class: 'step-content' }, [
-          this.createElement('div', { class: 'step-title' }, [
-            selectedForm.title,
-            selection.subtypeIds.length > 1 ? 
-              ` (${currentSubtypeIndex + 1}/${selection.subtypeIds.length})` : ''
-          ]),
-          
-          loading ? this.createElement('div', { class: 'loading-spinner' }) : null,
-          
-          this.createElement('form', { class: 'entity-form' }, [
-            ...selectedForm.fields.map(field => 
-              this.createElement('div', { class: 'form-group' }, [
-                this.createElement('label', { 
-                  class: 'form-label',
-                  for: field.fieldName
-                }, [
-                  field.displayName,
-                  field.isRequired ? 
-                    this.createElement('span', { class: 'required' }, ' *') : null
+        currentStep === 3
+          ? this.createElement('div', { class: 'step-content' }, [
+              this.createElement('div', { class: 'step-title' }, 'Select Subtypes'),
+
+              loading ? this.createElement('div', { class: 'loading-spinner' }) : null,
+
+              this.createElement('form', { class: 'subtype-form' }, [
+                this.createElement(
+                  'div',
+                  { class: 'subtype-list' },
+                  entitySubtypes.map((subtype) =>
+                    this.createElement('div', { class: 'subtype-item' }, [
+                      this.createElement('input', {
+                        class: 'subtype-checkbox',
+                        type: 'checkbox',
+                        id: `subtype-${subtype.id}`,
+                        name: 'subtype',
+                        value: subtype.id,
+                      }),
+                      this.createElement('div', { class: 'subtype-info' }, [
+                        this.createElement(
+                          'label',
+                          {
+                            class: 'subtype-name',
+                            for: `subtype-${subtype.id}`,
+                          },
+                          subtype.name
+                        ),
+                        this.createElement(
+                          'div',
+                          { class: 'subtype-description' },
+                          subtype.description
+                        ),
+                      ]),
+                    ])
+                  )
+                ),
+
+                this.createElement('div', { class: 'modal-footer' }, [
+                  this.createElement(
+                    'button',
+                    {
+                      class: 'button button-primary',
+                      type: 'submit',
+                    },
+                    'Continue'
+                  ),
                 ]),
-                
-                field.fieldType === 'textarea' ?
-                  this.createElement('textarea', { 
-                    class: 'form-input',
-                    id: field.fieldName,
-                    name: field.fieldName,
-                    required: field.isRequired
-                  }) :
-                
-                field.fieldType === 'select' ?
-                  this.createElement('select', { 
-                    class: 'form-input',
-                    id: field.fieldName,
-                    name: field.fieldName,
-                    required: field.isRequired
-                  }, [
-                    this.createElement('option', { value: '' }, 'Select...'),
-                    ...(field.options?.options || []).map(option => 
-                      this.createElement('option', { value: option }, option)
-                    )
-                  ]) :
-                
-                // Default to text input
-                this.createElement('input', { 
-                  class: 'form-input',
-                  type: field.fieldType || 'text',
-                  id: field.fieldName,
-                  name: field.fieldName,
-                  required: field.isRequired
-                })
-              ])
-            ),
-            
-            this.createElement('div', { class: 'modal-footer' }, [
-              this.createElement('button', { 
-                class: 'button button-primary',
-                type: 'submit',
-                disabled: loading
-              }, 
-                currentSubtypeIndex < selection.subtypeIds.length - 1 ?
-                  'Continue to Next Form' : 'Submit'
-              )
+              ]),
             ])
-          ])
-        ]) : null
-      ])
+          : null,
+
+        // Step 4: Fill form
+        currentStep === 4 && selectedForm
+          ? this.createElement('div', { class: 'step-content' }, [
+              this.createElement('div', { class: 'step-title' }, [
+                selectedForm.title,
+                selection.subtypeIds.length > 1
+                  ? ` (${currentSubtypeIndex + 1}/${selection.subtypeIds.length})`
+                  : '',
+              ]),
+
+              loading ? this.createElement('div', { class: 'loading-spinner' }) : null,
+
+              this.createElement('form', { class: 'entity-form' }, [
+                ...selectedForm.fields.map((field) =>
+                  this.createElement('div', { class: 'form-group' }, [
+                    this.createElement(
+                      'label',
+                      {
+                        class: 'form-label',
+                        for: field.fieldName,
+                      },
+                      [
+                        field.displayName,
+                        field.isRequired
+                          ? this.createElement('span', { class: 'required' }, ' *')
+                          : null,
+                      ]
+                    ),
+
+                    field.fieldType === 'textarea'
+                      ? this.createElement('textarea', {
+                          class: 'form-input',
+                          id: field.fieldName,
+                          name: field.fieldName,
+                          required: field.isRequired,
+                        })
+                      : field.fieldType === 'select'
+                      ? this.createElement(
+                          'select',
+                          {
+                            class: 'form-input',
+                            id: field.fieldName,
+                            name: field.fieldName,
+                            required: field.isRequired,
+                          },
+                          [
+                            this.createElement('option', { value: '' }, 'Select...'),
+                            ...(field.options?.options || []).map((option) =>
+                              this.createElement('option', { value: option }, option)
+                            ),
+                          ]
+                        )
+                      : // Default to text input
+                        this.createElement('input', {
+                          class: 'form-input',
+                          type: field.fieldType || 'text',
+                          id: field.fieldName,
+                          name: field.fieldName,
+                          required: field.isRequired,
+                        }),
+                  ])
+                ),
+
+                this.createElement('div', { class: 'modal-footer' }, [
+                  this.createElement(
+                    'button',
+                    {
+                      class: 'button button-primary',
+                      type: 'submit',
+                      disabled: loading,
+                    },
+                    currentSubtypeIndex < selection.subtypeIds.length - 1
+                      ? 'Continue to Next Form'
+                      : 'Submit'
+                  ),
+                ]),
+              ]),
+            ])
+          : null,
+      ]),
     ]);
-    
+
     this.shadowRoot.appendChild(container);
   }
 }

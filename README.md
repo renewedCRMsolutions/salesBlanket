@@ -1,4 +1,4 @@
-# SalesBlanket v4
+# salesBlanket v4
 
 A door-to-door sales application with a modern, API-first architecture featuring GraphQL, PostgreSQL with PostGIS, and Google Zones integration.
 
@@ -32,7 +32,7 @@ NODE_ENV=development
 # Database Configuration
 DB_HOST=localhost
 DB_PORT=5432
-DB_NAME=salesblanket
+DB_NAME=salesBlanket
 DB_USER=postgres
 DB_PASSWORD=PorscheGoFast911
 
@@ -75,7 +75,7 @@ npm run dev
 ```
 
 3. Access GraphQL Playground at http://localhost:4000/graphql
-4. Access SalesBlanket application at http://localhost:4000/
+4. Access salesBlanket application at http://localhost:4000/
 
 ### Client Setup
 

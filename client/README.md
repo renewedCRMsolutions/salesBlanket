@@ -1,6 +1,6 @@
-# SalesBlanket Frontend
+# salesBlanket Frontend
 
-This directory contains the frontend code for SalesBlanket v4.
+This directory contains the frontend code for salesBlanket v4.
 
 ## Architecture
 

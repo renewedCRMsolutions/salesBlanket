@@ -1,11 +1,11 @@
 /**
  * app.js
- * 
- * Main application entry point for SalesBlanket.
+ *
+ * Main application entry point for salesBlanket.
  * Initializes the application and manages component registration.
  */
 
-import PageView from './components/PageView.js';
+import PageView from './components/base/PageView.js';
 import ViewHandler from './services/ViewHandler.js';
 import ViewState from './services/ViewState.js';
 
@@ -27,9 +27,9 @@ class ComponentRegistry {
       console.warn(`Component ${tagName} already registered`);
       return;
     }
-    
+
     this.components.set(tagName, componentClass);
-    
+
     // Register with browser if not already registered
     if (!customElements.get(tagName)) {
       customElements.define(tagName, componentClass);
@@ -56,14 +56,14 @@ class ComponentRegistry {
 }
 
 /**
- * Application class for initializing and managing the SalesBlanket app
+ * Application class for initializing and managing the salesBlanket app
  */
-class SalesBlanketApp {
+class salesBlanketApp {
   constructor() {
     this.componentRegistry = new ComponentRegistry();
     this.viewHandler = ViewHandler;
     this.viewState = ViewState;
-    
+
     // Bind methods
     this.initialize = this.initialize.bind(this);
     this.registerComponents = this.registerComponents.bind(this);
@@ -73,11 +73,11 @@ class SalesBlanketApp {
    * Initialize the application
    */
   initialize() {
-    console.log('SalesBlanket v4 initializing...');
-    
+    console.log('salesBlanket v4 initializing...');
+
     // Register components
     this.registerComponents();
-    
+
     // Create main application container
     const appContainer = document.getElementById('app');
     if (!appContainer) {
@@ -85,11 +85,11 @@ class SalesBlanketApp {
       container.id = 'app';
       document.body.appendChild(container);
     }
-    
+
     // Create and mount the PageView
     const pageView = document.createElement('page-view');
     document.getElementById('app').appendChild(pageView);
-    
+
     // Initialize ViewHandler with simulated authentication
     this.viewState.updateState({
       isAuthenticated: true,
@@ -97,16 +97,16 @@ class SalesBlanketApp {
         id: 1,
         name: 'Demo User',
         email: 'demo@example.com',
-        roles: ['sales_rep']
-      }
+        roles: ['sales_rep'],
+      },
     });
-    
+
     // Set initial route
     setTimeout(() => {
       this.viewHandler.navigateTo('dashboard', 'main', 'view');
     }, 0);
-    
-    console.log('SalesBlanket v4 initialized');
+
+    console.log('salesBlanket v4 initialized');
   }
 
   /**
@@ -115,7 +115,17 @@ class SalesBlanketApp {
   registerComponents() {
     // Core Components
     this.componentRegistry.register('page-view', PageView);
-    
+
+    // Pre-register entity components
+    import('./components/entity/AddEntityModal.js').then(module => {
+      if (!customElements.get('add-entity-modal')) {
+        customElements.define('add-entity-modal', module.default);
+        console.log('AddEntityModal component registered');
+      }
+    }).catch(err => {
+      console.error('Failed to register AddEntityModal:', err);
+    });
+
     // Load other components dynamically as needed
     // The ViewHandler will handle dynamic imports
   }
@@ -123,9 +133,9 @@ class SalesBlanketApp {
 
 // Create and initialize application when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-  const app = new SalesBlanketApp();
+  const app = new salesBlanketApp();
   app.initialize();
 });
 
 // Expose app to window for debugging
-window.salesBlanketApp = new SalesBlanketApp();
+window.salesBlanketApp = new salesBlanketApp();

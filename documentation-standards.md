@@ -1,8 +1,8 @@
-# SalesBlanket v4 Documentation Standards
+# salesBlanket v4 Documentation Standards
 
 ## Overview
 
-This document outlines the documentation standards for the SalesBlanket v4 project. Consistent documentation is essential for maintainability, onboarding new developers, and ensuring the long-term success of the project.
+This document outlines the documentation standards for the salesBlanket v4 project. Consistent documentation is essential for maintainability, onboarding new developers, and ensuring the long-term success of the project.
 
 ## Documentation Types
 
@@ -173,7 +173,7 @@ Example:
 
 ## Overview
 
-The Zone System is responsible for managing geographic boundaries in SalesBlanket. It integrates with Google Places API for retrieving administrative boundaries and supports custom user-defined sales territories.
+The Zone System is responsible for managing geographic boundaries in salesBlanket. It integrates with Google Places API for retrieving administrative boundaries and supports custom user-defined sales territories.
 
 ## Components
 
@@ -221,7 +221,7 @@ Example:
 ```markdown
 # How to Create a Custom Sales Territory
 
-This guide explains how to create a custom sales territory zone in SalesBlanket.
+This guide explains how to create a custom sales territory zone in salesBlanket.
 
 ## Prerequisites
 

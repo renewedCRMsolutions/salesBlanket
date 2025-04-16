@@ -11,7 +11,7 @@ export const user = gql`
     settings: JSONB
     createdAt: Timestamp!
     updatedAt: Timestamp!
-    
+
     # Relationships
     engagementRoles: [UserEngagementRoleAssignment!]
   }

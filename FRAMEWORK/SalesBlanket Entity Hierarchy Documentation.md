@@ -1,7 +1,7 @@
-# SalesBlanket Entity Hierarchy Documentation
+# salesBlanket Entity Hierarchy Documentation
 
 Entity Structure Overview
-SalesBlanket uses a flexible, hierarchical entity structure that allows for detailed classification and organization of business data. The system supports multiple primary entity types with the ability to expand as business needs evolve.
+salesBlanket uses a flexible, hierarchical entity structure that allows for detailed classification and organization of business data. The system supports multiple primary entity types with the ability to expand as business needs evolve.
 Core Entities
 Primary Entities
 

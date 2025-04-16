@@ -128,10 +128,12 @@ class EntityService {
    * For testing/development - return mock data when no API is available
    */
   async getMockCreatableParentEntities() {
+    // Only show Address and Contact options for now
     return [
       { id: '7215be3e-ba40-4b1d-89d7-0cae526cba05', displayName: 'Address', parentCategory: 'Location' },
-      { id: '5234af67-44a9-4641-8dbb-96de2ad4a2c2', displayName: 'Contact', parentCategory: 'Person' },
-      { id: '9872ec45-3f12-4a78-b56d-7e9a1c3b8d24', displayName: 'Opportunity', parentCategory: 'Business' }
+      { id: '5234af67-44a9-4641-8dbb-96de2ad4a2c2', displayName: 'Contact', parentCategory: 'Person' }
+      // Opportunity temporarily disabled
+      // { id: '9872ec45-3f12-4a78-b56d-7e9a1c3b8d24', displayName: 'Opportunity', parentCategory: 'Business' }
     ];
   }
 

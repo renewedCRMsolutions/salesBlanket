@@ -12,6 +12,18 @@
 3. Do not write code without confirmation
 4. Primary Goal is to complete the web app for BETA with lightweight code using modern JS web application techniques
 5. NO FallBackCode for DEV - need to get the database wired in correctly
+6. **DO NOT CREATE ANY DATA OR TABLE SCHEMA without documentation**:
+   - NEVER create database tables, schemas, or GraphQL types without explicit documentation
+   - If documentation for tables or schema is missing, REFUSE to write code and request documentation
+   - When documentation is unclear or incomplete, ASK for clarification before proceeding
+   - NEVER make assumptions about database structure
+7. **FOLLOW DOCUMENTATION STANDARDS STRICTLY**:
+   - ALL code must be documented according to documentation-standards.md
+   - Use JSDoc for all TypeScript/JavaScript functions, classes, and interfaces
+   - GraphQL schemas must include detailed descriptions for all types, fields, queries, and mutations
+   - Include examples for complex inputs and operations
+   - Document all API endpoints with example requests and responses
+   - Refuse to write code that doesn't meet documentation standards
 
 ## Core Architecture
 
@@ -22,6 +34,8 @@
 - `/debugging-system.md` - Debugging tools and procedures
 - `/view-system.md` - Database-driven view configuration system
 - C:\Users\Robert Wolfe\Desktop\Projects\salesBlanketv4\salesBlanketPlaybook.md
+
+you MUST follow C:\Users\Robert Wolfe\Desktop\Projects\salesBlanketv4\documentation-standards.md
 
 SalesBlanket v4 is built on a modern, API-first architecture with these core components:
 

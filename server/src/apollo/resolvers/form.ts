@@ -22,6 +22,27 @@ interface FormSubmissionInput {
   createCollection?: boolean;
 }
 
+// Helper function to initialize collection pulse - moved to the top to avoid reference errors
+async function initializeCollectionPulse(context: Context, collectionId: string): Promise<void> {
+  // Create pulse items for different pulse types
+  const pulseTypes = ['PHOTO', 'DOCUMENT', 'EMAIL', 'TASK', 'CALENDAR'];
+  
+  for (const pulseType of pulseTypes) {
+    await context.db.query(`
+      INSERT INTO collection_pulse (
+        collection_id,
+        pulse_type,
+        content,
+        status,
+        created_at,
+        updated_at
+      ) VALUES (
+        $1, $2, '{}', 'ACTIVE', NOW(), NOW()
+      )
+    `, [collectionId, pulseType]);
+  }
+}
+
 export const formResolvers = {
   Query: {
     formDefinitions: async (_parent: any, { isActive }: { isActive?: boolean }, context: Context) => {
@@ -211,10 +232,12 @@ export const formResolvers = {
               UPDATE addresses SET collection_id = $1 WHERE id = $2
             `, [collectionId, address.id]);
             
-            // Initialize collection pulse
-            await initializeCollectionPulse(context, collectionId);
+            // Add null check before calling initializeCollectionPulse
+            if (collectionId) {
+              await initializeCollectionPulse(context, collectionId);
+            }
           }
-        }
+        } // Added the missing closing bracket here
         
         // Store form submission record
         if (entityId) {
@@ -270,24 +293,3 @@ export const formResolvers = {
     }
   }
 };
-
-// Helper function to initialize collection pulse
-async function initializeCollectionPulse(context: Context, collectionId: string): Promise<void> {
-  // Create pulse items for different pulse types
-  const pulseTypes = ['PHOTO', 'DOCUMENT', 'EMAIL', 'TASK', 'CALENDAR'];
-  
-  for (const pulseType of pulseTypes) {
-    await context.db.query(`
-      INSERT INTO collection_pulse (
-        collection_id,
-        pulse_type,
-        content,
-        status,
-        created_at,
-        updated_at
-      ) VALUES (
-        $1, $2, '{}', 'ACTIVE', NOW(), NOW()
-      )
-    `, [collectionId, pulseType]);
-  }
-}

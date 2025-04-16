@@ -5,15 +5,15 @@ dotenv.config();
 
 // Create connection pool
 const pool = new Pool({
-  host: process.env.DB_HOST || 'database-1.clwkg8y6a5ok.us-east-2.rds.amazonaws.com',
+  host: process.env.DB_HOST || 'localhost',
   port: parseInt(process.env.DB_PORT || '5432'),
   database: process.env.DB_NAME || 'salesblanket',
   user: process.env.DB_USER || 'postgres',
-  password: process.env.DB_PASSWORD || 'PorscheGoFast911',
+  password: process.env.DB_PASSWORD || 'postgres',
   max: 20, // Maximum number of clients in the pool
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 10000,
-  ssl: { rejectUnauthorized: false }, // Increased to 10 seconds
+  ssl: process.env.DB_HOST !== 'localhost' ? { rejectUnauthorized: false } : false,
 });
 
 // Test connection on startup
@@ -33,7 +33,7 @@ pool.on('error', (err) => {
 // Get the database connection
 export function getDb() {
   return {
-    query: (text: string, params: any[]) => pool.query(text, params),
+    query: (text: string, params: any[] = []) => pool.query(text, params),
     pool,
     // Add models here as they are created
     // For example:

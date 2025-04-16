@@ -1,23 +1,76 @@
 import { gql } from 'apollo-server-express';
 
 export const enums = gql`
-  """
-  Enumeration types for the GraphQL schema
-  """
-  
+  # Common Enums
   enum EntityStatus {
     ACTIVE
     INACTIVE
-    PENDING
     ARCHIVED
     DELETED
+    PENDING
+  }
+  
+  enum ViewLevelEnum {
+    NONE
+    VIEW
+    EDIT
+    ADMIN
+  }
+  
+  enum EditLevelEnum {
+    NONE
+    OWN
+    GROUP
+    ALL
+  }
+  
+  enum DeleteLevelEnum {
+    NONE
+    OWN
+    GROUP
+    ALL
+  }
+  
+  enum FormAccessLevel {
+    NONE
+    VIEW
+    EDIT
+    ADMIN
+  }
+  
+  enum CollectionContactRoleType {
+    DECISION_MAKER
+    INFLUENCER
+    USER
+    BILLING_CONTACT
+    TECHNICAL_CONTACT
+    OTHER
+  }
+  
+  enum PulseType {
+    PHOTO
+    DOCUMENT
+    EMAIL
+    TASK
+    CALENDAR
+    NOTE
+    CHAT
+    VIRTUAL_SALES
+  }
+  
+  enum DocumentType {
+    CONTRACT
+    CLAIM
+    ESTIMATE
+    PHOTO
+    GENERAL
   }
   
   enum TouchpointStatus {
     SCHEDULED
     COMPLETED
-    CANCELED
-    NO_SHOW
+    CANCELLED
+    MISSED
     RESCHEDULED
   }
 `;

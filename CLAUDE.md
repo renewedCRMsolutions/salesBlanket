@@ -21,6 +21,7 @@
 - `/FRAMEWORK/DataBase/DBqueryfordatabaseschema.csv` - Complete database schema
 - `/debugging-system.md` - Debugging tools and procedures
 - `/view-system.md` - Database-driven view configuration system
+- C:\Users\Robert Wolfe\Desktop\Projects\salesBlanketv4\salesBlanketPlaybook.md
 
 SalesBlanket v4 is built on a modern, API-first architecture with these core components:
 

@@ -1,0 +1,237 @@
+"table_name","column_name","data_type","is_nullable","column_default"
+"address_contacts","id","uuid","NO","uuid_generate_v4()"
+"address_contacts","address_id","uuid","YES",NULL
+"address_contacts","contact_id","uuid","YES",NULL
+"address_contacts","contact_type_id","uuid","YES",NULL
+"address_contacts","is_primary","boolean","YES","false"
+"address_contacts","metadata","jsonb","YES",NULL
+"address_contacts","created_at","timestamp with time zone","YES","now()"
+"address_contacts","updated_at","timestamp with time zone","YES","now()"
+"address_types","id","uuid","NO","uuid_generate_v4()"
+"address_types","display_name","character varying","NO",NULL
+"address_types","description","text","YES",NULL
+"address_types","is_residential","boolean","YES","true"
+"address_types","is_commercial","boolean","YES","false"
+"address_types","is_active","boolean","YES","true"
+"address_types","icon","character varying","YES",NULL
+"address_types","color","character varying","YES",NULL
+"address_types","order_index","integer","YES","0"
+"address_types","created_at","timestamp with time zone","NO",NULL
+"address_types","updated_at","timestamp with time zone","NO",NULL
+"addresses","id","uuid","NO","uuid_generate_v4()"
+"addresses","display_name","character varying","YES",NULL
+"addresses","street","character varying","NO",NULL
+"addresses","address_line_2","character varying","YES",NULL
+"addresses","city","character varying","YES",NULL
+"addresses","state","character varying","YES",NULL
+"addresses","postal_code","character varying","YES",NULL
+"addresses","status","character varying","YES","'ACTIVE'::character varying"
+"addresses","notes","text","YES",NULL
+"addresses","property_condition","jsonb","YES",NULL
+"addresses","next_knock_date","timestamp with time zone","YES",NULL
+"addresses","street_id","uuid","YES",NULL
+"addresses","neighborhood_id","uuid","YES",NULL
+"addresses","created_by","uuid","YES",NULL
+"addresses","location_geo","USER-DEFINED","YES",NULL
+"addresses","metadata","jsonb","YES",NULL
+"addresses","created_at","timestamp with time zone","YES","now()"
+"addresses","updated_at","timestamp with time zone","YES","now()"
+"addresses","collection_id","uuid","YES",NULL
+"addresses","address_type_id","uuid","YES",NULL
+"collection_contact_roles","id","uuid","NO","uuid_generate_v4()"
+"collection_contact_roles","collection_id","uuid","YES",NULL
+"collection_contact_roles","contact_id","uuid","YES",NULL
+"collection_contact_roles","role_type","character varying","NO",NULL
+"collection_contact_roles","created_at","timestamp with time zone","YES","now()"
+"collection_pulse","id","uuid","NO","uuid_generate_v4()"
+"collection_pulse","collection_id","uuid","YES",NULL
+"collection_pulse","pulse_type","character varying","YES",NULL
+"collection_pulse","content","jsonb","YES",NULL
+"collection_pulse","last_synced","timestamp with time zone","YES",NULL
+"collection_pulse","metadata","jsonb","YES",NULL
+"collection_pulse","created_at","timestamp with time zone","YES","now()"
+"collection_pulse","updated_at","timestamp with time zone","YES","now()"
+"collections","id","uuid","NO","uuid_generate_v4()"
+"collections","name","character varying","YES",NULL
+"collections","status","character varying","YES","'ACTIVE'::character varying"
+"collections","created_by","uuid","YES",NULL
+"collections","metadata","jsonb","YES",NULL
+"collections","created_at","timestamp with time zone","YES","now()"
+"collections","updated_at","timestamp with time zone","YES","now()"
+"collections","filter_criteria","jsonb","YES",NULL
+"contact_types","id","uuid","NO","uuid_generate_v4()"
+"contact_types","display_name","character varying","NO",NULL
+"contact_types","description","text","YES",NULL
+"contact_types","active","boolean","YES","true"
+"contact_types","settings","jsonb","YES",NULL
+"contact_types","created_at","timestamp with time zone","YES","now()"
+"contact_types","updated_at","timestamp with time zone","YES","now()"
+"contacts","id","uuid","NO","uuid_generate_v4()"
+"contacts","first_name","character varying","YES",NULL
+"contacts","last_name","character varying","YES",NULL
+"contacts","email","character varying","YES",NULL
+"contacts","notes","text","YES",NULL
+"contacts","facebook","character varying","YES",NULL
+"contacts","x","character varying","YES",NULL
+"contacts","instagram","character varying","YES",NULL
+"contacts","linkedin","character varying","YES",NULL
+"contacts","cover_photo","character varying","YES",NULL
+"contacts","status","character varying","YES","'ACTIVE'::character varying"
+"contacts","contact_approval","boolean","YES","false"
+"contacts","contact_type_id","uuid","YES",NULL
+"contacts","created_by","uuid","YES",NULL
+"contacts","updated_by","uuid","YES",NULL
+"contacts","metadata","jsonb","YES",NULL
+"contacts","created_at","timestamp with time zone","YES","now()"
+"contacts","updated_at","timestamp with time zone","YES","now()"
+"contacts","collection_id","uuid","YES",NULL
+"default_role_user_assignments","id","uuid","NO","uuid_generate_v4()"
+"default_role_user_assignments","engagement_role_id","uuid","NO",NULL
+"default_role_user_assignments","user_id","uuid","NO",NULL
+"default_role_user_assignments","entity_type","character varying","NO",NULL
+"default_role_user_assignments","assignment_criteria","jsonb","YES",NULL
+"default_role_user_assignments","is_active","boolean","YES","true"
+"default_role_user_assignments","display_order","integer","YES","0"
+"default_role_user_assignments","created_at","timestamp with time zone","YES","now()"
+"default_role_user_assignments","updated_at","timestamp with time zone","YES","now()"
+"engagement_role_entity_mappings","id","uuid","NO","uuid_generate_v4()"
+"engagement_role_entity_mappings","engagement_role_id","uuid","NO",NULL
+"engagement_role_entity_mappings","entity_type_id","uuid","YES",NULL
+"engagement_role_entity_mappings","address_type_id","uuid","YES",NULL
+"engagement_role_entity_mappings","contact_type_id","uuid","YES",NULL
+"engagement_role_entity_mappings","entity_subtype_id","uuid","YES",NULL
+"engagement_role_entity_mappings","opportunity_type_id","uuid","YES",NULL
+"engagement_role_entity_mappings","team_entity_id","uuid","YES",NULL
+"engagement_role_entity_mappings","calendar_entity_id","uuid","YES",NULL
+"engagement_role_entity_mappings","collection_entity_id","uuid","YES",NULL
+"engagement_role_entity_mappings","geo_entity_id","uuid","YES",NULL
+"engagement_role_entity_mappings","notification_entity_id","uuid","YES",NULL
+"engagement_role_entity_mappings","organization_entity_id","uuid","YES",NULL
+"engagement_role_entity_mappings","parent_entity_id","uuid","YES",NULL
+"engagement_role_entity_mappings","production_entity_id","uuid","YES",NULL
+"engagement_role_entity_mappings","permission_entity_id","uuid","YES",NULL
+"engagement_role_entity_mappings","sales_engine_entity_id","uuid","YES",NULL
+"engagement_role_entity_mappings","view_level","USER-DEFINED","NO","'none'::view_level_enum"
+"engagement_role_entity_mappings","edit_level","USER-DEFINED","NO","'none'::edit_level_enum"
+"engagement_role_entity_mappings","delete_level","USER-DEFINED","NO","'none'::delete_level_enum"
+"engagement_role_entity_mappings","can_assign","boolean","YES","false"
+"engagement_role_entity_mappings","is_active","boolean","YES","true"
+"engagement_role_entity_mappings","display_order","integer","YES","0"
+"engagement_role_entity_mappings","created_at","timestamp with time zone","YES","now()"
+"engagement_role_entity_mappings","updated_at","timestamp with time zone","YES","now()"
+"engagement_role_types","id","uuid","NO","uuid_generate_v4()"
+"engagement_role_types","name","character varying","NO",NULL
+"engagement_role_types","description","text","YES",NULL
+"engagement_role_types","is_active","boolean","YES","true"
+"engagement_role_types","settings","jsonb","YES",NULL
+"engagement_role_types","created_at","timestamp with time zone","YES","now()"
+"engagement_role_types","updated_at","timestamp with time zone","YES","now()"
+"engagement_roles","id","uuid","NO","uuid_generate_v4()"
+"engagement_roles","name","character varying","NO",NULL
+"engagement_roles","description","text","YES",NULL
+"engagement_roles","engagement_role_type_id","uuid","YES",NULL
+"engagement_roles","applies_to_entity_types","ARRAY","YES",NULL
+"engagement_roles","is_active","boolean","YES","true"
+"engagement_roles","settings","jsonb","YES",NULL
+"engagement_roles","created_at","timestamp with time zone","YES","now()"
+"engagement_roles","updated_at","timestamp with time zone","YES","now()"
+"engagement_roles","is_external_visible","boolean","YES","false"
+"entity_creation_role_mappings","id","uuid","NO","uuid_generate_v4()"
+"entity_creation_role_mappings","source_entity_type","character varying","NO",NULL
+"entity_creation_role_mappings","target_entity_type","character varying","NO",NULL
+"entity_creation_role_mappings","engagement_role_id","uuid","YES",NULL
+"entity_creation_role_mappings","assignment_conditions","jsonb","YES",NULL
+"entity_creation_role_mappings","assign_to_creator","boolean","YES","true"
+"entity_creation_role_mappings","inherit_from_parent","boolean","YES","false"
+"entity_creation_role_mappings","is_active","boolean","YES","true"
+"entity_creation_role_mappings","display_order","integer","YES","0"
+"entity_creation_role_mappings","created_at","timestamp with time zone","YES","now()"
+"entity_creation_role_mappings","updated_at","timestamp with time zone","YES","now()"
+"entity_form_mappings","id","uuid","NO","uuid_generate_v4()"
+"entity_form_mappings","form_definition_id","uuid","NO",NULL
+"entity_form_mappings","entity_type_id","uuid","YES",NULL
+"entity_form_mappings","address_type_id","uuid","YES",NULL
+"entity_form_mappings","contact_type_id","uuid","YES",NULL
+"entity_form_mappings","entity_subtype_id","uuid","YES",NULL
+"entity_form_mappings","team_entity_id","uuid","YES",NULL
+"entity_form_mappings","calendar_entity_id","uuid","YES",NULL
+"entity_form_mappings","collection_entity_id","uuid","YES",NULL
+"entity_form_mappings","geo_entity_id","uuid","YES",NULL
+"entity_form_mappings","notification_entity_id","uuid","YES",NULL
+"entity_form_mappings","organization_entity_id","uuid","YES",NULL
+"entity_form_mappings","parent_entity_id","uuid","YES",NULL
+"entity_form_mappings","production_entity_id","uuid","YES",NULL
+"entity_form_mappings","permission_entity_id","uuid","YES",NULL
+"entity_form_mappings","sales_engine_entity_id","uuid","YES",NULL
+"entity_form_mappings","opportunity_type_id","uuid","YES",NULL
+"entity_form_mappings","auto_bypass_subtype","boolean","YES","false"
+"entity_form_mappings","is_default","boolean","YES","false"
+"entity_form_mappings","display_order","integer","YES","0"
+"entity_form_mappings","created_at","timestamp with time zone","YES","now()"
+"entity_form_mappings","updated_at","timestamp with time zone","YES","now()"
+"entity_subtypes","id","uuid","NO","uuid_generate_v4()"
+"entity_subtypes","display_name","character varying","NO",NULL
+"entity_subtypes","description","text","YES",NULL
+"entity_subtypes","is_active","boolean","YES","true"
+"entity_subtypes","settings","jsonb","YES",NULL
+"entity_subtypes","created_at","timestamp with time zone","YES","now()"
+"entity_subtypes","updated_at","timestamp with time zone","YES","now()"
+"entity_subtypes","is_filterable","boolean","NO","false"
+"entity_types","id","uuid","NO","uuid_generate_v4()"
+"entity_types","display_name","character varying","NO",NULL
+"entity_types","is_filterable","boolean","YES","true"
+"entity_types","settings","jsonb","YES",NULL
+"entity_types","created_at","timestamp with time zone","YES","now()"
+"entity_types","updated_at","timestamp with time zone","YES","now()"
+"entity_types","is_active","boolean","NO","true"
+"entity_types","description","text","YES",NULL
+"form_components","id","uuid","NO","uuid_generate_v4()"
+"form_components","name","character varying","NO",NULL
+"form_components","description","text","YES",NULL
+"form_components","component_type","character varying","NO",NULL
+"form_components","default_config","jsonb","NO",NULL
+"form_components","is_active","boolean","YES","true"
+"form_components","is_public","boolean","YES","false"
+"form_components","organization_id","uuid","YES",NULL
+"form_components","created_by","uuid","YES",NULL
+"form_components","created_at","timestamp with time zone","YES","now()"
+"form_components","updated_at","timestamp with time zone","YES","now()"
+"form_definitions","id","uuid","NO","uuid_generate_v4()"
+"form_definitions","name","character varying","NO",NULL
+"form_definitions","description","text","YES",NULL
+"form_definitions","form_schema","jsonb","NO",NULL
+"form_definitions","version","integer","NO","1"
+"form_definitions","is_active","boolean","YES","true"
+"form_definitions","is_public","boolean","YES","false"
+"form_definitions","created_by","uuid","YES",NULL
+"form_definitions","created_at","timestamp with time zone","YES","now()"
+"form_definitions","updated_at","timestamp with time zone","YES","now()"
+"form_definitions","auto_versioning","boolean","YES","true"
+"form_definitions","metadata","jsonb","YES","'{}'::jsonb"
+"form_definitions","level","character varying","NO","'BASE'::character varying"
+"opportunities","id","uuid","NO","uuid_generate_v4()"
+"opportunities","opportunity_type_id","uuid","YES",NULL
+"opportunities","status","character varying","YES","'ACTIVE'::character varying"
+"opportunities","notes","text","YES",NULL
+"opportunities","created_by","uuid","YES",NULL
+"opportunities","metadata","jsonb","YES",NULL
+"opportunities","created_at","timestamp with time zone","YES","now()"
+"opportunities","updated_at","timestamp with time zone","YES","now()"
+"opportunities","collection_id","uuid","YES",NULL
+"opportunity_types","id","uuid","NO","uuid_generate_v4()"
+"opportunity_types","name","character varying","NO",NULL
+"opportunity_types","description","text","YES",NULL
+"opportunity_types","is_active","boolean","YES","true"
+"opportunity_types","settings","jsonb","YES",NULL
+"opportunity_types","created_at","timestamp with time zone","YES","now()"
+"opportunity_types","updated_at","timestamp with time zone","YES","now()"
+"user_engagement_role_assignments","id","uuid","NO","uuid_generate_v4()"
+"user_engagement_role_assignments","user_id","uuid","NO",NULL
+"user_engagement_role_assignments","engagement_role_id","uuid","NO",NULL
+"user_engagement_role_assignments","entity_id","uuid","NO",NULL
+"user_engagement_role_assignments","entity_type_name","character varying","NO",NULL
+"user_engagement_role_assignments","assigned_by","uuid","YES",NULL
+"user_engagement_role_assignments","assigned_at","timestamp with time zone","YES","now()"
+"user_engagement_role_assignments","is_active","boolean","YES","true"
+"user_engagement_role_assignments","created_at","timestamp with time zone","YES","now()"
+"user_engagement_role_assignments","updated_at","timestamp with time zone","YES","now()"

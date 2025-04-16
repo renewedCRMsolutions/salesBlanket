@@ -6,66 +6,92 @@ export const entity = gql`
   type EntityType {
     id: UUID!
     displayName: String!
-    parentCategory: String
-    isFilterable: Boolean
-    createdAt: Timestamp
-    updatedAt: Timestamp
-    settings: [EntitySetting]
+    description: String
+    isFilterable: Boolean!
+    isActive: Boolean!
+    settings: JSONB
+    createdAt: Timestamp!
+    updatedAt: Timestamp!
+    
+    # Relationships
     entities(filter: EntityFilter, limit: Int, offset: Int): [Entity]
   }
 
-  type EntitySetting {
+  type EntitySubtype {
     id: UUID!
-    entityTypeId: UUID!
-    settingKey: String!
-    settingValue: String
-    createdAt: Timestamp
-    updatedAt: Timestamp
+    displayName: String!
+    description: String
+    isActive: Boolean!
+    isFilterable: Boolean!
+    settings: JSONB
+    createdAt: Timestamp!
+    updatedAt: Timestamp!
   }
 
-  type Entity {
+  interface Entity {
     id: UUID!
-    entityTypeId: UUID!
-    type: EntityType
-    status: EntityStatus
-    engagements: [EntityEngagement]
-    events: [EntityEvent]
-    achievements: [EntityAchievement]
-    zones: [EntityZone]
-    touchpoints: [EntityTouchpoint]
-    managers: [EntityManager]
-    photos: [EntityPhoto]
+    type: String!
+    status: EntityStatus!
+    createdBy: UUID!
+    createdAt: Timestamp!
+    updatedAt: Timestamp!
+  }
+
+  type Address implements Entity {
+    id: UUID!
+    type: String!
+    status: EntityStatus!
+    createdBy: UUID!
+    createdAt: Timestamp!
+    updatedAt: Timestamp!
     
-    # Dynamic fields based on entity type
-    address: Address
-    contact: Contact
-    opportunity: Opportunity
-  }
-
-  type Address {
-    id: UUID!
-    name: String
-    street: String
+    # Address specific fields
+    displayName: String
+    street: String!
     addressLine2: String
     city: String
     state: String
     postalCode: String
-    status: EntityStatus
     notes: String
     propertyCondition: JSONB
     nextKnockDate: Timestamp
-    streetId: UUID
-    neighborhoodId: UUID
-    createdBy: UUID
-    createdAt: Timestamp
-    updatedAt: Timestamp
+    
+    # Relationships
+    addressType: AddressType
+    collection: Collection
+    contacts: [Contact!]
+    opportunities: [Opportunity!]
     locationGeo: Geography
-    contacts: [Contact]
-    opportunities: [Opportunity]
+    metadata: JSONB
   }
 
-  type Contact {
+  type AddressType {
     id: UUID!
+    displayName: String!
+    description: String
+    isResidential: Boolean
+    isCommercial: Boolean
+    isActive: Boolean!
+    icon: String
+    color: String
+    orderIndex: Int
+    createdAt: Timestamp!
+    updatedAt: Timestamp!
+    
+    # Relationships
+    addresses: [Address!]
+    formMappings: [EntityFormMapping!]
+  }
+
+  type Contact implements Entity {
+    id: UUID!
+    type: String!
+    status: EntityStatus!
+    createdBy: UUID!
+    createdAt: Timestamp!
+    updatedAt: Timestamp!
+    
+    # Contact specific fields
     firstName: String
     lastName: String
     email: String
@@ -75,58 +101,74 @@ export const entity = gql`
     instagram: String
     linkedin: String
     coverPhoto: String
-    status: EntityStatus
     contactApproval: Boolean
-    contactTypeId: UUID
+    
+    # Relationships
     contactType: ContactType
-    createdBy: UUID
-    updatedBy: UUID
-    createdAt: Timestamp
-    updatedAt: Timestamp
-    addresses: [Address]
-    opportunities: [Opportunity]
+    collection: Collection
+    addresses: [Address!]
+    opportunities: [Opportunity!]
+    collectionRoles: [CollectionContactRole!]
+    metadata: JSONB
   }
 
   type ContactType {
     id: UUID!
-    type: String
+    displayName: String!
     description: String
-    active: Boolean
-    createdAt: Timestamp
-    updatedAt: Timestamp
+    active: Boolean!
+    settings: JSONB
+    createdAt: Timestamp!
+    updatedAt: Timestamp!
+    
+    # Relationships
+    contacts: [Contact!]
+    formMappings: [EntityFormMapping!]
   }
 
-  type Opportunity {
+  type Opportunity implements Entity {
     id: UUID!
-    opportunityTypeId: UUID!
-    opportunityType: OpportunityType
-    status: EntityStatus
+    type: String!
+    status: EntityStatus!
+    createdBy: UUID!
+    createdAt: Timestamp!
+    updatedAt: Timestamp!
+    
+    # Opportunity specific fields
     notes: String
-    createdBy: UUID
-    createdAt: Timestamp
-    updatedAt: Timestamp
-    contacts: [Contact]
-    addresses: [Address]
-    estimates: [Estimate]
+    
+    # Relationships
+    opportunityType: OpportunityType
+    collection: Collection
+    contacts: [Contact!]
+    addresses: [Address!]
+    metadata: JSONB
   }
 
   type OpportunityType {
     id: UUID!
     name: String!
     description: String
-    isActive: Boolean
-    createdAt: Timestamp
-    updatedAt: Timestamp
+    isActive: Boolean!
+    settings: JSONB
+    createdAt: Timestamp!
+    updatedAt: Timestamp!
+    
+    # Relationships
+    opportunities: [Opportunity!]
+    formMappings: [EntityFormMapping!]
   }
 
+  # Entity Query Inputs
   input EntityFilter {
     entityTypeIds: [UUID]
     status: [EntityStatus]
-    zoneIds: [UUID]
-    userIds: [UUID]
-    touchpointStatus: TouchpointStatus
     search: String
     dateRange: DateRangeInput
+    addressTypeIds: [UUID]
+    contactTypeIds: [UUID]
+    opportunityTypeIds: [UUID]
+    collectionIds: [UUID]
   }
   
   input DateRangeInput {
@@ -134,51 +176,28 @@ export const entity = gql`
     endDate: Timestamp
   }
 
-  # Entity Form Types
-  type EntitySubtype {
-    id: UUID!
-    entityTypeId: UUID!
-    name: String!
-    description: String
-    isActive: Boolean!
-    createdAt: Timestamp
-    updatedAt: Timestamp
-  }
-
-  type EntityFormField {
-    id: UUID!
-    formId: UUID!
-    fieldName: String!
-    displayName: String!
-    fieldType: String!
-    isRequired: Boolean!
-    validationRules: JSONB
-    defaultValue: String
-    options: JSONB
-    displayOrder: Int!
-    createdAt: Timestamp
-    updatedAt: Timestamp
-  }
-
-  type EntityForm {
-    id: UUID!
-    title: String!
-    description: String
-    entitySubtypeId: UUID!
-    isActive: Boolean!
-    fields: [EntityFormField!]!
-    createdAt: Timestamp
-    updatedAt: Timestamp
-  }
-
   # Entity Management Queries
   extend type Query {
-    entityTypes: [EntityType!]!
+    # Entity Types
+    entityTypes(isActive: Boolean): [EntityType!]!
     entityType(id: UUID!): EntityType
     
-    entities(filter: EntityFilter, limit: Int, offset: Int): [Entity!]!
-    entity(id: UUID!): Entity
+    entitySubtypes(isActive: Boolean): [EntitySubtype!]!
+    entitySubtype(id: UUID!): EntitySubtype
     
+    # Address Types
+    addressTypes(isActive: Boolean): [AddressType!]!
+    addressType(id: UUID!): AddressType
+    
+    # Contact Types
+    contactTypes(isActive: Boolean): [ContactType!]!
+    contactType(id: UUID!): ContactType
+    
+    # Opportunity Types
+    opportunityTypes(isActive: Boolean): [OpportunityType!]!
+    opportunityType(id: UUID!): OpportunityType
+    
+    # Entities
     addresses(filter: EntityFilter, limit: Int, offset: Int): [Address!]!
     address(id: UUID!): Address
     
@@ -187,56 +206,48 @@ export const entity = gql`
     
     opportunities(filter: EntityFilter, limit: Int, offset: Int): [Opportunity!]!
     opportunity(id: UUID!): Opportunity
-
-    # Entity Form Queries
-    creatableParentEntities: [EntityType!]!
-    entityTypesByParent(parentId: UUID!): [EntityType!]!
-    entitySubtypesByType(typeId: UUID!): [EntitySubtype!]!
-    formBySubtype(subtypeId: UUID!): EntityForm
+    
+    # Search
+    searchContacts(term: String!, limit: Int): [Contact!]!
+    searchAddresses(term: String!, limit: Int): [Address!]!
   }
 
   # Entity Management Mutations
   extend type Mutation {
-    createEntity(input: CreateEntityInput!): Entity!
-    updateEntity(id: UUID!, input: UpdateEntityInput!): Entity!
-    archiveEntity(id: UUID!): Entity!
-    
+    # Address Management
     createAddress(input: CreateAddressInput!): Address!
     updateAddress(id: UUID!, input: UpdateAddressInput!): Address!
     
+    # Contact Management
     createContact(input: CreateContactInput!): Contact!
     updateContact(id: UUID!, input: UpdateContactInput!): Contact!
     
+    # Opportunity Management
     createOpportunity(input: CreateOpportunityInput!): Opportunity!
     updateOpportunity(id: UUID!, input: UpdateOpportunityInput!): Opportunity!
+    
+    # Entity Status Management
+    archiveEntity(id: UUID!, entityType: String!): Boolean!
   }
 
   # Input types
-  input CreateEntityInput {
-    entityTypeId: UUID!
-    status: EntityStatus
-  }
-
-  input UpdateEntityInput {
-    status: EntityStatus
-  }
-
   input CreateAddressInput {
-    name: String
+    displayName: String
     street: String!
     addressLine2: String
-    city: String!
-    state: String!
-    postalCode: String!
+    city: String
+    state: String
+    postalCode: String
     notes: String
     propertyCondition: JSONB
     nextKnockDate: Timestamp
-    streetId: UUID
-    neighborhoodId: UUID
+    addressTypeId: UUID!
+    collectionId: UUID
+    metadata: JSONB
   }
 
   input UpdateAddressInput {
-    name: String
+    displayName: String
     street: String
     addressLine2: String
     city: String
@@ -246,8 +257,8 @@ export const entity = gql`
     notes: String
     propertyCondition: JSONB
     nextKnockDate: Timestamp
-    streetId: UUID
-    neighborhoodId: UUID
+    addressTypeId: UUID
+    metadata: JSONB
   }
 
   input CreateContactInput {
@@ -261,7 +272,9 @@ export const entity = gql`
     linkedin: String
     coverPhoto: String
     contactApproval: Boolean
-    contactTypeId: UUID
+    contactTypeId: UUID!
+    collectionId: UUID
+    metadata: JSONB
   }
 
   input UpdateContactInput {
@@ -277,16 +290,20 @@ export const entity = gql`
     status: EntityStatus
     contactApproval: Boolean
     contactTypeId: UUID
+    metadata: JSONB
   }
 
   input CreateOpportunityInput {
     opportunityTypeId: UUID!
     notes: String
+    collectionId: UUID!
+    metadata: JSONB
   }
 
   input UpdateOpportunityInput {
     opportunityTypeId: UUID
     status: EntityStatus
     notes: String
+    metadata: JSONB
   }
 `;

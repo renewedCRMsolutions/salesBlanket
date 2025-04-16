@@ -2,12 +2,32 @@ import { Request, Response } from 'express';
 import { getDb } from '../db/db';
 import { verifyToken } from '../utils/auth';
 
+// User interface
+export interface User {
+  id: string;
+  email: string;
+  firstName?: string;
+  lastName?: string;
+  isActive: boolean;
+  [key: string]: any; // Allow other properties
+}
+
+// Database interface
+export interface QueryResult {
+  rows: any[];
+  rowCount: number;
+}
+
+export interface Database {
+  query: (text: string, params?: any[]) => Promise<QueryResult>;
+}
+
 // Define Context interface
 export interface Context {
   req: Request;
   res: Response;
-  db: any; // Replace with appropriate DB type
-  user: any | null; // Replace with User type
+  db: Database;
+  user: User | null;
 }
 
 /**

@@ -1,5 +1,7 @@
 # final copy
 
+database schema - C:\Users\Robert Wolfe\Desktop\Projects\salesBlanketv4\intakeDatabaseTables.md
+
 ## address / contact entry
 
 UI customer input
